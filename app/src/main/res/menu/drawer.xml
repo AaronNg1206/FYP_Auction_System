@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    tools:context="com.nghycp.fyp_auction_system">
+
+
+    <item
+        android:id="@+id/home"
+        android:title="@string/drawer_home" />
+    <item
+        android:id="@+id/userProfile"
+        android:title="@string/drawer_editprofile" />
+    <item
+        android:id="@+id/category"
+        android:title="@string/drawer_categories">
+        <menu>
+            <item
+                android:id="@+id/auction"
+                android:title="@string/drawer_auction" />
+            <item
+                android:id="@+id/sell"
+                android:title="@string/drawer_sell" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/about"
+        android:title="@string/drawer_about" />
+    <item
+        android:id="@+id/logout"
+        android:title="@string/drawer_logout" />
+
+</menu>

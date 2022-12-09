@@ -20,4 +20,49 @@
     <string name="Category">Category</string>
     <string name="Cancel">cancel</string>
     <string name="addArtwork">Add Artwork</string>
+
+    <!--NZH-->
+    <!--menu_main-->
+    <string name="log_out">Log Out</string>
+
+    <!--drawer-->
+    <string name="drawer_home">Home</string>
+    <string name="drawer_editprofile">Edit Profile</string>
+    <string name="drawer_categories">Categories</string>
+    <string name="drawer_auction">Auction Bidding</string>
+    <string name="drawer_sell">Selling</string>
+    <string name="drawer_about">About Us</string>
+    <string name="drawer_logout">Log Out</string>
+
+    <!--Login-->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_link_to_register">Don\'t have an account? <b>Sign Up now!</b></string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_LoginWithoutID">Continue without Login</string>
+
+    <!--Register Activity-->
+    <string name="register">Register</string>
+    <string name="registration">REGISTRATION</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_phone">Phone No</string>
+    <string name="hint_age">Age</string>
+    <string name="hint_country">Country</string>
+    <string name="backToLogin">I have an account, log in now.</string>
+    <string name="todo">TODO</string>
+
+    <!--User Profile-->
+    <string name="dis_name">Name</string>
+    <string name="dis_age">Age</string>
+    <string name="dis_country">Country</string>
+    <string name="dis_phone">Phone Number</string>
+    <string name="dis_email">Email</string>
+    <string name="update_profile">Update Profile</string>
+
+    <!--Forget Password-->
+    <string name="forgot_pg">Forget Your Password ?</string>
+    <string name="btn_reset">Reset Password</string>
+    <string name="btn_back"><b>Back to login page</b></string>
+
 </resources>
