@@ -18,4 +18,6 @@
     <string name="OpenGallery">Open Gallery</string>
     <string name="DateOfRegister">Date of Register</string>
     <string name="Category">Category</string>
+    <string name="Cancel">cancel</string>
+    <string name="addArtwork">Add Artwork</string>
 </resources>
