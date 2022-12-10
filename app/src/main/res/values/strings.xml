@@ -98,5 +98,12 @@
     </string-array>
     <string name="price_show_return">Price</string>
 
+    <!--Show Bid Product-->
+    <string name="Desc_Bid">The Mona Lisa bears a strong resemblance to many Renaissance depictions of the Virgin Mary,
+        who was at that time seen as an ideal for womanhood.</string>
+    <string name="btn_Place">Click to Bid</string>
+    <!--Bid Process-->
+    <string name="btn_Bid">Place Bid</string>
+    <string name="editPriceBid">Enter a Bid</string>
 
 </resources>
