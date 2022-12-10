@@ -29,8 +29,10 @@
     <!--drawer-->
     <string name="drawer_home">Home</string>
     <string name="drawer_editprofile">Edit Profile</string>
+    <string name="drawer_view_purchase">View Purchase</string>
     <string name="drawer_categories">Categories</string>
     <string name="drawer_auction">Auction Bidding</string>
+    <string name="drawer_buy">Buy Product</string>
     <string name="drawer_sell">Selling</string>
     <string name="drawer_about">About Us</string>
     <string name="drawer_logout">Log Out</string>
@@ -42,6 +44,8 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="btn_login">LOGIN</string>
     <string name="btn_LoginWithoutID">Continue without Login</string>
+    <string name="show_account">User@gmail.com</string>
+    <string name="show_name">User</string>
 
     <!--Register Activity-->
     <string name="register">Register</string>
@@ -65,6 +69,7 @@
     <string name="forgot_pg">Forget Your Password ?</string>
     <string name="btn_reset">Reset Password</string>
     <string name="btn_back"><b>Back to login page</b></string>
+    <string name="title_activity_user_home">UserHomeActivity</string>
 
 
 </resources>

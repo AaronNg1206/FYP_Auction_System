@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wallpaper"
+    tools:context=".FragmentUserHomePage"
+    tools:ignore="SpeakableTextPresentCheck">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Homepage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/textViewHomePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="User HomePage"
+            android:textColor="@color/black"
+            android:textSize="26dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageAuction"
+            android:layout_width="418dp"
+            android:layout_height="220dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/auction"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.571"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewHomePage" />
+
+        <ImageView
+            android:id="@+id/imageBuying"
+            android:layout_width="517dp"
+            android:layout_height="227dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/buying"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageAuction" />
+
+        <ImageView
+            android:id="@+id/imageSelling"
+            android:layout_width="338dp"
+            android:layout_height="221dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/selling"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageBuying" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

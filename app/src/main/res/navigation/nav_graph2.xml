@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph2"
+    app:startDestination="@id/fragmentUserHomePage">
+
+    <fragment
+        android:id="@+id/fragmentUserHomePage"
+        android:name="com.nghycp.fyp_auction_system.FragmentUserHomePage"
+        android:label="fragment_user_home_page"
+        tools:layout="@layout/fragment_user_home_page" />
+</navigation>
