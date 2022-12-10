@@ -5,6 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wallpaper"
     tools:context=".customer_Add_Artwork">
 
     <TextView
@@ -126,19 +127,6 @@
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/Category"
-        android:inputType="textPersonName"
-        android:minHeight="@dimen/minHeight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/TextView_Category"
-        app:layout_constraintTop_toBottomOf="@+id/TextView_Category" />
-
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_width="0dp"
@@ -157,4 +145,13 @@
         android:text="@string/Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_Category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/TextView_Category"
+        app:layout_constraintTop_toBottomOf="@+id/TextView_Category" />
 </androidx.constraintlayout.widget.ConstraintLayout>

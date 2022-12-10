@@ -105,5 +105,7 @@
     <!--Bid Process-->
     <string name="btn_Bid">Place Bid</string>
     <string name="editPriceBid">Enter a Bid</string>
+    <string name="MonthlySales">Monthly Sales</string>
+    <string name="show_admin" />
 
 </resources>
