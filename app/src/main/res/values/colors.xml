@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="hintText">#FFA19A9A</color>
     <color name="btn_color">#FFBB86FC</color>
+    <color name="completeColor">#FD1302</color>
 </resources>

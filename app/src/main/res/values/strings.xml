@@ -71,5 +71,32 @@
     <string name="btn_back"><b>Back to login page</b></string>
     <string name="title_activity_user_home">UserHomeActivity</string>
 
+    <!--View Purchase-->
+    <string name="btn_return">Return &amp; Refund</string>
+    <string name="seller">Seller Name</string>
+    <string name="status">Complete</string>
+    <string name="product_name">Product Name</string>
+    <string name="order_ID">Order ID</string>
+    <string name="order_Time">Order Time</string>
+    <string name="order_type">Order Type</string>
+    <string name="order_total">Order Total</string>
+    <string name="show_ID">20134</string>
+    <string name="show_Time">02/22/2022</string>
+    <string name="show_tye">Auction</string>
+    <string name="show_total">RM4399</string>
+    <string name="show_Seller">Monalisa</string>
+
+    <!--Return Refund-->
+    <string name="btn_submit">Submit</string>
+    <string name="desc_return">Dropdown Something Here</string>
+    <string name="reason">Reason</string>
+    <string-array name="spinner_reason">
+        <item>Choose an Reason</item>
+        <item>The Item are fake</item>
+        <item>The Item got painchips</item>
+        <item>The Item does not same as picture show</item>
+    </string-array>
+    <string name="price_show_return">Price</string>
+
 
 </resources>
