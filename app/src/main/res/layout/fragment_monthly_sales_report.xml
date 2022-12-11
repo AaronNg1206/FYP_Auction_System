@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout11"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wallpaper"
+    tools:context=".monthlySalesReport">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="388dp"
+        android:layout_height="285dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="overall Sales"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="413dp"
+        android:layout_height="242dp"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="333dp">
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Top Seller"
+            android:textColor="@color/black"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="15dp" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            tools:layout_editor_absoluteX="90dp"
+            tools:layout_editor_absoluteY="50dp" />
+
+        <TextView
+            android:id="@+id/textView45"
+            android:layout_width="40dp"
+            android:layout_height="23dp"
+            android:text="Sales"
+            tools:layout_editor_absoluteX="276dp"
+            tools:layout_editor_absoluteY="197dp" />
+
+        <TextView
+            android:id="@+id/textView43"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sales"
+            tools:layout_editor_absoluteX="276dp"
+            tools:layout_editor_absoluteY="98dp" />
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Category"
+            tools:layout_editor_absoluteX="269dp"
+            tools:layout_editor_absoluteY="50dp" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Revenue"
+            tools:layout_editor_absoluteX="168dp"
+            tools:layout_editor_absoluteY="50dp" />
+
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RM12344"
+            tools:layout_editor_absoluteX="164dp"
+            tools:layout_editor_absoluteY="98dp" />
+
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RM12232"
+            tools:layout_editor_absoluteX="168dp"
+            tools:layout_editor_absoluteY="149dp" />
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RM11120"
+            tools:layout_editor_absoluteX="166dp"
+            tools:layout_editor_absoluteY="199dp" />
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eddie"
+            tools:layout_editor_absoluteX="91dp"
+            tools:layout_editor_absoluteY="97dp" />
+
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edric"
+            tools:layout_editor_absoluteX="91dp"
+            tools:layout_editor_absoluteY="149dp" />
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aaron"
+            tools:layout_editor_absoluteX="91dp"
+            tools:layout_editor_absoluteY="198dp" />
+
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bid"
+            tools:layout_editor_absoluteX="290dp"
+            tools:layout_editor_absoluteY="149dp" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Month"
+            tools:layout_editor_absoluteX="310dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="133dp"
+            android:layout_height="24dp"
+            tools:layout_editor_absoluteX="278dp"
+            tools:layout_editor_absoluteY="15dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="584dp" />
+
+    <TextView
+        android:id="@+id/textView47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jan"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="623dp" />
+
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Revenue"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="595dp" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RM123'400"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="654dp" />
+
+    <TextView
+        android:id="@+id/textView50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Feb"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="692dp" />
+
+    <TextView
+        android:id="@+id/textView51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RM130'000"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="722dp" />
+
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mar"
+        tools:layout_editor_absoluteX="206dp"
+        tools:layout_editor_absoluteY="622dp" />
+
+    <TextView
+        android:id="@+id/textView53"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RM210'000"
+        tools:layout_editor_absoluteX="203dp"
+        tools:layout_editor_absoluteY="655dp" />
+
+    <TextView
+        android:id="@+id/textView54"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dec"
+        tools:layout_editor_absoluteX="203dp"
+        tools:layout_editor_absoluteY="692dp" />
+
+    <TextView
+        android:id="@+id/textView55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RM123'321"
+        tools:layout_editor_absoluteX="203dp"
+        tools:layout_editor_absoluteY="725dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

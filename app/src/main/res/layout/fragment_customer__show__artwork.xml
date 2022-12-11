@@ -1,13 +1,385 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".customer_Show_Artwork">
+    tools:context=".customer_Show_Artwork"
+    android:background="@drawable/wallpaper">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/fragment__artwork__layout"
-        />
-</FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView_ArtworkName1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_name"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_Artwork1"
+            app:layout_constraintStart_toStartOf="@+id/imageView_Artwork1"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_Artwork1" />
+
+        <TextView
+            android:id="@+id/textView_Price1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_Price"
+            app:layout_constraintEnd_toEndOf="@+id/textView_ArtworkName1"
+            app:layout_constraintStart_toStartOf="@+id/textView_ArtworkName1"
+            app:layout_constraintTop_toBottomOf="@+id/textView_ArtworkName1" />
+
+        <ImageView
+            android:id="@+id/imageView_Artwork1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout1"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout1"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout1">
+
+        <ImageView
+            android:id="@+id/imageView_Artwork2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView_ArtworkName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_name"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_Artwork2"
+            app:layout_constraintStart_toStartOf="@+id/imageView_Artwork2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_Artwork2" />
+
+        <TextView
+            android:id="@+id/textView_Price2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_Price"
+            app:layout_constraintEnd_toEndOf="@+id/textView_ArtworkName2"
+            app:layout_constraintStart_toStartOf="@+id/textView_ArtworkName2"
+            app:layout_constraintTop_toBottomOf="@+id/textView_ArtworkName2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout2">
+
+        <ImageView
+            android:id="@+id/imageView_Artwork3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView_ArtworkName3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_name"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_Artwork3"
+            app:layout_constraintStart_toStartOf="@+id/imageView_Artwork3"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_Artwork3" />
+
+        <TextView
+            android:id="@+id/textView_Price3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_Price"
+            app:layout_constraintEnd_toEndOf="@+id/textView_ArtworkName3"
+            app:layout_constraintStart_toStartOf="@+id/textView_ArtworkName3"
+            app:layout_constraintTop_toBottomOf="@+id/textView_ArtworkName3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="221dp" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2">
+
+        <TextView
+            android:id="@+id/textView_ArtworkName4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_name"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_Artwork4"
+            app:layout_constraintStart_toStartOf="@+id/imageView_Artwork4"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_Artwork4" />
+
+        <TextView
+            android:id="@+id/textView_Price4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_Price"
+            app:layout_constraintEnd_toEndOf="@+id/textView_ArtworkName4"
+            app:layout_constraintStart_toStartOf="@+id/textView_ArtworkName4"
+            app:layout_constraintTop_toBottomOf="@+id/textView_ArtworkName4" />
+
+        <ImageView
+            android:id="@+id/imageView_Artwork4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout4"
+        app:layout_constraintTop_toTopOf="@+id/guideline2">
+
+        <ImageView
+            android:id="@+id/imageView_Artwork2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView_ArtworkName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_name"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_Artwork2"
+            app:layout_constraintStart_toStartOf="@+id/imageView_Artwork2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_Artwork2" />
+
+        <TextView
+            android:id="@+id/textView_Price2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_Price"
+            app:layout_constraintEnd_toEndOf="@+id/textView_ArtworkName2"
+            app:layout_constraintStart_toStartOf="@+id/textView_ArtworkName2"
+            app:layout_constraintTop_toBottomOf="@+id/textView_ArtworkName2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toTopOf="@+id/guideline2">
+
+        <ImageView
+            android:id="@+id/imageView_Artwork3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView_ArtworkName3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_name"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_Artwork3"
+            app:layout_constraintStart_toStartOf="@+id/imageView_Artwork3"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_Artwork3" />
+
+        <TextView
+            android:id="@+id/textView_Price3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_Price"
+            app:layout_constraintEnd_toEndOf="@+id/textView_ArtworkName3"
+            app:layout_constraintStart_toStartOf="@+id/textView_ArtworkName3"
+            app:layout_constraintTop_toBottomOf="@+id/textView_ArtworkName3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="285dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3">
+
+        <TextView
+            android:id="@+id/textView_ArtworkName4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_name"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_Artwork4"
+            app:layout_constraintStart_toStartOf="@+id/imageView_Artwork4"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_Artwork4" />
+
+        <TextView
+            android:id="@+id/textView_Price4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_Price"
+            app:layout_constraintEnd_toEndOf="@+id/textView_ArtworkName4"
+            app:layout_constraintStart_toStartOf="@+id/textView_ArtworkName4"
+            app:layout_constraintTop_toBottomOf="@+id/textView_ArtworkName4" />
+
+        <ImageView
+            android:id="@+id/imageView_Artwork4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout4"
+        app:layout_constraintTop_toTopOf="@+id/guideline3">
+
+        <ImageView
+            android:id="@+id/imageView_Artwork2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView_ArtworkName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_name"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_Artwork2"
+            app:layout_constraintStart_toStartOf="@+id/imageView_Artwork2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_Artwork2" />
+
+        <TextView
+            android:id="@+id/textView_Price2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_Price"
+            app:layout_constraintEnd_toEndOf="@+id/textView_ArtworkName2"
+            app:layout_constraintStart_toStartOf="@+id/textView_ArtworkName2"
+            app:layout_constraintTop_toBottomOf="@+id/textView_ArtworkName2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toTopOf="@+id/guideline3">
+
+        <ImageView
+            android:id="@+id/imageView_Artwork3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView_ArtworkName3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_name"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_Artwork3"
+            app:layout_constraintStart_toStartOf="@+id/imageView_Artwork3"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_Artwork3" />
+
+        <TextView
+            android:id="@+id/textView_Price3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/product_Price"
+            app:layout_constraintEnd_toEndOf="@+id/textView_ArtworkName3"
+            app:layout_constraintStart_toStartOf="@+id/textView_ArtworkName3"
+            app:layout_constraintTop_toBottomOf="@+id/textView_ArtworkName3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

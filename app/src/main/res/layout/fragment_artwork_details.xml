@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".artworkDetailsFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".addToCartFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frameLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/wallpaper"
+            tools:context=".FragmentBidProduct">
+
+            <ImageView
+                android:id="@+id/imageProductBid"
+                android:layout_width="260dp"
+                android:layout_height="260dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/example"
+                app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/show_Product"
+                android:layout_width="108dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="65dp"
+                android:text="Monalisa"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/imageProductBid"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_Desc"
+                android:layout_width="93dp"
+                android:layout_height="23dp"
+                android:text="Description"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.059"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageProductBid"
+                app:layout_constraintVertical_bias="0.15" />
+
+            <TextView
+                android:id="@+id/show_Desc"
+                android:layout_width="363dp"
+                android:layout_height="137dp"
+                android:text="The Mona Lisa bears a strong resemblance to many Renaissance depictions of the Virgin Mary, who was at that time seen as an ideal for womanhood."
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.333"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageProductBid"
+                app:layout_constraintVertical_bias="0.328" />
+
+            <TextView
+                android:id="@+id/show_EndingTime"
+                android:layout_width="90dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="RM12222"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintStart_toEndOf="@+id/imageProductBid"
+                app:layout_constraintTop_toBottomOf="@+id/show_Product" />
+
+            <TextView
+                android:id="@+id/show_Seller_Bid"
+                android:layout_width="139dp"
+                android:layout_height="21dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="408dp"
+                android:text="Yeap Chong min"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView2" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="365dp"
+                android:layout_height="48dp"
+                android:text="@string/addToCart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.347"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.918" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="264dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Author"
+                android:textColor="@android:color/black"
+                tools:layout_editor_absoluteX="19dp"
+                tools:layout_editor_absoluteY="303dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </FrameLayout>
+
+</FrameLayout>

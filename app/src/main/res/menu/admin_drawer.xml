@@ -9,7 +9,7 @@
         android:id="@+id/home"
         android:title="@string/drawer_home" />
     <item
-        android:id="@+id/Monthly Sales"
+        android:id="@+id/monthlysales"
         android:title="@string/MonthlySales" />
     <item
         android:id="@+id/logout"

@@ -107,5 +107,7 @@
     <string name="editPriceBid">Enter a Bid</string>
     <string name="MonthlySales">Monthly Sales</string>
     <string name="show_admin" />
+    <string name="buy">Buy</string>
+    <string name="addToCart">add To Cart</string>
 
 </resources>
