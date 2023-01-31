@@ -188,7 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="578dp" />
+        app:layout_constraintGuide_begin="525dp" />
 
     <Button
         android:id="@+id/button5"
@@ -199,7 +199,22 @@
         android:layout_marginEnd="8dp"
         android:text="CheckOut"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="350dp"
+        tools:layout_editor_absoluteY="301dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="350dp"
+        tools:layout_editor_absoluteY="115dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

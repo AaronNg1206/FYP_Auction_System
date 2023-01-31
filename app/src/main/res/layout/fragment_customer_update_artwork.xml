@@ -30,7 +30,7 @@
             android:layout_marginTop="8dp"
             android:height="@dimen/minHeight"
             android:ems="10"
-            android:hint="@string/productName"
+            android:hint="Monalisa"
             android:inputType="textPersonName"
             android:minHeight="@dimen/minHeight"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
             android:layout_marginTop="8dp"
             android:height="@dimen/minHeight"
             android:ems="10"
-            android:hint="@string/product_Price"
+            android:hint="12322"
             android:inputType="textPersonName"
             android:minHeight="@dimen/minHeight"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +76,7 @@
             android:layout_marginTop="8dp"
             android:height="@dimen/minHeight"
             android:ems="10"
-            android:hint="@string/Author"
+            android:hint="Leonardo da Vinci"
             android:inputType="textPersonName"
             android:minHeight="@dimen/minHeight"
             app:layout_constraintEnd_toEndOf="parent"
@@ -137,6 +137,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/TextView_Category"
             app:layout_constraintTop_toBottomOf="@+id/TextView_Category" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bid"
+            tools:layout_editor_absoluteX="195dp"
+            tools:layout_editor_absoluteY="414dp" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="167dp"
+            android:layout_height="118dp"
+            android:src="@drawable/example"
+            tools:layout_editor_absoluteX="228dp"
+            tools:layout_editor_absoluteY="283dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
