@@ -9,5 +9,56 @@
         android:id="@+id/fragmentUserHomePage"
         android:name="com.nghycp.fyp_auction_system.FragmentUserHomePage"
         android:label="fragment_user_home_page"
-        tools:layout="@layout/fragment_user_home_page" />
+        tools:layout="@layout/fragment_user_home_page" >
+        <action
+            android:id="@+id/action_fragmentUserHomePage_to_customer_Show_Artwork"
+            app:destination="@id/customer_Show_Artwork" />
+    </fragment>
+    <fragment
+        android:id="@+id/customer_Add_Artwork"
+        android:name="com.nghycp.fyp_auction_system.customer_Add_Artwork"
+        android:label="fragment_customer__add__artwork"
+        tools:layout="@layout/fragment_customer__add__artwork" />
+    <fragment
+        android:id="@+id/customer_Show_Artwork"
+        android:name="com.nghycp.fyp_auction_system.customer_Show_Artwork"
+        android:label="fragment_customer__show__artwork"
+        tools:layout="@layout/fragment_customer__show__artwork" >
+        <action
+            android:id="@+id/action_customer_Show_Artwork_to_artworkDetailsFragment"
+            app:destination="@id/artworkDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/artworkDetailsFragment"
+        android:name="com.nghycp.fyp_auction_system.artworkDetailsFragment"
+        android:label="fragment_artwork_details"
+        tools:layout="@layout/fragment_artwork_details" >
+        <action
+            android:id="@+id/action_artworkDetailsFragment_to_addToCartFragment"
+            app:destination="@id/addToCartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addToCartFragment"
+        android:name="com.nghycp.fyp_auction_system.addToCartFragment"
+        android:label="fragment_add_to_cart"
+        tools:layout="@layout/fragment_add_to_cart" >
+        <action
+            android:id="@+id/action_addToCartFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.nghycp.fyp_auction_system.paymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" />
+    <fragment
+        android:id="@+id/customerUpdateArtwork"
+        android:name="com.nghycp.fyp_auction_system.CustomerUpdateArtwork"
+        android:label="fragment_customer_update_artwork"
+        tools:layout="@layout/fragment_customer_update_artwork" />
+    <fragment
+        android:id="@+id/monthlySalesReport"
+        android:name="com.nghycp.fyp_auction_system.monthlySalesReport"
+        android:label="fragment_monthly_sales_report"
+        tools:layout="@layout/fragment_monthly_sales_report" />
 </navigation>
