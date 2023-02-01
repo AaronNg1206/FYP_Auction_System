@@ -13,6 +13,15 @@
         <action
             android:id="@+id/action_fragmentUserHomePage_to_customer_Show_Artwork"
             app:destination="@id/customer_Show_Artwork" />
+        <action
+            android:id="@+id/action_fragmentUserHomePage_to_fragmentAuctionShowProduct"
+            app:destination="@id/fragmentAuctionShowProduct" />
+        <action
+            android:id="@+id/action_fragmentUserHomePage_to_fragmentUserProfile"
+            app:destination="@id/fragmentUserProfile" />
+        <action
+            android:id="@+id/action_fragmentUserHomePage_to_fragmentViewPurchase"
+            app:destination="@id/fragmentViewPurchase" />
     </fragment>
     <fragment
         android:id="@+id/customer_Add_Artwork"
@@ -27,6 +36,9 @@
         <action
             android:id="@+id/action_customer_Show_Artwork_to_artworkDetailsFragment"
             app:destination="@id/artworkDetailsFragment" />
+        <action
+            android:id="@+id/action_customer_Show_Artwork_to_fragmentUserHomePage"
+            app:destination="@id/fragmentUserHomePage" />
     </fragment>
     <fragment
         android:id="@+id/artworkDetailsFragment"
@@ -36,6 +48,9 @@
         <action
             android:id="@+id/action_artworkDetailsFragment_to_addToCartFragment"
             app:destination="@id/addToCartFragment" />
+        <action
+            android:id="@+id/action_artworkDetailsFragment_to_customer_Show_Artwork"
+            app:destination="@id/customer_Show_Artwork" />
     </fragment>
     <fragment
         android:id="@+id/addToCartFragment"
@@ -45,12 +60,19 @@
         <action
             android:id="@+id/action_addToCartFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_addToCartFragment_to_fragmentUserHomePage"
+            app:destination="@id/fragmentUserHomePage" />
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"
         android:name="com.nghycp.fyp_auction_system.paymentFragment"
         android:label="fragment_payment"
-        tools:layout="@layout/fragment_payment" />
+        tools:layout="@layout/fragment_payment" >
+        <action
+            android:id="@+id/action_paymentFragment_to_addToCartFragment"
+            app:destination="@id/addToCartFragment" />
+    </fragment>
     <fragment
         android:id="@+id/customerUpdateArtwork"
         android:name="com.nghycp.fyp_auction_system.CustomerUpdateArtwork"
@@ -61,4 +83,67 @@
         android:name="com.nghycp.fyp_auction_system.monthlySalesReport"
         android:label="fragment_monthly_sales_report"
         tools:layout="@layout/fragment_monthly_sales_report" />
+    <fragment
+        android:id="@+id/fragmentAuctionShowProduct"
+        android:name="com.nghycp.fyp_auction_system.FragmentAuctionShowProduct"
+        android:label="fragment_auction_show_product"
+        tools:layout="@layout/fragment_auction_show_product" >
+        <action
+            android:id="@+id/action_fragmentAuctionShowProduct_to_fragmentUserHomePage"
+            app:destination="@id/fragmentUserHomePage" />
+        <action
+            android:id="@+id/action_fragmentAuctionShowProduct_to_fragmentBidProduct"
+            app:destination="@id/fragmentBidProduct" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentBidProduct"
+        android:name="com.nghycp.fyp_auction_system.FragmentBidProduct"
+        android:label="fragment_bid_product"
+        tools:layout="@layout/fragment_bid_product" >
+        <action
+            android:id="@+id/action_fragmentBidProduct_to_fragmentAuctionShowProduct"
+            app:destination="@id/fragmentAuctionShowProduct" />
+        <action
+            android:id="@+id/action_fragmentBidProduct_to_fragmentBidProcess"
+            app:destination="@id/fragmentBidProcess" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentBidProcess"
+        android:name="com.nghycp.fyp_auction_system.FragmentBidProcess"
+        android:label="fragment_bid_process"
+        tools:layout="@layout/fragment_bid_process" >
+        <action
+            android:id="@+id/action_fragmentBidProcess_to_fragmentAuctionShowProduct"
+            app:destination="@id/fragmentAuctionShowProduct" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentUserProfile"
+        android:name="com.nghycp.fyp_auction_system.FragmentUserProfile"
+        android:label="fragment_user_profile"
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/action_fragmentUserProfile_to_fragmentUserHomePage"
+            app:destination="@id/fragmentUserHomePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentViewPurchase"
+        android:name="com.nghycp.fyp_auction_system.FragmentViewPurchase"
+        android:label="fragment_view_purchase"
+        tools:layout="@layout/fragment_view_purchase" >
+        <action
+            android:id="@+id/action_fragmentViewPurchase_to_fragmentUserHomePage"
+            app:destination="@id/fragmentUserHomePage" />
+        <action
+            android:id="@+id/action_fragmentViewPurchase_to_fragmentRetundRefund"
+            app:destination="@id/fragmentRetundRefund" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentRetundRefund"
+        android:name="com.nghycp.fyp_auction_system.FragmentRetundRefund"
+        android:label="fragment_retund_refund"
+        tools:layout="@layout/fragment_retund_refund" >
+        <action
+            android:id="@+id/action_fragmentRetundRefund_to_fragmentViewPurchase"
+            app:destination="@id/fragmentViewPurchase" />
+    </fragment>
 </navigation>

@@ -33,9 +33,6 @@ class FragmentLogin : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentLogin_to_fragmentUserProfile)
-        }
         binding.signup.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentLogin_to_fragmentRegister)
         }
