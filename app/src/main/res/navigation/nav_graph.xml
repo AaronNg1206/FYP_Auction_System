@@ -6,11 +6,6 @@
     app:startDestination="@id/fragmentLogin">
 
     <fragment
-        android:id="@+id/fragmentUserProfile"
-        android:name="com.nghycp.fyp_auction_system.FragmentUserProfile"
-        android:label="fragment_user_profile"
-        tools:layout="@layout/fragment_user_profile" />
-    <fragment
         android:id="@+id/fragmentForgetPassword"
         android:name="com.nghycp.fyp_auction_system.FragmentForgetPassword"
         android:label="fragment_forget_password"
@@ -25,14 +20,11 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_fragmentLogin_to_fragmentRegister"
-            app:destination="@id/fragmentRegister" />
-        <action
             android:id="@+id/action_fragmentLogin_to_fragmentForgetPassword"
             app:destination="@id/fragmentForgetPassword" />
         <action
-            android:id="@+id/action_fragmentLogin_to_fragmentUserProfile"
-            app:destination="@id/fragmentUserProfile" />
+            android:id="@+id/action_fragmentLogin_to_fragmentRegister"
+            app:destination="@id/fragmentRegister" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRegister"
