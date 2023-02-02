@@ -124,6 +124,9 @@
         <action
             android:id="@+id/action_fragmentUserProfile_to_fragmentUserHomePage"
             app:destination="@id/fragmentUserHomePage" />
+        <action
+            android:id="@+id/action_fragmentUserProfile_to_fragment_customer_sales_selection"
+            app:destination="@id/fragment_customer_sales_selection" />
     </fragment>
     <fragment
         android:id="@+id/fragmentViewPurchase"
@@ -145,5 +148,26 @@
         <action
             android:id="@+id/action_fragmentRetundRefund_to_fragmentViewPurchase"
             app:destination="@id/fragmentViewPurchase" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_customer_sales_selection"
+        android:name="com.nghycp.fyp_auction_system.Fragment_customer_sales_selection"
+        android:label="fragment_customer_sales_selection"
+        tools:layout="@layout/fragment_customer_sales_selection" >
+        <action
+            android:id="@+id/action_fragment_customer_sales_selection_to_fragment_customer_sales"
+            app:destination="@id/fragment_customer_sales" />
+        <action
+            android:id="@+id/action_fragment_customer_sales_selection_to_customer_Add_Artwork"
+            app:destination="@id/customer_Add_Artwork" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_customer_sales"
+        android:name="com.nghycp.fyp_auction_system.Fragment_customer_sales"
+        android:label="fragment_customer_sales"
+        tools:layout="@layout/fragment_customer_sales" >
+        <action
+            android:id="@+id/action_fragment_customer_sales_to_customerUpdateArtwork"
+            app:destination="@id/customerUpdateArtwork" />
     </fragment>
 </navigation>
