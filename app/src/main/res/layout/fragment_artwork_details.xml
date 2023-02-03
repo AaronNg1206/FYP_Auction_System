@@ -87,7 +87,7 @@
             android:textColor="@color/black"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView2" />
+            app:layout_constraintStart_toEndOf="parent"/>
 
         <Button
             android:id="@+id/button3"
@@ -108,71 +108,71 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="264dp" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="44dp"
-            android:layout_height="19dp"
-            android:text="@string/Author"
-            android:textColor="@android:color/black"
-            tools:layout_editor_absoluteX="12dp"
-            tools:layout_editor_absoluteY="284dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView2"-->
+<!--            android:layout_width="44dp"-->
+<!--            android:layout_height="19dp"-->
+<!--            android:text="@string/Author"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            tools:layout_editor_absoluteX="12dp"-->
+<!--            tools:layout_editor_absoluteY="284dp" />-->
 
-        <TextView
-            android:id="@+id/textView36"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Size"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/show_Desc"
-            tools:layout_editor_absoluteX="12dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView36"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:text="Size"-->
+<!--            android:textColor="@color/black"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/show_Desc"-->
+<!--            tools:layout_editor_absoluteX="12dp" />-->
 
-        <TextView
-            android:id="@+id/textView46"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Rarity"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/textView36"
-            tools:layout_editor_absoluteX="12dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView46"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:text="Rarity"-->
+<!--            android:textColor="@color/black"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView36"-->
+<!--            tools:layout_editor_absoluteX="12dp" />-->
 
-        <TextView
-            android:id="@+id/textView56"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Condition"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/textView46"
-            tools:layout_editor_absoluteX="12dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView56"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:text="Condition"-->
+<!--            android:textColor="@color/black"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView46"-->
+<!--            tools:layout_editor_absoluteX="12dp" />-->
 
-        <TextView
-            android:id="@+id/textView57"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="176*330cm"
-            android:textColor="@color/black"
-            tools:layout_editor_absoluteX="86dp"
-            tools:layout_editor_absoluteY="459dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView57"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="176*330cm"-->
+<!--            android:textColor="@color/black"-->
+<!--            tools:layout_editor_absoluteX="86dp"-->
+<!--            tools:layout_editor_absoluteY="459dp" />-->
 
-        <TextView
-            android:id="@+id/textView58"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Unique"
-            android:textColor="@color/black"
-            tools:layout_editor_absoluteX="87dp"
-            tools:layout_editor_absoluteY="493dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView58"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Unique"-->
+<!--            android:textColor="@color/black"-->
+<!--            tools:layout_editor_absoluteX="87dp"-->
+<!--            tools:layout_editor_absoluteY="493dp" />-->
 
-        <TextView
-            android:id="@+id/textView59"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Perfect"
-            android:textColor="@color/black"
-            tools:layout_editor_absoluteX="87dp"
-            tools:layout_editor_absoluteY="530dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView59"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Perfect"-->
+<!--            android:textColor="@color/black"-->
+<!--            tools:layout_editor_absoluteX="87dp"-->
+<!--            tools:layout_editor_absoluteY="530dp" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
