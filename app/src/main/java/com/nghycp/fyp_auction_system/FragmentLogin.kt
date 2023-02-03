@@ -39,7 +39,7 @@ class FragmentLogin : Fragment() {
         binding.forgotpassword.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentLogin_to_fragmentForgetPassword)
         }
-    }
+    }//
 
     override fun onDestroyView() {
         super.onDestroyView()
