@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wallpaper"
-    tools:context=".FragmentUserProfile">
+    tools:context=".usermanagement.FragmentUserProfile">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/registrationLayout"

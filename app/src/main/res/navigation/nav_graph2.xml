@@ -118,7 +118,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentUserProfile"
-        android:name="com.nghycp.fyp_auction_system.FragmentUserProfile"
+        android:name="com.nghycp.fyp_auction_system.usermanagement.FragmentUserProfile"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" >
         <action

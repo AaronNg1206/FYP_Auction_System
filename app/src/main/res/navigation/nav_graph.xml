@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentForgetPassword"
-        android:name="com.nghycp.fyp_auction_system.FragmentForgetPassword"
+        android:name="com.nghycp.fyp_auction_system.usermanagement.FragmentForgetPassword"
         android:label="fragment_forget_password"
         tools:layout="@layout/fragment_forget_password" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentLogin"
-        android:name="com.nghycp.fyp_auction_system.FragmentLogin"
+        android:name="com.nghycp.fyp_auction_system.usermanagement.FragmentLogin"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentRegister"
-        android:name="com.nghycp.fyp_auction_system.FragmentRegister"
+        android:name="com.nghycp.fyp_auction_system.usermanagement.FragmentRegister"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
