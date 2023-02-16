@@ -110,4 +110,11 @@
     <string name="buy">Buy</string>
     <string name="addToCart">add To Cart</string>
 
+    <!--Nav Logout-->
+    <string name="navLogin">navLogin</string>
+
+    <!--User Home Page-->
+    <string name="viewMoreBid">View More</string>
+    <string name="viewMoreBuy">View More</string>
+
 </resources>

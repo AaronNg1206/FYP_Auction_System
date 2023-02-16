@@ -86,7 +86,7 @@ class FragmentLogin : Fragment() {
         }
             .addOnFailureListener { e->
                 progressDialog.dismiss()
-                binding.btnLogin.error = "Login Failed due to ${e.message}"
+                Toast.makeText(context,"Failed to Login",Toast.LENGTH_LONG).show()
             }
 
     }

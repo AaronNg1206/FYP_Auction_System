@@ -1,60 +1,63 @@
 package com.nghycp.fyp_auction_system.usermanagement
 
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
+import com.nghycp.fyp_auction_system.databinding.FragmentForgetPasswordBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentForgetPassword.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FragmentForgetPassword : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentForgetPasswordBinding? = null
+    private lateinit var auth: FirebaseAuth
+
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_forget_password, container, false)
-    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentForgetPassword.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentForgetPassword().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        setHasOptionsMenu(true)
+
+        _binding =FragmentForgetPasswordBinding.inflate(inflater, container, false)
+
+        binding.btnBackToLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentForgetPassword_to_fragmentLogin)
+        }
+
+        auth = Firebase.auth
+
+        val buttonForget = binding.resetBtn
+
+        buttonForget.setOnClickListener{
+            val email = binding.forgetPassword.text.toString().trim{it <= ' '}
+            if(email.isEmpty()){
+                Toast.makeText(this.context, "Please enter you email address", Toast.LENGTH_LONG).show()
+            }else{
+                auth.sendPasswordResetEmail(email).addOnCompleteListener{
+                    if(it.isSuccessful){
+
+                        Toast.makeText(this.context, "Email was sent successfully", Toast.LENGTH_LONG).show()
+
+
+                    }
                 }
             }
+        }
+        return binding.root
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        // log out action not visible in forgot password fragment
+        menu.findItem(R.id.action_logout).isVisible = false
+    }
+
 }
