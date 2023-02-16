@@ -20,7 +20,7 @@ class UserHomeActivity : AppCompatActivity() {
         binding = ActivityUserHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.appBarHomeUser.toolbar)
+        setSupportActionBar(binding.appBarHome.toolbar)
 
         val navController = findNavController(R.id.nav_host)
         appBarConfiguration = AppBarConfiguration(navController.graph)

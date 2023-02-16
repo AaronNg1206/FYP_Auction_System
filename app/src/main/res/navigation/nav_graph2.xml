@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/fragmentUserHomePage"
         android:name="com.nghycp.fyp_auction_system.FragmentUserHomePage"
-        android:label="fragment_user_home_page"
-        tools:layout="@layout/fragment_user_home_page" >
+        android:label="Home"
+        tools:layout="@layout/fragment_user_home_page">
         <action
             android:id="@+id/action_fragmentUserHomePage_to_customer_Show_Artwork"
             app:destination="@id/customer_Show_Artwork" />
@@ -170,4 +170,9 @@
             android:id="@+id/action_fragment_customer_sales_to_customerUpdateArtwork"
             app:destination="@id/customerUpdateArtwork" />
     </fragment>
+    <activity
+        android:id="@+id/action_logout"
+        android:name="com.nghycp.fyp_auction_system.MainActivity"
+        android:label="@string/login"
+        tools:layout="@layout/activity_main" />
 </navigation>

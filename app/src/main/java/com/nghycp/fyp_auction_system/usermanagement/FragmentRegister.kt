@@ -1,11 +1,17 @@
 package com.nghycp.fyp_auction_system.usermanagement
 
+import android.app.ProgressDialog
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Patterns
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentRegisterBinding
 
@@ -16,8 +22,12 @@ class FragmentRegister : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private lateinit var firebaseAuth: FirebaseAuth
+
+    private lateinit var progressDialog: ProgressDialog
+
+    var sharedPreference: SharedPreferences? = null
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -25,17 +35,118 @@ class FragmentRegister : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        setHasOptionsMenu(true)
+
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        progressDialog = ProgressDialog(context)
+        progressDialog.setTitle("Please Wait...")
+        progressDialog.setCanceledOnTouchOutside(false)
+
+        binding.backToLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentRegister_to_fragmentLogin)
+        }
+
+        binding.btnRegister.setOnClickListener{
+
+            validateData()
+
+        }
+
         return binding.root
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private var name = ""
+    private var email = ""
+    private var age = ""
+    private var country = ""
+    private var phone = ""
+    private var password = ""
 
-        binding.btnRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentRegister_to_fragmentLogin)
+    private fun validateData() {
+        name = binding.username.text.toString().trim()
+        email = binding.edittextemail.text.toString().trim()
+        age = binding.age.text.toString().trim()
+        country = binding.country.text.toString().trim()
+        phone = binding.phoneField.text.toString().trim()
+        password = binding.edittextpassword.text.toString().trim()
+
+        if(name.isEmpty()){
+            binding.username.error = "Enter Your Name"
+        }else if (email.isEmpty()){
+            binding.edittextemail.error = "Enter Your Email"
+        }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            binding.edittextemail.error = "Invalid Email"
+    }else if (age.isEmpty()){
+            binding.age.error = "Enter Your Age"
+        }else if (country.isEmpty()){
+            binding.country.error = "Enter Your Country"
+        }else if (phone.isEmpty()){
+            binding.phoneField.error = "Enter Your Phone Number"
+        }else if (password.isEmpty()){
+            binding.edittextpassword.error = "Enter Your Password"
+        }else if (!Patterns.PHONE.matcher(phone).matches()){
+            binding.phoneField.error = "Invalid Phone Number"
+        }else {
+            createUserAccount()
         }
+    }
+
+    private fun createUserAccount() {
+        progressDialog.setMessage("Creating Account")
+        progressDialog.show()
+
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+            .addOnSuccessListener {
+                updateUserInfo()
+            }
+            .addOnFailureListener {
+                progressDialog.dismiss()
+                Toast.makeText(context,"Failed to Register", Toast.LENGTH_LONG).show()
+            }
+    }
+
+    private fun updateUserInfo() {
+
+        progressDialog.setMessage("Saving User Info...")
+
+        //val timestamp = System.currentTimeMillis()
+
+        val uid = firebaseAuth.uid
+
+        val hashMap: HashMap<String, Any?> = HashMap()
+
+        hashMap["uid"] = uid
+        hashMap["name"] = name
+        hashMap["email"] = email
+        hashMap["age"] = age
+        hashMap["country"] = country
+        hashMap["phone"] = phone
+        //hashMap["password"] = password
+        hashMap["userType"] = "user"
+        hashMap["profileImage"] = ""
+
+        val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference("Users")
+        ref.child(uid!!)
+            .setValue(hashMap)
+            .addOnSuccessListener {
+                progressDialog.dismiss()
+                binding.btnRegister.error = "Register Successful"
+                findNavController().navigate(R.id.action_fragmentRegister_to_fragmentLogin)
+            }
+            .addOnFailureListener {
+                progressDialog.dismiss()
+                binding.btnRegister.error = "Failed saving user info "
+            }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater){
+        super.onCreateOptionsMenu(menu, inflater)
+
+        menu.findItem(R.id.action_logout).isVisible = false
     }
 
     override fun onDestroyView() {
