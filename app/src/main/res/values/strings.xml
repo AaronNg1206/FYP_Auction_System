@@ -18,10 +18,22 @@
     <string name="OpenGallery">Open Gallery</string>
     <string name="DateOfRegister">Date of Register</string>
     <string name="Category">Category</string>
-    <string name="Cancel">cancel</string>
+    <string name="Cancel">Cancel</string>
     <string name="addArtwork">Add Artwork</string>
     <string name="UpdateArtwork">Update</string>
 
+    <string-array name="spinner_category">
+        <item>Limited Edition Prints</item>
+        <item>Paintings</item>
+        <item>Drawing</item>
+        <item>sculpture</item>
+        <item>Photography</item>
+    </string-array>
+
+    <string-array name="spinner_typeOfWork">
+        <item>Bid</item>
+        <item>sell</item>
+    </string-array>
     <!--NZH-->
     <!--menu_main-->
     <string name="log_out">Log Out</string>
@@ -109,5 +121,6 @@
     <string name="show_admin" />
     <string name="buy">Buy</string>
     <string name="addToCart">add To Cart</string>
+    <string name="adminHome">"Welcome Back Admin Home Page"</string>
 
 </resources>
