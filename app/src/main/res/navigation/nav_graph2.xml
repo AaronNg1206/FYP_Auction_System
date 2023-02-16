@@ -173,6 +173,6 @@
     <activity
         android:id="@+id/action_logout"
         android:name="com.nghycp.fyp_auction_system.MainActivity"
-        android:label="@string/login"
+        android:label="@string/navLogin"
         tools:layout="@layout/activity_main" />
 </navigation>

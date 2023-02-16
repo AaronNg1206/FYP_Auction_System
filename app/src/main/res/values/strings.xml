@@ -109,6 +109,5 @@
     <string name="show_admin" />
     <string name="buy">Buy</string>
     <string name="addToCart">add To Cart</string>
-    <string name="login" />
 
 </resources>
