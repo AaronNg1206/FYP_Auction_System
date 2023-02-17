@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -42,8 +41,8 @@ class UserHomeActivity : AppCompatActivity() {
         val navView: NavigationView = binding.navViewUser
         val navController = findNavController(R.id.nav_host)
         appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.home,R.id.userProfile,R.id.viewPurchase,R.id.userProfile,R.id.category,
-            R.id.about,R.id.logout
+            R.id.fragmentUserHomePage,R.id.userProfile,R.id.viewPurchase,R.id.userProfile,R.id.category,
+            R.id.about,R.id.action_logout
         ),drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)

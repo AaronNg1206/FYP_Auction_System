@@ -6,7 +6,7 @@
 
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/fragmentUserHomePage"
         android:title="@string/drawer_home" />
     <item
         android:id="@+id/userProfile"
@@ -33,7 +33,7 @@
         android:id="@+id/about"
         android:title="@string/drawer_about" />
     <item
-        android:id="@+id/logout"
+        android:id="@+id/action_logout"
         android:title="@string/drawer_logout" />
 
 </menu>

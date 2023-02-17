@@ -18,7 +18,7 @@
             app:destination="@id/fragmentAuctionShowProduct" />
         <action
             android:id="@+id/action_fragmentUserHomePage_to_fragmentUserProfile"
-            app:destination="@id/fragmentUserProfile" />
+            app:destination="@id/userProfile" />
         <action
             android:id="@+id/action_fragmentUserHomePage_to_fragmentViewPurchase"
             app:destination="@id/fragmentViewPurchase" />
@@ -117,7 +117,7 @@
             app:destination="@id/fragmentAuctionShowProduct" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentUserProfile"
+        android:id="@+id/userProfile"
         android:name="com.nghycp.fyp_auction_system.usermanagement.FragmentUserProfile"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" >
