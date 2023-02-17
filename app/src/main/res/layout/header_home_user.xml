@@ -26,9 +26,8 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewHome"
+        app:layout_constraintStart_toStartOf="@+id/imageViewHome"
         app:layout_constraintTop_toBottomOf="@+id/imageViewHome"
         app:layout_constraintVertical_bias="0.018" />
 
@@ -40,9 +39,9 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewUser"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="@+id/textViewUser"
         app:layout_constraintTop_toBottomOf="@+id/textViewUser"
-        app:layout_constraintVertical_bias="0.016" />
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

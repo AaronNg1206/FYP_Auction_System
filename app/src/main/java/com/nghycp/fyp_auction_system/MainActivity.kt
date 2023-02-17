@@ -1,5 +1,6 @@
 package com.nghycp.fyp_auction_system
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import com.nghycp.fyp_auction_system.databinding.ActivityMainBinding
+import com.nghycp.fyp_auction_system.databinding.FragmentLoginBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
 
+        //setupActionBarWithNavController(navController, appBarConfiguration)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -37,7 +41,11 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_logout -> {
+                val intent = Intent(this, FragmentLoginBinding::class.java)
+                startActivity(intent)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
