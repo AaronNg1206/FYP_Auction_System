@@ -1,60 +1,75 @@
 package com.nghycp.fyp_auction_system.usermanagement
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
+import com.nghycp.fyp_auction_system.databinding.ActivityAdminHomeBinding.inflate
+import com.nghycp.fyp_auction_system.databinding.ActivityMainBinding.inflate
+import com.nghycp.fyp_auction_system.databinding.FragmentUserProfileBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentUserProfile.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FragmentUserProfile : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentUserProfileBinding? = null
+    private lateinit var firebaseAuth: FirebaseAuth
+
+    private lateinit var progressDialog: ProgressDialog
+
+    private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_profile, container, false)
+        setHasOptionsMenu(true)
+        _binding = FragmentUserProfileBinding.inflate(inflater,container, false)
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        progressDialog = ProgressDialog(context)
+        progressDialog.setTitle("Please wait...")
+        progressDialog.setCanceledOnTouchOutside(false)
+
+        val user = firebaseAuth.currentUser
+        val uid = user!!.uid
+
+        val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference("Users").child(uid)
+
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val name = snapshot.child("name").value as String?
+                val age = snapshot.child("age").value as String?
+                val country = snapshot.child("country").value as String?
+                val phone = snapshot.child("phone").value as String?
+                val email = snapshot.child("email").value as String?
+                val image = snapshot.child("image").value as String?
+
+                binding.Name.setText(name)
+                binding.Name1.setText(name)
+                binding.Age.setText(age)
+                binding.Country.setText(country)
+                binding.Phone.setText(phone)
+                binding.Email.setText(email)
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentUserProfile.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentUserProfile().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
