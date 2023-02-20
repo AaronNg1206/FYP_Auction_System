@@ -12,6 +12,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -22,6 +23,8 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.databinding.ActivityUserHomeBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentLoginBinding
+import kotlinx.android.synthetic.main.header_home_user.*
+import java.lang.Exception
 
 class UserHomeActivity : AppCompatActivity() {
 
@@ -66,9 +69,19 @@ class UserHomeActivity : AppCompatActivity() {
                 val view: View = navView.getHeaderView(0)
                 val name = snapshot.child("name").value as String?
                 val email = snapshot.child("email").value as String?
+                val profileImage = snapshot.child("profileImage").value as String?
 
                 view.textViewUser.setText(name)
                 view.textViewEmailUser.setText(email)
+
+                try {
+                    Glide.with(this@UserHomeActivity)
+                        .load(profileImage)
+                        .placeholder(R.drawable.user)
+                        .into(imageViewHome)
+                } catch (e: Exception) {
+
+                }
 
             }
 
