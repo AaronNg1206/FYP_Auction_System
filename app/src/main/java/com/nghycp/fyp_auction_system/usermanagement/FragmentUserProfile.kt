@@ -2,10 +2,9 @@ package com.nghycp.fyp_auction_system.usermanagement
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -16,6 +15,7 @@ import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.ActivityAdminHomeBinding.inflate
 import com.nghycp.fyp_auction_system.databinding.ActivityMainBinding.inflate
 import com.nghycp.fyp_auction_system.databinding.FragmentUserProfileBinding
+import kotlinx.android.synthetic.main.fragment_user_profile.view.*
 
 
 class FragmentUserProfile : Fragment() {
@@ -69,7 +69,65 @@ class FragmentUserProfile : Fragment() {
             }
         })
 
+        binding.btnUpdateProfile.setOnClickListener {
+            validateData()
+        }
+
         return binding.root
+    }
+
+    private var name = ""
+    private var age = ""
+    private var country = ""
+    private var phone = ""
+    private var email = ""
+
+    private fun validateData(){
+
+        name = binding.Name.text.toString().trim()
+        age = binding.Age.text.toString().trim()
+        country = binding.Country.text.toString().trim()
+        phone = binding.Phone.text.toString().trim()
+        email = binding.Email.text.toString().trim()
+
+        editUser()
+
+    }
+
+    private fun editUser() {
+        progressDialog.dismiss()
+        progressDialog = ProgressDialog(context)
+        progressDialog.setMessage("Updating profile...")
+        progressDialog.show()
+
+        val hashMap = HashMap<String, Any>()
+        hashMap["uid"] = "${firebaseAuth.uid}"
+        hashMap["name"] = name
+        hashMap["age"] = age
+        hashMap["country"] = country
+        hashMap["phone"] = phone
+        hashMap["email"] = email
+
+        val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference("Users")
+        ref.child(firebaseAuth.uid!!)
+            .updateChildren(hashMap)
+
+            .addOnSuccessListener {
+                progressDialog.dismiss()
+                Toast.makeText(context,"Profile updated", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                progressDialog.dismiss()
+                Toast.makeText(context,"Failed to update profile", Toast.LENGTH_SHORT).show()
+            }
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        // log out action not visible in edit profile page
+        menu.findItem(R.id.action_logout).isVisible = false
     }
 
 }

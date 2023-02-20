@@ -134,12 +134,12 @@ class FragmentRegister : Fragment() {
             .setValue(hashMap)
             .addOnSuccessListener {
                 progressDialog.dismiss()
-                binding.btnRegister.error = "Register Successful"
+                Toast.makeText(context,"Register Successful", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_fragmentRegister_to_fragmentLogin)
             }
             .addOnFailureListener {
                 progressDialog.dismiss()
-                binding.btnRegister.error = "Failed saving user info "
+                Toast.makeText(context,"Failed saving user info", Toast.LENGTH_SHORT).show()
             }
     }
 
