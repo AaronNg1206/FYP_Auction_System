@@ -5,25 +5,46 @@
     android:id="@+id/frameLayout13"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wallpaper"
     tools:context=".Fragment_customer_sales_selection" >
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/btn_oneCost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="374dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="372dp"
         android:text="@string/addArtwork"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/btn_bid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="27dp"
-        android:text="added artwork"
-        app:layout_constraintBottom_toBottomOf="@+id/button7"
+        android:text="Bid artwork"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_oneCost"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button7" />
+        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintStart_toEndOf="@+id/btn_oneCost"
+        app:layout_constraintTop_toTopOf="@+id/btn_oneCost"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select one of the option to start"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.109" />
 </androidx.constraintlayout.widget.ConstraintLayout>

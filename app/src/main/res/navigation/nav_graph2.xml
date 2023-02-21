@@ -21,7 +21,10 @@
             app:destination="@id/userProfile" />
         <action
             android:id="@+id/action_fragmentUserHomePage_to_fragmentViewPurchase"
-            app:destination="@id/fragmentViewPurchase" />
+            app:destination="@id/viewPurchase" />
+        <action
+            android:id="@+id/action_fragmentUserHomePage_to_fragment_customer_sales_selection"
+            app:destination="@id/sell" />
     </fragment>
     <fragment
         android:id="@+id/customer_Add_Artwork"
@@ -126,10 +129,10 @@
             app:destination="@id/fragmentUserHomePage" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentViewPurchase"
+        android:id="@+id/viewPurchase"
         android:name="com.nghycp.fyp_auction_system.FragmentViewPurchase"
-        android:label="fragment_view_purchase"
-        tools:layout="@layout/fragment_view_purchase" >
+        android:label="Purchase History"
+        tools:layout="@layout/fragment_view_purchase">
         <action
             android:id="@+id/action_fragmentViewPurchase_to_fragmentUserHomePage"
             app:destination="@id/fragmentUserHomePage" />
@@ -144,13 +147,13 @@
         tools:layout="@layout/fragment_retund_refund" >
         <action
             android:id="@+id/action_fragmentRetundRefund_to_fragmentViewPurchase"
-            app:destination="@id/fragmentViewPurchase" />
+            app:destination="@id/viewPurchase" />
     </fragment>
     <fragment
-        android:id="@+id/fragment_customer_sales_selection"
+        android:id="@+id/sell"
         android:name="com.nghycp.fyp_auction_system.Fragment_customer_sales_selection"
-        android:label="fragment_customer_sales_selection"
-        tools:layout="@layout/fragment_customer_sales_selection" >
+        android:label="Sale Selection"
+        tools:layout="@layout/fragment_customer_sales_selection">
         <action
             android:id="@+id/action_fragment_customer_sales_selection_to_fragment_customer_sales"
             app:destination="@id/fragment_customer_sales" />
