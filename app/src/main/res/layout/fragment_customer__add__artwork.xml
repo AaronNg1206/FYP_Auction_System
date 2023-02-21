@@ -12,11 +12,12 @@
         android:id="@+id/textView_productName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:text="@string/productName"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_AddNewBidProductTitle" />
 
     <EditText
         android:id="@+id/editText_productName"
@@ -38,8 +39,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/product_Price"
-        app:layout_constraintStart_toStartOf="@+id/editText_productName"
-        app:layout_constraintTop_toBottomOf="@+id/editText_productName" />
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
@@ -61,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/Author"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
@@ -80,10 +83,12 @@
 
     <Button
         android:id="@+id/button_openGallery"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/OpenGallery"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView_productImage"
         app:layout_constraintTop_toBottomOf="@+id/textView_productImage" />
 
@@ -93,17 +98,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/product_image"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/spinner_minBid"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_minBid" />
 
     <TextView
-        android:id="@+id/textView_date"
+        android:id="@+id/textView_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/DateOfRegister"
-        app:layout_constraintStart_toStartOf="@+id/button_openGallery"
-        app:layout_constraintTop_toBottomOf="@+id/button_openGallery" />
+        android:text="@string/Description"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/editText_productName"
+        app:layout_constraintTop_toBottomOf="@+id/editText_productName" />
 
     <EditText
         android:id="@+id/editTextTextPersonName4"
@@ -111,27 +118,29 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="@string/DateOfRegister"
+        android:hint="@string/Description"
         android:inputType="textPersonName"
         android:minHeight="@dimen/minHeight"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView_date"
-        app:layout_constraintTop_toBottomOf="@+id/textView_date" />
+        app:layout_constraintStart_toStartOf="@+id/textView_description"
+        app:layout_constraintTop_toBottomOf="@+id/textView_description" />
 
     <TextView
         android:id="@+id/TextView_Category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/Category"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+        android:text="@string/minBid"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/addArtwork"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/buttonCancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonCancel"
@@ -143,16 +152,30 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/Cancel"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner_Category"
+        android:id="@+id/spinner_minBid"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:contentDescription="@string/minBid"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/TextView_Category"
         app:layout_constraintTop_toBottomOf="@+id/TextView_Category" />
+
+    <TextView
+        android:id="@+id/textView_AddNewBidProductTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginTop="22dp"
+        android:text="@string/addNewBidProductTitle"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
