@@ -17,7 +17,7 @@
         android:text="@string/productName"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_AddNewBidProductTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_addNewProductTitle" />
 
     <EditText
         android:id="@+id/editText_productName"
@@ -96,11 +96,11 @@
         android:id="@+id/textView_productImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/product_image"
         android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="@+id/spinner_minBid"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_minBid" />
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
     <TextView
         android:id="@+id/textView_description"
@@ -125,16 +125,6 @@
         app:layout_constraintStart_toStartOf="@+id/textView_description"
         app:layout_constraintTop_toBottomOf="@+id/textView_description" />
 
-    <TextView
-        android:id="@+id/TextView_Category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/minBid"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
-
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_width="0dp"
@@ -156,23 +146,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/spinner_minBid"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/minBid"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/TextView_Category"
-        app:layout_constraintTop_toBottomOf="@+id/TextView_Category" />
-
     <TextView
-        android:id="@+id/textView_AddNewBidProductTitle"
+        android:id="@+id/textView_addNewProductTitle"
         android:layout_width="wrap_content"
         android:layout_height="22dp"
         android:layout_marginTop="22dp"
-        android:text="@string/addNewBidProductTitle"
+        android:text="@string/addNewProductTitle"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
