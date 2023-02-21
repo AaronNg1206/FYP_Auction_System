@@ -62,7 +62,7 @@ class UserHomeActivity : AppCompatActivity() {
 
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("Users").child(uid)
-
+//
         ref.addValueEventListener(object:ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val navView: NavigationView = binding.navViewUser
