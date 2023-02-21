@@ -10,7 +10,11 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--YCM-->
+    <string name="addNewBidProductTitle">Product For Bid</string>
+    <string name="addNewProductTitle">Product For sales</string>
+    <!--add artwork-->
+
     <string name="productName">Artwork Name</string>
     <string name="product_Price">Artwork Price</string>
     <string name="product_image">Artwork Image</string>
@@ -19,7 +23,7 @@
     <string name="DateOfRegister">Date of Register</string>
     <string name="Category">Category</string>
     <string name="Cancel">cancel</string>
-    <string name="addArtwork">One cost Artwork</string>
+    <string name="addArtwork">Add Artwork</string>
     <string name="UpdateArtwork">Update</string>
 
     <!--NZH-->
