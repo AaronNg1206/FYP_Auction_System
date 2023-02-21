@@ -20,20 +20,10 @@
     <string name="product_image">Artwork Image</string>
     <string name="Author">Author</string>
     <string name="OpenGallery">Open Gallery</string>
-    <string name="Description">Description</string>
-    <string name="minBid">Minimum Bid</string>
+    <string name="DateOfRegister">Date of Register</string>
+    <string name="Category">Category</string>
     <string name="Cancel">cancel</string>
     <string name="addArtwork">Add Artwork</string>
-    <string-array name="spinner_minBid">
-        <item>1000</item>
-        <item>2000</item>
-        <item>5000</item>
-        <item>10000</item>
-    </string-array>
-
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="UpdateArtwork">Update</string>
 
     <!--NZH-->
