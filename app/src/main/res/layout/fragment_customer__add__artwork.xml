@@ -9,6 +9,165 @@
     tools:context=".customer_Add_Artwork">
 
     <TextView
+        android:id="@+id/textView_productName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/productName"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_AddNewBidProductTitle" />
+
+    <EditText
+        android:id="@+id/editText_productName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:height="@dimen/minHeight"
+        android:ems="10"
+        android:hint="@string/productName"
+        android:inputType="textPersonName"
+        android:minHeight="@dimen/minHeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView_productName"
+        app:layout_constraintTop_toBottomOf="@+id/textView_productName" />
+
+    <TextView
+        android:id="@+id/textView_ProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/product_Price"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:height="@dimen/minHeight"
+        android:ems="10"
+        android:hint="@string/product_Price"
+        android:inputType="textPersonName"
+        android:minHeight="@dimen/minHeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView_ProductPrice"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ProductPrice" />
+
+    <TextView
+        android:id="@+id/textView_productAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/Author"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:height="@dimen/minHeight"
+        android:ems="10"
+        android:hint="@string/Author"
+        android:inputType="textPersonName"
+        android:minHeight="@dimen/minHeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView_productAuthor"
+        app:layout_constraintTop_toBottomOf="@+id/textView_productAuthor" />
+
+    <Button
+        android:id="@+id/button_openGallery"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/OpenGallery"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView_productImage"
+        app:layout_constraintTop_toBottomOf="@+id/textView_productImage" />
+
+    <TextView
+        android:id="@+id/textView_productImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/product_image"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/spinner_minBid"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_minBid" />
+
+    <TextView
+        android:id="@+id/textView_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/Description"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/editText_productName"
+        app:layout_constraintTop_toBottomOf="@+id/editText_productName" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/Description"
+        android:inputType="textPersonName"
+        android:minHeight="@dimen/minHeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView_description"
+        app:layout_constraintTop_toBottomOf="@+id/textView_description" />
+
+    <TextView
+        android:id="@+id/TextView_Category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/minBid"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+
+    <Button
+        android:id="@+id/buttonUpdate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/addArtwork"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonCancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonCancel"
+        app:layout_constraintTop_toTopOf="@+id/buttonCancel" />
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/Cancel"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_minBid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/minBid"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/TextView_Category"
+        app:layout_constraintTop_toBottomOf="@+id/TextView_Category" />
+
+    <TextView
         android:id="@+id/textView_AddNewBidProductTitle"
         android:layout_width="wrap_content"
         android:layout_height="22dp"
@@ -19,6 +178,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
