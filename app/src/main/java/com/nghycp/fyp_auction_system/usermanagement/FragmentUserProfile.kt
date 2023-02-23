@@ -2,9 +2,11 @@ package com.nghycp.fyp_auction_system.usermanagement
 
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.*
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
@@ -104,16 +106,12 @@ class FragmentUserProfile : Fragment() {
     private fun showImageAttchMenu() {
         val popupMenu = PopupMenu(context, binding.imageViewPicture)
         popupMenu.menu.add(Menu.NONE, 0, 0, "Gallery")
-        popupMenu.menu.add(Menu.NONE, 1, 1, "Camera")
         popupMenu.show()
 
         popupMenu.setOnMenuItemClickListener { item ->
             val id = item.itemId
             if (id == 0) {
                 pickImageGallery()
-
-            } else if (id == 1) {
-               //pickImageCamera()
 
             }
             true
@@ -140,7 +138,7 @@ class FragmentUserProfile : Fragment() {
                 Toast.makeText(context, "Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
-    )
+   )
 
 //    private fun pickImageCamera() {
 //        val values = ContentValues()

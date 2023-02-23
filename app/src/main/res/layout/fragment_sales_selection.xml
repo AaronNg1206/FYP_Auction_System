@@ -2,11 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout13"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wallpaper"
-    tools:context=".Fragment_customer_sales_selection" >
+    tools:context=".salesSelection" >
 
     <Button
         android:id="@+id/btn_oneCost"
@@ -14,24 +13,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="372dp"
-        android:text="@string/addArtwork"
+        android:text="Product for bid"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_bid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="188dp"
+        android:layout_height="58dp"
         android:layout_marginEnd="27dp"
-        android:text="Bid artwork"
+        android:text="Artwork for one cost"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/btn_oneCost"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/btn_oneCost"
         app:layout_constraintTop_toTopOf="@+id/btn_oneCost"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView2"

@@ -25,7 +25,7 @@
                 android:id="@+id/buying"
                 android:title="@string/drawer_buy"/>
             <item
-                android:id="@+id/sell"
+                android:id="@+id/sellOption"
                 android:title="@string/drawer_sell" />
         </menu>
     </item>

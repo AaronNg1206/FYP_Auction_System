@@ -106,7 +106,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/Category"
             app:layout_constraintStart_toStartOf="@+id/button_openGallery"
             app:layout_constraintTop_toBottomOf="@+id/button_openGallery" />
 
