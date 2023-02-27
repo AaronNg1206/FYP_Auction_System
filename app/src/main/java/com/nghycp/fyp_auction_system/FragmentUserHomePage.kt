@@ -21,7 +21,7 @@ class FragmentUserHomePage : Fragment() {
         binding.ViewMoreBidding.setOnClickListener{
             //findNavController().navigate(R.id.action_fragmentUserHomePage_to_fragmentBidSellerForm)
         }
-
+//
     }
 
     override fun onCreateView(
