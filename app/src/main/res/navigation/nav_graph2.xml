@@ -56,5 +56,9 @@
         android:id="@+id/fragmentBidSellerForm"
         android:name="com.nghycp.fyp_auction_system.bidding.FragmentBidSellerForm"
         android:label="Fill in the form"
-        tools:layout="@layout/fragment_bid_seller_form" />
+        tools:layout="@layout/fragment_bid_seller_form" >
+        <action
+            android:id="@+id/action_fragmentBidSellerForm_to_sellOption2"
+            app:destination="@id/sellOption" />
+    </fragment>
 </navigation>
