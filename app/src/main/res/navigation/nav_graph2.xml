@@ -47,9 +47,14 @@
         android:id="@+id/sellOption"
         android:name="com.nghycp.fyp_auction_system.salesSelection"
         android:label="fragment_sales_selection"
-        tools:layout="@layout/fragment_sales_selection" />
+        tools:layout="@layout/fragment_sales_selection" >
+        <action
+            android:id="@+id/action_sellOption_to_fragmentBidSellerForm2"
+            app:destination="@id/fragmentBidSellerForm" />
+    </fragment>
     <fragment
-        android:id="@+id/fragmentSellerSell3"
-        android:name="com.nghycp.fyp_auction_system.bidding.FragmentSellerSell"
-        android:label="FragmentSellerSell" />
+        android:id="@+id/fragmentBidSellerForm"
+        android:name="com.nghycp.fyp_auction_system.bidding.FragmentBidSellerForm"
+        android:label="Fill in the form"
+        tools:layout="@layout/fragment_bid_seller_form" />
 </navigation>

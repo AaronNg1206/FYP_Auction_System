@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bidding.FragmentSellerSell">
+    android:background="@drawable/wallpaper"
+    tools:context=".bidding.FragmentBidSellerForm">
 
     <TextView
         android:id="@+id/textView_productName"
@@ -167,4 +168,5 @@
         app:layout_constraintHorizontal_bias="0.036"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView_productImage" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

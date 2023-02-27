@@ -11,25 +11,22 @@ import com.nghycp.fyp_auction_system.databinding.FragmentSalesSelectionBinding
 
 class salesSelection : Fragment() {
 
-    private lateinit var binding: FragmentSalesSelectionBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding = FragmentSalesSelectionBinding.inflate(layoutInflater)
-
-        binding.btnBid.setOnClickListener {
-            //findNavController().navigate(R.id.action_sellOption_to_fragmentSellerSell2)
-        }
-
-    }
+    private var _binding: FragmentSalesSelectionBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sales_selection, container, false)
+        _binding = FragmentSalesSelectionBinding.inflate(inflater, container, false)
+
+        binding.btnBid.setOnClickListener {
+            findNavController().navigate(R.id.action_sellOption_to_fragmentBidSellerForm2)
+        }
+
+        return binding.root
     }
 
 }
