@@ -26,7 +26,7 @@ class FragmentRegister : Fragment() {
 
     private lateinit var progressDialog: ProgressDialog
 
-    var sharedPreference: SharedPreferences? = null
+    //var sharedPreference: SharedPreferences? = null
 
     private val binding get() = _binding!!
 

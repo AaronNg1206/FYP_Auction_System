@@ -26,6 +26,7 @@
     <string name="addArtwork">Add Artwork</string>
     <string name="UpdateArtwork">Update</string>
     <string-array name="spinner_minBid">
+        <item>Select a minimum price to bid</item>
         <item>1000</item>
         <item>2000</item>
         <item>5000</item>
