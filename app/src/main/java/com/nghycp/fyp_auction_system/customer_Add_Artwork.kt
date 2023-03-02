@@ -72,7 +72,6 @@ class customer_Add_Artwork : Fragment() {
             description = binding.editTextDescription.text.toString().trim()
             price = binding.editTextPrice.text.toString().trim()
             author = binding.editTextAuthor.text.toString().trim()
-            //image = binding.buttonOpenGallery.text.toString().trim()
 
             if(artworkName.isEmpty()){
                 binding.editTextProductName.error = "Enter Your Artwork Product Name"
@@ -106,7 +105,7 @@ class customer_Add_Artwork : Fragment() {
     }
 
     private fun selectImages() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         galleryActivityResultLauncher.launch(intent)
@@ -117,7 +116,17 @@ class customer_Add_Artwork : Fragment() {
 
             if (result.resultCode == Activity.RESULT_OK) {
                 val data = result.data
-                imageUri = data!!.data
+                if (data?.clipData != null) {
+                    // Multiple images selected
+                    for (i in 0 until data.clipData!!.itemCount) {
+                        imageUri = data.clipData!!.getItemAt(i).uri
+                        // Do something with each selected image URI
+                    }
+                } else {
+                    // Single image selected
+                    imageUri = data?.data
+                    // Do something with selected image URI
+                }
 
                 binding.imageAdd.setImageURI(imageUri)
             } else {
