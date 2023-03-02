@@ -116,23 +116,13 @@
 
     <Button
         android:id="@+id/buttonAddSelling"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/addArtwork"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonCancel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonCancel"
-        app:layout_constraintTop_toTopOf="@+id/buttonCancel" />
-
-    <Button
-        android:id="@+id/buttonCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/Cancel"
+        android:layout_marginBottom="16dp"
+        android:text="@string/addArtwork"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
