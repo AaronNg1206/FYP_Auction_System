@@ -25,7 +25,9 @@ class salesSelection : Fragment() {
         binding.btnBid.setOnClickListener {
             findNavController().navigate(R.id.action_sellOption_to_fragmentBidSellerForm2)
         }
-
+        binding.btnOneCost.setOnClickListener {
+            findNavController().navigate(R.id.action_sellOption_to_customer_Add_Artwork)
+        }
         return binding.root
     }
 

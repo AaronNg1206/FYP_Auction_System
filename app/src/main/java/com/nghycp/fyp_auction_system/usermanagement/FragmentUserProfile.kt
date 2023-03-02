@@ -200,7 +200,7 @@ class FragmentUserProfile : Fragment() {
 
     }
 
-    private fun uploadImage() {
+        private fun uploadImage() {
 
         val user = firebaseAuth.currentUser
         val uid = user!!.uid

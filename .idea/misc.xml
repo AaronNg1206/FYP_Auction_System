@@ -25,7 +25,7 @@
         <entry key="..\:/Users/Aaron/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_auction_show_product.xml" value="0.3098958333333333" />
         <entry key="..\:/Users/Aaron/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_bid_process.xml" value="0.3098958333333333" />
         <entry key="..\:/Users/Aaron/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_bid_product.xml" value="0.29583333333333334" />
-        <entry key="..\:/Users/Aaron/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_bid_seller_form.xml" value="0.2988679352838745" />
+        <entry key="..\:/Users/Aaron/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_bid_seller_form.xml" value="0.1" />
         <entry key="..\:/Users/Aaron/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_customer__add__artwork.xml" value="0.3098958333333333" />
         <entry key="..\:/Users/Aaron/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_customer__show__artwork.xml" value="0.3098958333333333" />
         <entry key="..\:/Users/Aaron/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_customer_add_bid__artwork.xml" value="0.3098958333333333" />
@@ -54,6 +54,7 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/activity_main.xml" value="0.2359375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/activity_user_home.xml" value="0.2359375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/app_bar_home_user.xml" value="0.2359375" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/bidding_home_page.xml" value="0.2234375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/content_home_user.xml" value="0.2359375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/content_main.xml" value="0.2359375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment__artwork__layout.xml" value="0.1265625" />
@@ -61,8 +62,10 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_artwork_details.xml" value="0.1" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_auction_show_product.xml" value="0.2359375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_bid_product.xml" value="0.2359375" />
-        <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_customer__add__artwork.xml" value="0.1265625" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_bid_seller_form.xml" value="0.18181818181818182" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_customer__add__artwork.xml" value="0.264" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_customer__show__artwork.xml" value="0.264" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_customer_add_bid__artwork.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_customer_sales.xml" value="0.2359375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_customer_sales_selection.xml" value="0.1265625" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_customer_update_artwork.xml" value="0.2359375" />
@@ -72,7 +75,10 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_payment.xml" value="0.1265625" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_register.xml" value="0.2359375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_retund_refund.xml" value="0.2359375" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_sales_selection.xml" value="0.2234375" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_seller_sell.xml" value="0.2234375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_showing_screen.xml" value="0.2359375" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_user_home_page.xml" value="0.2234375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_user_profile.xml" value="0.2359375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/fragment_view_purchase.xml" value="0.2359375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/FYP_Auction_System/app/src/main/res/layout/header_home_user.xml" value="0.2359375" />
@@ -89,7 +95,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.264" />
+        <option name="scale" value="0.2234375" />
       </ProjectState>
     </option>
   </component>

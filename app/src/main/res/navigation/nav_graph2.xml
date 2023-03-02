@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_sellOption_to_fragmentBidSellerForm2"
             app:destination="@id/fragmentBidSellerForm" />
+        <action
+            android:id="@+id/action_sellOption_to_customer_Add_Artwork"
+            app:destination="@id/customer_Add_Artwork" />
     </fragment>
     <fragment
         android:id="@+id/fragmentBidSellerForm"
@@ -58,7 +61,12 @@
         android:label="Fill in the form"
         tools:layout="@layout/fragment_bid_seller_form" >
         <action
-            android:id="@+id/action_fragmentBidSellerForm_to_fragmentUserHomePage"
-            app:destination="@id/fragmentUserHomePage" />
+            android:id="@+id/action_fragmentBidSellerForm_to_sellOption2"
+            app:destination="@id/sellOption" />
     </fragment>
+    <fragment
+        android:id="@+id/customer_Add_Artwork"
+        android:name="com.nghycp.fyp_auction_system.customer_Add_Artwork"
+        android:label="fragment_customer__add__artwork"
+        tools:layout="@layout/fragment_customer__add__artwork" />
 </navigation>
