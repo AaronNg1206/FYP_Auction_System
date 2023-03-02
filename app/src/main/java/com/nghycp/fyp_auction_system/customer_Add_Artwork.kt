@@ -53,9 +53,7 @@ class customer_Add_Artwork : Fragment() {
         binding.imageAdd.setOnClickListener {
             showImageAttchMenu()
         }
-        binding.buttonCancel.setOnClickListener {
-           // findNavController().navigate(R.id.action_fragment_customer_sales_selection_to_customer_Add_Artwork)
-        }
+
         binding.buttonAddSelling.setOnClickListener {
             validateData()
         }
