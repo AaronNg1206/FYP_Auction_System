@@ -184,11 +184,11 @@ class FragmentBidSellerForm : Fragment() {
 
         val hashMap = HashMap<String, Any>()
         hashMap["id"] = "$timestamp"
-        hashMap["Artwork Name"] = name
-        hashMap["Artwork Desc"] = desc
-        hashMap["Artwork Price"] = price
-        hashMap["Artwork Artist"] = artist
-        hashMap["Artwork min"] = min
+        hashMap["name"] = name
+        hashMap["desc"] = desc
+        hashMap["price"] = price
+        hashMap["artist"] = artist
+        hashMap["min"] = min
         //hashMap["Artwork Image"] = salary
         hashMap["uid"] = "${firebaseAuth.uid}"
         if(imageUri != null){
