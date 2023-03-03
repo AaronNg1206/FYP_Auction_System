@@ -1,4 +1,4 @@
-package com.nghycp.fyp_auction_system
+package com.nghycp.fyp_auction_system.customer
 
 import android.app.Activity
 import android.app.ProgressDialog
@@ -65,7 +65,6 @@ class customer_Add_Artwork : Fragment() {
     private var description = ""
     private var price = ""
     private var author = ""
-   // private var image = ""
 
     private fun validateData() {
             artworkName = binding.editTextProductName.text.toString().trim()
@@ -121,12 +120,15 @@ class customer_Add_Artwork : Fragment() {
                     for (i in 0 until data.clipData!!.itemCount) {
                         imageUri = data.clipData!!.getItemAt(i).uri
                         // Do something with each selected image URI
+                        //binding.imageAdd.setImageURI(imageUri)
                     }
-                } else {
+                }
+              /*  else {
                     // Single image selected
                     imageUri = data?.data
                     // Do something with selected image URI
-                }
+                    binding.imageAdd.setImageURI(imageUri)
+                }*/
 
                 binding.imageAdd.setImageURI(imageUri)
             } else {
@@ -177,7 +179,7 @@ class customer_Add_Artwork : Fragment() {
         }
         val ref =
             Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                .getReference("Product")
+                .getReference("artwork")
         ref.child(artworkName)
             .setValue(hashMap)
             .addOnSuccessListener {

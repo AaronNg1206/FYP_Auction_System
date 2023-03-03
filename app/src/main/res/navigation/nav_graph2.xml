@@ -69,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/customer_Add_Artwork"
-        android:name="com.nghycp.fyp_auction_system.customer_Add_Artwork"
+        android:name="com.nghycp.fyp_auction_system.customer.customer_Add_Artwork"
         android:label="fragment_customer__add__artwork"
         tools:layout="@layout/fragment_customer__add__artwork" />
     <fragment
