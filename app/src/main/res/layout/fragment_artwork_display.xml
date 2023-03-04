@@ -16,6 +16,4 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/fragment__artwork__layout"/>
 
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>

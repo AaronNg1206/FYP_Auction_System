@@ -11,9 +11,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.nghycp.fyp_auction_system.bidding.BidShowAdapter
+import com.nghycp.fyp_auction_system.bidding.ModelBid
+import com.nghycp.fyp_auction_system.customer.ArtworkAdapter
 import com.nghycp.fyp_auction_system.customer.ModelArtwork
 import com.nghycp.fyp_auction_system.databinding.FragmentArtworkDisplayBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentArtworkLayoutBinding
@@ -23,18 +27,25 @@ import com.nghycp.fyp_auction_system.databinding.FragmentCustomerAddArtworkBindi
 class FragmentArtworkDisplay : Fragment() {
 
     private lateinit var binding:FragmentArtworkDisplayBinding
-    private lateinit var adapter: ArtworkAdapter
-    private lateinit var artworkList: MutableList<ModelArtwork>
-
+    private lateinit var artworkAdapter: ArtworkAdapter
+    private lateinit var artworkList: ArrayList<ModelArtwork>
+    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
     private lateinit var artworkRef: DatabaseReference
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        setHasOptionsMenu(true)
         binding = FragmentArtworkDisplayBinding.inflate(inflater, container, false)
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        showProduct()
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+   /* override fun onViewCreated(view: View, savedIns tanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize RecyclerView, adapter, and list
@@ -83,12 +94,34 @@ class FragmentArtworkDisplay : Fragment() {
     // ViewHolder for each item in the RecyclerView
     inner class ArtworkViewHolder(private val binding: FragmentArtworkDisplayBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(artwork: ModelArtwork) {
-       /*     Glide.with(binding.artworkImage.context).load(artwork.imageURL).into(binding.artworkImage)
+            Glide.with(binding..context).load(artwork.imageURL).into(binding.artworkImage)
             binding.artworkName.text = artwork.artworkName
-            binding.artworkPrice.text = "$${artwork.price}"*/
+            binding.artworkPrice.text = "$${artwork.price}"
         }
     }
+*/
+   private fun showProduct() {
+       artworkList = ArrayList()
 
+       val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+           .getReference("artwork")
+       ref.addValueEventListener(object : ValueEventListener{
+           override fun onDataChange(snapshot: DataSnapshot) {
+               artworkList.clear()
+               for (ds in snapshot.children){
+                   val model = ds.getValue(ModelArtwork::class.java)
 
+                   artworkList.add(model!!)
+               }
+
+               artworkAdapter = ArtworkAdapter(context!!,artworkList)
+
+               binding.RecyclerViewArtworkShow.adapter = artworkAdapter
+           }
+           override fun onCancelled(error: DatabaseError) {
+               TODO("Not yet implemented")
+           }
+       })
+   }
     }
 
