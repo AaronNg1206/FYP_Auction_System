@@ -73,7 +73,7 @@ class ArtworkAdapter : RecyclerView.Adapter<ArtworkAdapter.HolderArtwork> {
             args.putString("price", price)
             args.putString("img", imageProduct)
             args.putString("name", name)
-            fragment.setArguments(args)
+            fragment.arguments = args
 
             Navigation.findNavController(holder.buttonAddToCart).navigate(R.id.action_auction_to_fragmentBidProduct,args)
         }
