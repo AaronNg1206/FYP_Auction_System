@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wallpaper"
-    tools:context=".customer.customer_Add_Artwork">
+    tools:context=".customer.ArtworkInsertFragment">
 
     <TextView
         android:id="@+id/textView_productName"
@@ -40,8 +40,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/product_Price"
         android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="@+id/editTextDescription"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+        app:layout_constraintStart_toStartOf="@+id/editTextDescription1"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescription1" />
 
     <EditText
         android:id="@+id/editTextPrice"
@@ -102,7 +102,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_productName" />
 
     <EditText
-        android:id="@+id/editTextDescription"
+        android:id="@+id/editTextDescription1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

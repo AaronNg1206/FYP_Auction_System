@@ -1,24 +1,16 @@
 package com.nghycp.fyp_auction_system.customer
 
-import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import com.nghycp.fyp_auction_system.FragmentArtworkDisplay
 import com.nghycp.fyp_auction_system.R
-import com.nghycp.fyp_auction_system.bidding.FragmentBidProduct
-import com.nghycp.fyp_auction_system.databinding.FragmentArtworkDetailsBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentArtworkLayoutBinding
 
 class ArtworkAdapter: RecyclerView.Adapter<ArtworkAdapter.HolderArtwork>{

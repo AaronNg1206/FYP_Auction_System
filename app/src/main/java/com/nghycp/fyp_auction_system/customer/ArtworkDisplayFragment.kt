@@ -16,7 +16,7 @@ import com.nghycp.fyp_auction_system.customer.ModelArtwork
 import com.nghycp.fyp_auction_system.databinding.FragmentArtworkDisplayBinding
 
 
-class FragmentArtworkDisplay : Fragment() {
+class ArtworkDisplayFragment : Fragment() {
 
     private lateinit var binding:FragmentArtworkDisplayBinding
     private lateinit var artworkList: ArrayList<ModelArtwork>

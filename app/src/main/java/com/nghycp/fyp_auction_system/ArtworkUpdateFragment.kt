@@ -34,7 +34,7 @@ class CustomerUpdateArtwork : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_customer_update_artwork, container, false)
+        return inflater.inflate(R.layout.fragment_artwork_update, container, false)
     }
 
     companion object {

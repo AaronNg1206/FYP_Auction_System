@@ -20,13 +20,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.nghycp.fyp_auction_system.databinding.FragmentCustomerAddArtworkBinding
-import kotlinx.android.synthetic.main.fragment_customer__add__artwork.*
+import com.nghycp.fyp_auction_system.databinding.FragmentArtworkInsertBinding
 
 
-class customer_Add_Artwork : Fragment() {
+class ArtworkInsertFragment : Fragment() {
 
-    private var _binding: FragmentCustomerAddArtworkBinding? = null
+    private var _binding: FragmentArtworkInsertBinding? = null
 
     private lateinit var firebaseAuth: FirebaseAuth
 
@@ -43,7 +42,7 @@ class customer_Add_Artwork : Fragment() {
 
         setHasOptionsMenu(true)
 
-        _binding = FragmentCustomerAddArtworkBinding.inflate(inflater, container, false)
+        _binding = FragmentArtworkInsertBinding.inflate(inflater, container, false)
 
         firebaseAuth = FirebaseAuth.getInstance()
         progressDialog = ProgressDialog(context)
@@ -67,27 +66,27 @@ class customer_Add_Artwork : Fragment() {
     private var author = ""
 
     private fun validateData() {
-            artworkName = binding.editTextProductName.text.toString().trim()
-            description = binding.editTextDescription.text.toString().trim()
-            price = binding.editTextPrice.text.toString().trim()
-            author = binding.editTextAuthor.text.toString().trim()
+        artworkName = binding.editTextProductName.text.toString().trim()
+        description = binding.editTextDescription1.text.toString().trim()
+        price = binding.editTextPrice.text.toString().trim()
+        author = binding.editTextAuthor.text.toString().trim()
 
-            if(artworkName.isEmpty()){
-                binding.editTextProductName.error = "Enter Your Artwork Product Name"
-            }else if (description.isEmpty()){
-                binding.editTextDescription.error = "Enter Your Description"
-            }else if (price.isEmpty()){
-                binding.editTextPrice.error = "Enter Your Artwork price"
-            }else if (author.isEmpty()){
-                binding.editTextAuthor.error = "Enter Author Name"
-            }else {
-                if (imageUri == null) {
-                    addRecord("")
-                } else {
-                    uploadImage()
-                }
+        if(artworkName.isEmpty()){
+            binding.editTextProductName.error = "Enter Your Artwork Product Name"
+        }else if (description.isEmpty()){
+            binding.editTextDescription1.error = "Enter Your Description"
+        }else if (price.isEmpty()){
+            binding.editTextPrice.error = "Enter Your Artwork price"
+        }else if (author.isEmpty()){
+            binding.editTextAuthor.error = "Enter Author Name"
+        }else {
+            if (imageUri == null) {
+                addRecord("")
+            } else {
+                uploadImage()
             }
         }
+    }
     private fun showImageAttchMenu() {
         val popupMenu = PopupMenu(context, binding.imageAdd)
         popupMenu.menu.add(Menu.NONE, 0, 0, "Gallery")
@@ -123,12 +122,12 @@ class customer_Add_Artwork : Fragment() {
                         //binding.imageAdd.setImageURI(imageUri)
                     }
                 }
-              /*  else {
-                    // Single image selected
-                    imageUri = data?.data
-                    // Do something with selected image URI
-                    binding.imageAdd.setImageURI(imageUri)
-                }*/
+                /*  else {
+                      // Single image selected
+                      imageUri = data?.data
+                      // Do something with selected image URI
+                      binding.imageAdd.setImageURI(imageUri)
+                  }*/
 
                 binding.imageAdd.setImageURI(imageUri)
             } else {
@@ -185,7 +184,7 @@ class customer_Add_Artwork : Fragment() {
             .addOnSuccessListener {
                 progressDialog.dismiss()
                 Toast.makeText(context,"Add Successful", Toast.LENGTH_SHORT).show()
-                    //startActivity(Intent(this, customer_Show_Artwork::class.java))
+                //startActivity(Intent(this, customer_Show_Artwork::class.java))
 
             }
             .addOnFailureListener { e ->

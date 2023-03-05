@@ -59,7 +59,7 @@
             app:destination="@id/fragmentBidSellerForm" />
         <action
             android:id="@+id/action_sellOption_to_customer_Add_Artwork"
-            app:destination="@id/customer_Add_Artwork" />
+            app:destination="@id/ArtworkInsertFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentBidSellerForm"
@@ -71,10 +71,9 @@
             app:destination="@id/fragmentUserHomePage" />
     </fragment>
     <fragment
-        android:id="@+id/customer_Add_Artwork"
-        android:name="com.nghycp.fyp_auction_system.customer.customer_Add_Artwork"
-        android:label="fragment_customer__add__artwork"
-        tools:layout="@layout/fragment_customer__add__artwork" />
+        android:id="@+id/ArtworkInsertFragment"
+        android:name="com.nghycp.fyp_auction_system.customer.ArtworkInsertFragment"
+        android:label="ArtworkInsertFragment__add__artwork" />
     <fragment
         android:id="@+id/auction"
         android:name="com.nghycp.fyp_auction_system.bidding.FragmentAuctionShowProduct"
@@ -94,7 +93,7 @@
         tools:layout="@layout/fragment_bid_product" />
     <fragment
         android:id="@+id/fragmentArtworkDisplay"
-        android:name="com.nghycp.fyp_auction_system.FragmentArtworkDisplay"
+        android:name="com.nghycp.fyp_auction_system.ArtworkDisplayFragment"
         android:label="fragment_artwork_display"
         tools:layout="@layout/fragment_artwork_display" >
         <action

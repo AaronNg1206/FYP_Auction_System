@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentArtworkDisplay"
+    tools:context=".ArtworkDisplayFragment"
     android:background="@drawable/wallpaper">
 
     <ScrollView
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            tools:listitem="@layout/fragment__artwork__layout"/>
+            tools:listitem="@layout/fragment_artwork_layout"/>
 
     </ScrollView>
 
