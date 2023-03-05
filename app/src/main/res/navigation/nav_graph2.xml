@@ -96,5 +96,14 @@
         android:id="@+id/fragmentArtworkDisplay"
         android:name="com.nghycp.fyp_auction_system.FragmentArtworkDisplay"
         android:label="fragment_artwork_display"
-        tools:layout="@layout/fragment_artwork_display" />
+        tools:layout="@layout/fragment_artwork_display" >
+        <action
+            android:id="@+id/action_fragmentArtworkDisplay_to_artworkDetailsFragment"
+            app:destination="@id/artworkDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/artworkDetailsFragment"
+        android:name="com.nghycp.fyp_auction_system.customer.artworkDetailsFragment"
+        android:label="fragment_artwork_details"
+        tools:layout="@layout/fragment_artwork_details" />
 </navigation>

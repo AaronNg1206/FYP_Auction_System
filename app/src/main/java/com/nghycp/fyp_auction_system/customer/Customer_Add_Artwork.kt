@@ -169,13 +169,13 @@ class customer_Add_Artwork : Fragment() {
 
         val hashMap = HashMap<String, Any>()
         hashMap["id"] = "$timestamp"
-        hashMap["Artwork Name"] = artworkName
-        hashMap["Artwork Desc"] = description
-        hashMap["Artwork Price"] = price
-        hashMap["Artwork Artist"] = author
+        hashMap["ArtName"] = artworkName
+        hashMap["artDescription"] = description
+        hashMap["artPrice"] = price
+        hashMap["artAuthor"] = author
         hashMap["uid"] = "${firebaseAuth.uid}"
         if(imageUri != null){
-            hashMap["profileImage"] = uploadedImageUrl
+            hashMap["artImage"] = uploadedImageUrl
         }
         val ref =
             Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")

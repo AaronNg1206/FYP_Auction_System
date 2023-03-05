@@ -8,35 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:280329366975:android:1d325dd7145b27a54b450a",
-        "android_client_info": {
-          "package_name": "com.nghycp.assgfreelanceservice"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "280329366975-e03bhf29m2394e6dq1kk6onhg5qtbfso.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC6dL8EWW1AGXibWO0uPnWE7CdCKC0Wv5I"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "280329366975-e03bhf29m2394e6dq1kk6onhg5qtbfso.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:280329366975:android:f985b5bde97645fb4b450a",
         "android_client_info": {
           "package_name": "com.nghycp.fyp_auction_system"
