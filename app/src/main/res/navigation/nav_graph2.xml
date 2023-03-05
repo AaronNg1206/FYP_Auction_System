@@ -64,8 +64,8 @@
         android:label="Fill in the form"
         tools:layout="@layout/fragment_bid_seller_form" >
         <action
-            android:id="@+id/action_fragmentBidSellerForm_to_sellOption2"
-            app:destination="@id/sellOption" />
+            android:id="@+id/action_fragmentBidSellerForm_to_fragmentUserHomePage"
+            app:destination="@id/fragmentUserHomePage" />
     </fragment>
     <fragment
         android:id="@+id/customer_Add_Artwork"

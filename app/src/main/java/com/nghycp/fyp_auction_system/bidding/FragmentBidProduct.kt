@@ -46,7 +46,7 @@ class FragmentBidProduct : Fragment() {
         nameTextView.text = name.toString()
 
         val img= args?.get("img")
-        val imgTextView = binding.artImage
+        //val imgTextView = binding.artImage
         //imgTextView. = img.toString()
 
         Glide.with(this@FragmentBidProduct)
