@@ -22,7 +22,7 @@
                 android:id="@+id/auction"
                 android:title="@string/drawer_auction" />
             <item
-                android:id="@+id/buying"
+                android:id="@+id/fragmentArtworkDisplay"
                 android:title="@string/drawer_buy"/>
             <item
                 android:id="@+id/sellOption"

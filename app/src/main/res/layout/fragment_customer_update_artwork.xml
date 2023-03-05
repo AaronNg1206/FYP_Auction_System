@@ -11,7 +11,7 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".customer_Add_Artwork">
+        tools:context=".customer.customer_Add_Artwork">
 
         <TextView
             android:id="@+id/textView_productName"
@@ -127,24 +127,6 @@
             android:text="@string/Cancel"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/TextView_Category"
-            app:layout_constraintTop_toBottomOf="@+id/TextView_Category" />
-
-        <TextView
-            android:id="@+id/textView30"
-            android:layout_width="41dp"
-            android:layout_height="0dp"
-            android:text="Bid"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
         <ImageView
             android:id="@+id/imageView4"
