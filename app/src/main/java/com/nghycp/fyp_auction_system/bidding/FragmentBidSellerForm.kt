@@ -202,12 +202,13 @@ class FragmentBidSellerForm : Fragment() {
             .addOnSuccessListener {
                 progressDialog.dismiss()
                 Toast.makeText(context,"Add Successful", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_fragmentRegister_to_fragmentLogin)
             }
             .addOnFailureListener {
                 progressDialog.dismiss()
                 Toast.makeText(context,"Failed to add this artwork", Toast.LENGTH_SHORT).show()
             }
+
+        findNavController().navigate(R.id.action_fragmentBidSellerForm_to_fragmentUserHomePage)
 
     }
 

@@ -8,6 +8,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentAuctionShowProductBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentBidProductBinding
@@ -15,6 +20,8 @@ import com.nghycp.fyp_auction_system.databinding.FragmentBidProductBinding
 class FragmentBidProduct : Fragment() {
 
     private var _binding: FragmentBidProductBinding? = null
+
+    private lateinit var firebaseAuth: FirebaseAuth
 
     private val binding get() = _binding!!
 
@@ -27,6 +34,24 @@ class FragmentBidProduct : Fragment() {
         setHasOptionsMenu(true)
 
         _binding = FragmentBidProductBinding.inflate(inflater,container,false)
+
+//        val user = firebaseAuth.currentUser
+//        val uid = user!!.uid
+//
+//        val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+//            .getReference("Product").child(uid)
+//
+//        ref.addValueEventListener(object : ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot){
+//                val min = snapshot.child("min").value as String?
+//
+//                binding.minShow.setText(min)
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//        })
 
         val args = this.arguments
         val desc= args?.get("desc")
