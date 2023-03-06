@@ -33,28 +33,23 @@ class ArtworkAdapter: RecyclerView.Adapter<ArtworkAdapter.HolderArtwork>{
         return artworkList.size
     }
     inner class HolderArtwork(itemView: View): RecyclerView.ViewHolder(itemView){
-        var name : TextView = binding.artworkName
-        //var author : TextView = binding.
-        //var description : TextView = binding.
-        var price : TextView = binding.artworkPrice
-        var image : ImageView = binding.artworkImage
-        //var applybtn: Button = binding.
+        var name : TextView = binding.artName
+        var price : TextView = binding.artPrice
+        var image : ImageView = binding.artImage
 
     }
     override fun onBindViewHolder(holder: HolderArtwork, position: Int) {
         //get data
         val model = artworkList[position]
-        val author = model.author
-        val description = model.description
-        val name = model.artworkName
-        val image = model.artworkImage
-        val price = model.price
+        val author = model.artAuthor
+        val description = model.artDescription
+        val name = model.artName
+        val image = model.artImage
+        val price = model.artPrice
 
         //set data
         holder.name.text = name
         holder.price.text= price
-        //holder.author.text = author
-        //holder.description.text = description
         Glide.with(context).load(image).into(holder.image)
         holder.image.setOnClickListener {
 

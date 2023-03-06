@@ -9,7 +9,7 @@
     android:background="@android:color/white">
 
     <ImageView
-        android:id="@+id/artworkImage"
+        android:id="@+id/artImage"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginStart="8dp"
@@ -29,7 +29,7 @@
 
 
         <TextView
-            android:id="@+id/artworkName"
+            android:id="@+id/artName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Artwork Name"
@@ -37,7 +37,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/artworkPrice"
+            android:id="@+id/artPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="$99.99"

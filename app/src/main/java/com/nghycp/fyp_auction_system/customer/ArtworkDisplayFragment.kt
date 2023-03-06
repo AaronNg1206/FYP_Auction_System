@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -22,6 +24,7 @@ class ArtworkDisplayFragment : Fragment() {
     private lateinit var artworkList: ArrayList<ModelArtwork>
     private lateinit var artworkAdapter: ArtworkAdapter
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var recyclerView: RecyclerView
     //private lateinit var database: FirebaseDatabase
     //private lateinit var artworkRef: DatabaseReference
 
@@ -31,12 +34,23 @@ class ArtworkDisplayFragment : Fragment() {
     ): View? {
         setHasOptionsMenu(true)
         binding = FragmentArtworkDisplayBinding.inflate(inflater, container, false)
-
-        firebaseAuth = FirebaseAuth.getInstance()
-        showProduct()
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        recyclerView = view.findViewById(R.id.RecyclerViewArtworkShow)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.setHasFixedSize(true)
+
+        artworkList = arrayListOf<ModelArtwork>()
+
+        showProduct()
+
+    }
 
     private fun showProduct() {
         artworkList = ArrayList()
@@ -52,9 +66,9 @@ class ArtworkDisplayFragment : Fragment() {
                     artworkList.add(model!!)
                 }
 
-                artworkAdapter = ArtworkAdapter(context!!,artworkList)
+                artworkAdapter = ArtworkAdapter(requireContext(),artworkList)
 
-                binding.RecyclerViewArtworkShow.adapter = artworkAdapter
+                recyclerView.adapter = artworkAdapter
 
 
             }
