@@ -100,12 +100,13 @@ class FragmentBidSellerForm : Fragment() {
             Toast.makeText(context, "Choose the min bid price", Toast.LENGTH_SHORT).show()
         }else {
             if (imageUri == null) {
-                createProduct("")
+
+                Toast.makeText(context, "Please upload Image", Toast.LENGTH_SHORT).show()
+                //createProduct("")
             } else {
                 uploadImage()
             }
         }
-
     }
 
     private fun showImageAttchMenu() {

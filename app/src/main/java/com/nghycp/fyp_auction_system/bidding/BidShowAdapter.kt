@@ -55,11 +55,13 @@ class BidShowAdapter : RecyclerView.Adapter<BidShowAdapter.HolderBid> {
         val name = model.name
         val price = model.price
         val img = model.profileImage
+        val min = model.min
 
         holder.artist.text = artist
         holder.desc.text = desc
         holder.name.text = name
         holder.price.text = price
+        //holder.
         Glide.with(context).load(img).into(holder.img)
         holder.btnApply.setOnClickListener {
 
