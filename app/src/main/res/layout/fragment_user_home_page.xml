@@ -22,7 +22,7 @@
         android:textAllCaps="false"
         android:textColor="@android:color/black"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView3"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewhomePage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         app:layout_constraintVertical_bias="0.163" />
 
     <TextView
-        android:id="@+id/viewMoreBidding"
+        android:id="@+id/viewMoreSelling"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@null"
@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView3"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewhomePage"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -102,7 +102,7 @@
         app:layout_constraintVertical_bias="0.106" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView3"
+        android:id="@+id/recyclerViewhomePage"
         android:layout_width="409dp"
         android:layout_height="268dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -6,30 +6,92 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.nghycp.fyp_auction_system.customer.ArtworkAdapter
+import com.nghycp.fyp_auction_system.customer.ModelArtwork
+import com.nghycp.fyp_auction_system.customer.homePageAdapter
+import com.nghycp.fyp_auction_system.databinding.FragmentArtworkDisplayBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentUserHomePageBinding
 
 class FragmentUserHomePage : Fragment() {
 
     private lateinit var binding: FragmentUserHomePageBinding
+    private lateinit var artworkList: ArrayList<ModelArtwork>
+    private lateinit var homePageAdapter: homePageAdapter
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var recyclerViewhomePage: RecyclerView
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+  /*  override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = FragmentUserHomePageBinding.inflate(layoutInflater)
 
-        binding.ViewMoreBidding.setOnClickListener{
-            //findNavController().navigate(R.id.action_fragmentUserHomePage_to_fragmentBidSellerForm)
-        }
-
-    }
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_home_page, container, false)
+        setHasOptionsMenu(true)
+
+        binding = FragmentUserHomePageBinding.inflate(inflater, container, false)
+        return binding.root
+        //return inflater.inflate(R.layout.fragment_user_home_page, container, false)
+
+
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        firebaseAuth = FirebaseAuth.getInstance()
+        recyclerViewhomePage = view.findViewById(R.id.recyclerViewhomePage)
+        recyclerViewhomePage.layoutManager = LinearLayoutManager(context)
+        recyclerViewhomePage.setHasFixedSize(true)
+
+          artworkList = arrayListOf<ModelArtwork>()
+
+        showProduct()
+        binding.ViewMoreBidding.setOnClickListener{
+            ///findNavController().navigate(R.id.action_fragmentUserHomePage_to_fragmentArtworkDisplay)
+        }
+        binding.viewMoreSelling.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentUserHomePage_to_fragmentArtworkDisplay)
+        }
+
+    }
+    private fun showProduct() {
+        artworkList = ArrayList()
+
+        val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference("artwork")
+        ref.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                artworkList.clear()
+                for (ds in snapshot.children){
+                    val model = ds.getValue(ModelArtwork::class.java)
+
+                    artworkList.add(model!!)
+                }
+
+                homePageAdapter = homePageAdapter(requireContext(),artworkList)
+
+                recyclerViewhomePage.adapter = homePageAdapter
+
+
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
 
 }
