@@ -79,7 +79,11 @@
     <fragment
         android:id="@+id/ArtworkInsertFragment"
         android:name="com.nghycp.fyp_auction_system.customer.ArtworkInsertFragment"
-        android:label="ArtworkInsertFragment__add__artwork" />
+        android:label="Sell ">
+        <action
+            android:id="@+id/action_ArtworkInsertFragment_to_fragmentUserHomePage"
+            app:destination="@id/fragmentUserHomePage" />
+    </fragment>
     <fragment
         android:id="@+id/auction"
         android:name="com.nghycp.fyp_auction_system.bidding.FragmentAuctionShowProduct"
