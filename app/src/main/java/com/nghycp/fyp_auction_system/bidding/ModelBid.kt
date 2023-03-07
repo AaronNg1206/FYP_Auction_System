@@ -7,7 +7,7 @@ class ModelBid {
     var desc:String = ""
     var name:String = ""
     var price:String = ""
-    var min:String = ""
+    //var min:String = ""
     var profileImage:String= ""
     var uid:String = ""
     var idOnClick:String = ""
@@ -20,7 +20,7 @@ class ModelBid {
         desc: String,
         name: String,
         price: String,
-        min: String,
+        //min: String,
         profileImage: String,
         uid: String,
         idOnClick: String
@@ -30,7 +30,7 @@ class ModelBid {
         this.desc = desc
         this.name = name
         this.price = price
-        this.min = min
+        //this.min = min
         this.profileImage = profileImage
         this.uid = uid
         this.idOnClick = idOnClick

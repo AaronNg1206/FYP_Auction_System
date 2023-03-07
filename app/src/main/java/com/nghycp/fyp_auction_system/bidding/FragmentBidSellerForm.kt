@@ -67,8 +67,8 @@ class FragmentBidSellerForm : Fragment() {
     private var desc = ""
     private var price = ""
     private var artist = ""
-    private var min = ""
-    private var img = ""
+    //private var min = ""
+    //private var img = ""
 
     private fun validateData() {
 
@@ -76,7 +76,7 @@ class FragmentBidSellerForm : Fragment() {
         desc = binding.addDesc.text.toString().trim()
         price = binding.addPrice.text.toString().trim()
         artist = binding.addArtist.text.toString().trim()
-        min = binding.spinnerMinBid.selectedItem.toString().trim()
+       // min = binding.spinnerMinBid.selectedItem.toString().trim()
         //img = binding.imageAdd.toString().trim()
 
 //        try {
@@ -96,8 +96,6 @@ class FragmentBidSellerForm : Fragment() {
             binding.addPrice.error = "Enter Price"
         }else if(artist.isEmpty()){
             binding.addArtist.error = "Enter Artist"
-        }else if(min.isEmpty()){
-            Toast.makeText(context, "Choose the min bid price", Toast.LENGTH_SHORT).show()
         }else {
             if (imageUri == null) {
 
@@ -189,7 +187,7 @@ class FragmentBidSellerForm : Fragment() {
         hashMap["desc"] = desc
         hashMap["price"] = price
         hashMap["artist"] = artist
-        hashMap["min"] = min
+        //hashMap["min"] = min
         //hashMap["Artwork Image"] = salary
         hashMap["uid"] = "${firebaseAuth.uid}"
         if(imageUri != null){

@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -52,6 +54,10 @@ class FragmentBidProduct : Fragment() {
 //                TODO("Not yet implemented")
 //            }
 //        })
+
+        binding.btnGo.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentBidProduct_to_fragmentBidProcess)
+        }
 
         val args = this.arguments
         val desc= args?.get("desc")

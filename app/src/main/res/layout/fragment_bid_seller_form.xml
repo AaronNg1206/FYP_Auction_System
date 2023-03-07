@@ -84,11 +84,12 @@
         android:id="@+id/textView_productImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
         android:text="@string/product_image"
         android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="@+id/spinner_minBid"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_minBid" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addArtist" />
 
     <TextView
         android:id="@+id/textView_description"
@@ -113,16 +114,6 @@
         app:layout_constraintStart_toStartOf="@+id/textView_description"
         app:layout_constraintTop_toBottomOf="@+id/textView_description" />
 
-    <TextView
-        android:id="@+id/TextView_Category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/minBid"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="@+id/addArtist"
-        app:layout_constraintTop_toBottomOf="@+id/addArtist" />
-
     <Button
         android:id="@+id/btn_Add"
         android:layout_width="147dp"
@@ -134,18 +125,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinner_minBid"
-        android:layout_width="402dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:entries="@array/spinner_minBid"
-        android:contentDescription="@string/minBid"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextView_Category" />
 
     <TextView
         android:id="@+id/textView_addNewProductTitle"
@@ -163,10 +142,10 @@
         android:id="@+id/imageAdd"
         android:layout_width="83dp"
         android:layout_height="63dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="52dp"
         android:src="@drawable/ic_baseline_add_a_photo_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.036"
+        app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView_productImage" />
 
