@@ -89,8 +89,12 @@
     <fragment
         android:id="@+id/fragmentBidProduct"
         android:name="com.nghycp.fyp_auction_system.bidding.FragmentBidProduct"
-        android:label="fragment_bid_product"
-        tools:layout="@layout/fragment_bid_product" />
+        android:label="Click to Bid"
+        tools:layout="@layout/fragment_bid_product">
+        <action
+            android:id="@+id/action_fragmentBidProduct_to_fragmentBidProcess"
+            app:destination="@id/fragmentBidProcess" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentArtworkDisplay"
         android:name="com.nghycp.fyp_auction_system.ArtworkDisplayFragment"
@@ -104,5 +108,19 @@
         android:id="@+id/artworkDetailsFragment"
         android:name="com.nghycp.fyp_auction_system.customer.artworkDetailsFragment"
         android:label="fragment_artwork_details"
-        tools:layout="@layout/fragment_artwork_details" />
+        tools:layout="@layout/fragment_artwork_details" >
+        <action
+            android:id="@+id/action_artworkDetailsFragment_to_addToCartFragment"
+            app:destination="@id/addToCartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentBidProcess"
+        android:name="com.nghycp.fyp_auction_system.bidding.FragmentBidProcess"
+        android:label="Process of Bid"
+        tools:layout="@layout/fragment_bid_process" />
+    <fragment
+        android:id="@+id/addToCartFragment"
+        android:name="com.nghycp.fyp_auction_system.addToCartFragment"
+        android:label="fragment_add_to_cart"
+        tools:layout="@layout/fragment_add_to_cart" />
 </navigation>
