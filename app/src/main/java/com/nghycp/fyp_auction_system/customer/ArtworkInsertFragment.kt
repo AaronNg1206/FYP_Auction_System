@@ -168,7 +168,7 @@ class ArtworkInsertFragment : Fragment() {
 
         val hashMap = HashMap<String, Any>()
         hashMap["id"] = "$timestamp"
-        hashMap["ArtName"] = artworkName
+        hashMap["artName"] = artworkName
         hashMap["artDescription"] = description
         hashMap["artPrice"] = price
         hashMap["artAuthor"] = author
@@ -184,7 +184,7 @@ class ArtworkInsertFragment : Fragment() {
             .addOnSuccessListener {
                 progressDialog.dismiss()
                 Toast.makeText(context,"Add Successful", Toast.LENGTH_SHORT).show()
-                //startActivity(Intent(this, customer_Show_Artwork::class.java))
+
 
             }
             .addOnFailureListener { e ->

@@ -5,26 +5,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.nghycp.fyp_auction_system.R
-import com.nghycp.fyp_auction_system.databinding.FragmentArtworkLayoutBinding
+import com.nghycp.fyp_auction_system.addToCartFragment
+import com.nghycp.fyp_auction_system.databinding.FragmentArtworkDetailsBinding
 
-class ArtworkAdapter: RecyclerView.Adapter<ArtworkAdapter.HolderArtwork>{
+class cartAdapter : RecyclerView.Adapter<cartAdapter.HolderArtwork>{
     private val context: Context
     var artworkList: ArrayList<ModelArtwork>
-    private lateinit var binding: FragmentArtworkLayoutBinding
+    private lateinit var binding: FragmentArtworkDetailsBinding
 
     constructor(context: Context, artworkList: ArrayList<ModelArtwork>) {
         this.context = context
         this.artworkList = artworkList
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderArtwork {
-        binding = FragmentArtworkLayoutBinding.inflate(LayoutInflater.from(context),parent,false)
+        binding = FragmentArtworkDetailsBinding.inflate(LayoutInflater.from(context),parent,false)
 
         return HolderArtwork(binding.root)
     }
@@ -33,10 +34,12 @@ class ArtworkAdapter: RecyclerView.Adapter<ArtworkAdapter.HolderArtwork>{
         return artworkList.size
     }
     inner class HolderArtwork(itemView: View): RecyclerView.ViewHolder(itemView){
-        var name : TextView = binding.artName
-        var price : TextView = binding.artPrice
-        var image : ImageView = binding.artImage
-        var description : TextView = binding.artDescription
+        var name : TextView = binding.showProduct
+        var price : TextView = binding.showPricing
+        var image : ImageView = binding.imageProduct
+        var description : TextView = binding.showDesc
+        var author : TextView = binding.showAuthor
+        var buttonAddToCart : Button = binding.buttonAddToCart
     }
     override fun onBindViewHolder(holder: HolderArtwork, position: Int) {
         //get data
@@ -51,10 +54,11 @@ class ArtworkAdapter: RecyclerView.Adapter<ArtworkAdapter.HolderArtwork>{
         holder.name.text = name
         holder.price.text= price
         holder.description.text = description
+        holder.author.text = author
         Glide.with(context).load(image).into(holder.image)
-        holder.image.setOnClickListener {
+        holder.buttonAddToCart.setOnClickListener {
 
-            val fragment = artworkDetailsFragment()
+            val fragment = addToCartFragment()
             val args = Bundle()
             args.putString("artDescription", description)
             args.putString("artAuthor",author)
@@ -63,14 +67,12 @@ class ArtworkAdapter: RecyclerView.Adapter<ArtworkAdapter.HolderArtwork>{
             args.putString("artName", name)
             fragment.setArguments(args)
 
-            Navigation.findNavController(holder.image).navigate(R.id.action_fragmentArtworkDisplay_to_artworkDetailsFragment,args)
+            Navigation.findNavController(holder.buttonAddToCart).navigate(R.id.action_artworkDetailsFragment_to_addToCartFragment,args)
         }
 
 
     }
-
     init {
         artworkList = ArrayList()
     }
-    }
-
+}
