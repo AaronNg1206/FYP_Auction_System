@@ -18,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentAuctionShowProductBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentBidProductBinding
+import kotlinx.android.synthetic.main.fragment_bid_process.*
 
 class FragmentBidProduct : Fragment() {
 
@@ -55,10 +56,6 @@ class FragmentBidProduct : Fragment() {
 //            }
 //        })
 
-        binding.btnGo.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentBidProduct_to_fragmentBidProcess)
-        }
-
         val args = this.arguments
         val desc= args?.get("desc")
         val descTextView = binding.descShow
@@ -84,6 +81,23 @@ class FragmentBidProduct : Fragment() {
             .load(img.toString())
             .placeholder(R.drawable.user)
             .into(binding.artImage)
+
+        binding.btnGo.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentBidProduct_to_fragmentBidProcess, Bundle().apply {
+                putString("name",name.toString())
+                putString("img",img.toString())
+            })
+
+            val img = binding.artImage.toString()
+            val name = binding.nameShow.text.toString()
+
+            val fragment = FragmentBidProcess()
+            val args = Bundle()
+            args.putString("name", name)
+            args.putString("image", img)
+            fragment.setArguments(args)
+
+        }
 
         return binding.root
     }

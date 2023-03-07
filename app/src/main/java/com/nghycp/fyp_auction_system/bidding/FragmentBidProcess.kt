@@ -7,8 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentBidProcessBinding
+import java.lang.Exception
 
 class FragmentBidProcess : Fragment() {
 
@@ -29,13 +35,15 @@ class FragmentBidProcess : Fragment() {
 
         _binding = FragmentBidProcessBinding.inflate(inflater,container,false)
 
-//        val args = this.arguments
-//        val img = args?.get("img")
-//
-//        Glide.with(this@FragmentBidProcess)
-//            .load(img.toString())
-//            .placeholder(R.drawable.example)
-//            .into(binding.imageView2)
+        val name =  requireArguments().getString("name").toString()
+        binding.showName.setText(name)
+
+        val img = requireArguments().getString("img").toString()
+
+        Glide.with(this@FragmentBidProcess)
+            .load(img.toString())
+            .placeholder(R.drawable.user)
+            .into(binding.imgShow)
 
         return binding.root
     }
