@@ -127,7 +127,7 @@
         tools:layout="@layout/fragment_bid_process" />
     <fragment
         android:id="@+id/addToCartFragment2"
-        android:name="com.nghycp.fyp_auction_system.addToCartFragment"
+        android:name="com.nghycp.fyp_auction_system.customer.addToCartFragment"
         android:label="fragment_add_to_cart"
         tools:layout="@layout/fragment_add_to_cart" />
 </navigation>
