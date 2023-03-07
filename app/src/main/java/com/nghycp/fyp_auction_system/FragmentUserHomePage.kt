@@ -14,10 +14,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.nghycp.fyp_auction_system.customer.ArtworkAdapter
+import com.nghycp.fyp_auction_system.bidding.BidHomePageAdapter
+import com.nghycp.fyp_auction_system.bidding.ModelBid
 import com.nghycp.fyp_auction_system.customer.ModelArtwork
 import com.nghycp.fyp_auction_system.customer.homePageAdapter
-import com.nghycp.fyp_auction_system.databinding.FragmentArtworkDisplayBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentUserHomePageBinding
 
 class FragmentUserHomePage : Fragment() {
@@ -27,12 +27,10 @@ class FragmentUserHomePage : Fragment() {
     private lateinit var homePageAdapter: homePageAdapter
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var recyclerViewhomePage: RecyclerView
+    private lateinit var recyclerViewBidHomePage: RecyclerView
 
-  /*  override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = FragmentUserHomePageBinding.inflate(layoutInflater)
-
-    }*/
+    private lateinit var bidArrayList: ArrayList<ModelBid>
+    private lateinit var bidHomePageAdapter: BidHomePageAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,11 +53,16 @@ class FragmentUserHomePage : Fragment() {
         recyclerViewhomePage.layoutManager = LinearLayoutManager(context)
         recyclerViewhomePage.setHasFixedSize(true)
 
+        recyclerViewBidHomePage = view.findViewById(R.id.recyclerviewJobShow)
+        recyclerViewBidHomePage.layoutManager = LinearLayoutManager(context)
+        recyclerViewBidHomePage.setHasFixedSize(true)
+
           artworkList = arrayListOf<ModelArtwork>()
 
         showProduct()
+        loadBid()
         binding.ViewMoreBidding.setOnClickListener{
-            ///findNavController().navigate(R.id.action_fragmentUserHomePage_to_fragmentArtworkDisplay)
+            findNavController().navigate(R.id.action_fragmentUserHomePage_to_auction)
         }
         binding.viewMoreSelling.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentUserHomePage_to_fragmentArtworkDisplay)
@@ -79,12 +82,9 @@ class FragmentUserHomePage : Fragment() {
 
                     artworkList.add(model!!)
                 }
-
                 homePageAdapter = homePageAdapter(requireContext(),artworkList)
 
                 recyclerViewhomePage.adapter = homePageAdapter
-
-
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
@@ -92,6 +92,28 @@ class FragmentUserHomePage : Fragment() {
 
         })
     }
+    private fun loadBid() {
+        bidArrayList = ArrayList()
 
+        val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference("Product")
+        ref.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                bidArrayList.clear()
+                for (ds in snapshot.children){
+                    val model = ds.getValue(ModelBid::class.java)
+
+                    bidArrayList.add(model!!)
+                }
+
+                bidHomePageAdapter = BidHomePageAdapter(context!!,bidArrayList)
+
+                recyclerViewBidHomePage.adapter = bidHomePageAdapter
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
 
 }

@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_fragmentUserHomePage_to_artworkDetailsFragment"
             app:destination="@id/artworkDetailsFragment" />
+        <action
+            android:id="@+id/action_fragmentUserHomePage_to_fragmentBidProduct"
+            app:destination="@id/fragmentBidProduct" />
     </fragment>
     <fragment
         android:id="@+id/userProfile"
@@ -82,9 +85,6 @@
         android:name="com.nghycp.fyp_auction_system.bidding.FragmentAuctionShowProduct"
         android:label="Artwork"
         tools:layout="@layout/fragment_auction_show_product">
-        <action
-            android:id="@+id/action_auction_to_fragmentUserHomePage"
-            app:destination="@id/fragmentUserHomePage" />
         <action
             android:id="@+id/action_auction_to_fragmentBidProduct"
             app:destination="@id/fragmentBidProduct" />

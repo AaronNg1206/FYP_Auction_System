@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerviewJobShow"
         app:layout_constraintVertical_bias="0.163" />
 
     <TextView
@@ -91,7 +91,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         tools:listitem="@layout/bidding_home_page"
-        android:id="@+id/recyclerView2"
+        android:id="@+id/recyclerviewJobShow"
         android:layout_width="406dp"
         android:layout_height="221dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -109,7 +109,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerviewJobShow"
         app:layout_constraintVertical_bias="0.524"
         tools:listitem="@layout/fragment_artwork_layout"/>
 

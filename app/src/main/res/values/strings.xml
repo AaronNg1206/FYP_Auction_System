@@ -18,7 +18,7 @@
     <string name="productName">Artwork Name</string>
     <string name="product_Price">Artwork Price</string>
     <string name="product_image">Artwork Image</string>
-    <string name="Author">Author</string>
+    <string name="Author">Artist</string>
     <string name="OpenGallery">Open Gallery</string>
     <string name="Description">Description</string>
     <string name="minBid">Minimum bid</string>
@@ -32,6 +32,10 @@
         <item>5000</item>
         <item>10000</item>
     </string-array>
+
+    <!-- artwork detail-->
+
+    <string name="price">Price</string>
     <!--NZH-->
     <!--menu_main-->
     <string name="log_out">Log Out</string>
