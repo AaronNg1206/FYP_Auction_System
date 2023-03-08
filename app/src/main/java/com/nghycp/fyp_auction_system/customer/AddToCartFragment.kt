@@ -27,8 +27,6 @@ class addToCartFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var recyclerViewAddToCart: RecyclerView
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,6 +52,8 @@ class addToCartFragment : Fragment() {
     private fun shoppingCart() {
         artworkList = ArrayList()
         var total = 0.0
+        var subTotal = 0.0
+        var shippingFee = 0.0
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("artCart")
         ref.addValueEventListener(object : ValueEventListener {
@@ -73,7 +73,15 @@ class addToCartFragment : Fragment() {
                 }
 
                     binding.textViewTotal.text = total.toString()
-                //totalPriceTextView.text = "Total: $${String.format("%.2f", total)}"
+
+                shippingFee = when (total) {
+                    in 2.0..4999.0 -> 20.0
+                    in 5000.0..10000.0 -> 50.0
+                    else -> throw IllegalArgumentException("Invalid artwork price")
+                }
+                subTotal = shippingFee + total
+                binding.textViewShipingFee.text = shippingFee.toString()
+                binding.textViewSubtotal.text = subTotal.toString()
                 cartAdapter = cartAdapter(requireContext(),artworkList)
 
                 recyclerViewAddToCart.adapter = cartAdapter
