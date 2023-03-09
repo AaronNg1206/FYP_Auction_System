@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.*
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
@@ -181,12 +182,16 @@ class FragmentBidSellerForm : Fragment() {
 
         val timestamp = System.currentTimeMillis()
 
+        //val initialTime = 300
+
+
         val hashMap = HashMap<String, Any>()
         hashMap["id"] = "$timestamp"
         hashMap["name"] = name
         hashMap["desc"] = desc
         hashMap["price"] = price
         hashMap["artist"] = artist
+        //hashMap["timer"] = "$initialTime"
         //hashMap["min"] = min
         //hashMap["Artwork Image"] = salary
         hashMap["uid"] = "${firebaseAuth.uid}"
@@ -206,6 +211,19 @@ class FragmentBidSellerForm : Fragment() {
                 progressDialog.dismiss()
                 Toast.makeText(context,"Failed to add this artwork", Toast.LENGTH_SHORT).show()
             }
+
+//        val timer = object : CountDownTimer((initialTime * 1000).toLong(), 1000) {
+//            override fun onTick(millisUntilFinished: Long) {
+//                val hashMap = (millisUntilFinished / 1000).toInt()
+//                ref.setValue(hashMap)
+//            }
+//
+//            override fun onFinish() {
+//                ref.setValue(0)
+//            }
+//        }
+//
+//        timer.start()
 
         findNavController().navigate(R.id.action_fragmentBidSellerForm_to_fragmentUserHomePage)
 

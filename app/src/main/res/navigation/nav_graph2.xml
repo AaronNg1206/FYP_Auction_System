@@ -58,8 +58,8 @@
     <fragment
         android:id="@+id/sellOption"
         android:name="com.nghycp.fyp_auction_system.salesSelection"
-        android:label="fragment_sales_selection"
-        tools:layout="@layout/fragment_sales_selection" >
+        android:label="Selection"
+        tools:layout="@layout/fragment_sales_selection">
         <action
             android:id="@+id/action_sellOption_to_fragmentBidSellerForm2"
             app:destination="@id/fragmentBidSellerForm" />
@@ -96,8 +96,8 @@
     <fragment
         android:id="@+id/fragmentBidProduct"
         android:name="com.nghycp.fyp_auction_system.bidding.FragmentBidProduct"
-        android:label="fragment_bid_product"
-        tools:layout="@layout/fragment_bid_product" >
+        android:label="Click to Bid"
+        tools:layout="@layout/fragment_bid_product">
         <action
             android:id="@+id/action_fragmentBidProduct_to_fragmentBidProcess"
             app:destination="@id/fragmentBidProcess" />
@@ -123,7 +123,7 @@
     <fragment
         android:id="@+id/fragmentBidProcess"
         android:name="com.nghycp.fyp_auction_system.bidding.FragmentBidProcess"
-        android:label="fragment_bid_process"
+        android:label="Processing"
         tools:layout="@layout/fragment_bid_process" />
     <fragment
         android:id="@+id/addToCartFragment2"
