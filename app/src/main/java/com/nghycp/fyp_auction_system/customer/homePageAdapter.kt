@@ -34,10 +34,10 @@ class homePageAdapter: RecyclerView.Adapter<homePageAdapter.HolderArtwork>{
         return artworkList.size
     }
     inner class HolderArtwork(itemView: View): RecyclerView.ViewHolder(itemView){
-        var name : TextView = binding.artName
-        var price : TextView = binding.artPrice
+        //var name : TextView = binding.artName
+        //var price : TextView = binding.artPrice
         var image : ImageView = binding.artImage
-        var description : TextView = binding.artDescription
+        //var description : TextView = binding.artDescription
     }
     override fun onBindViewHolder(holder: HolderArtwork, position: Int) {
         //get data
@@ -49,9 +49,9 @@ class homePageAdapter: RecyclerView.Adapter<homePageAdapter.HolderArtwork>{
         val price = model.artPrice
 
         //set data
-        holder.name.text = name
-        holder.price.text= price
-        holder.description.text = description
+        //holder.name.text = name
+        //holder.price.text= price
+        //holder.description.text = description
         Glide.with(context).load(image).into(holder.image)
         holder.image.setOnClickListener {
 
