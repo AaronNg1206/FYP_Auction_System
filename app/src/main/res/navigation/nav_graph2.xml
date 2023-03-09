@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_fragmentUserHomePage_to_addToCartFragment2"
             app:destination="@id/addToCartFragment2" />
+        <action
+            android:id="@+id/action_fragmentUserHomePage_to_recentAddFragment"
+            app:destination="@id/recentAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/userProfile"
@@ -133,4 +136,9 @@
         android:name="com.nghycp.fyp_auction_system.customer.addToCartFragment"
         android:label="fragment_add_to_cart"
         tools:layout="@layout/fragment_add_to_cart" />
+    <fragment
+        android:id="@+id/recentAddFragment"
+        android:name="com.nghycp.fyp_auction_system.customer.RecentAddFragment"
+        android:label="fragment_recent_add"
+        tools:layout="@layout/fragment_recent_add" />
 </navigation>

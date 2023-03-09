@@ -45,6 +45,7 @@
     <string name="drawer_editprofile">Edit Profile</string>
     <string name="drawer_view_purchase">View Purchase</string>
     <string name="drawer_cart">Artwork Cart</string>
+    <string name="drawer_recent">Recent Added</string>
     <string name="drawer_categories">Categories</string>
     <string name="drawer_auction">Auction Bidding</string>
     <string name="drawer_buy">Buy Product</string>

@@ -80,7 +80,7 @@ class FragmentUserHomePage : Fragment() {
 
                     artworkList.add(model!!)
                 }
-                homePageAdapter = homePageAdapter(requireContext(),artworkList)
+                homePageAdapter = homePageAdapter(context!!,artworkList)
 
                 recyclerViewhomePage.adapter = homePageAdapter
             }

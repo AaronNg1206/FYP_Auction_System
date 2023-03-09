@@ -6,26 +6,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.nghycp.fyp_auction_system.databinding.FragmentAddToCartBinding
-import com.nghycp.fyp_auction_system.databinding.FragmentAddToCartLayoutBinding
+import com.nghycp.fyp_auction_system.R
+import com.nghycp.fyp_auction_system.databinding.FragmentArtworkLayoutBinding
+import com.nghycp.fyp_auction_system.databinding.FragmentRecentAddLayoutBinding
 
-class cartAdapter : RecyclerView.Adapter<cartAdapter.HolderArtwork>{
+class RecentAddAdapter: RecyclerView.Adapter<RecentAddAdapter.HolderArtwork>{
     private val context: Context
     var artworkList: ArrayList<ModelArtwork>
-    private lateinit var binding: FragmentAddToCartLayoutBinding
-    //private lateinit var binding1: FragmentAddToCartBinding
+    //lateinit var recentAddList: ArrayList<ModelArtwork>
+    private lateinit var binding: FragmentRecentAddLayoutBinding
 
     constructor(context: Context, artworkList: ArrayList<ModelArtwork>) {
         this.context = context
         this.artworkList = artworkList
+       // this.recentAddList = recentAddList
+
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderArtwork {
-        binding = FragmentAddToCartLayoutBinding.inflate(LayoutInflater.from(context),parent,false)
+        binding = FragmentRecentAddLayoutBinding.inflate(LayoutInflater.from(context),parent,false)
 
         return HolderArtwork(binding.root)
     }
@@ -34,14 +38,13 @@ class cartAdapter : RecyclerView.Adapter<cartAdapter.HolderArtwork>{
         return artworkList.size
     }
     inner class HolderArtwork(itemView: View): RecyclerView.ViewHolder(itemView){
-        var name : TextView = binding.artName
-        var price : TextView = binding.artPrice
-        var image : ImageView = binding.artImage
-        var description : TextView = binding.artDescription
-        var author : TextView = binding.artAuthor
-        var checkBox : CheckBox = binding.checkBox
-        //var buttonRemove : Button = binding1.buttonRemove
-        //var buttonAddToCart : Button = binding.buttonAddToCart
+        var author : TextView = binding.showAuthor
+        var name : TextView = binding.showProduct
+        var price : TextView = binding.showPricing
+        var image : ImageView = binding.imageProduct
+        var description : TextView = binding.showDesc
+        var buttonRemove : Button = binding.buttonDelete
+        var buttonUpdate : Button = binding.buttonUpdate
     }
     override fun onBindViewHolder(holder: HolderArtwork, position: Int) {
         //get data
@@ -51,23 +54,15 @@ class cartAdapter : RecyclerView.Adapter<cartAdapter.HolderArtwork>{
         val name = model.artName
         val image = model.artImage
         val price = model.artPrice
-        val checkBox = model.isChecked
-
-
 
         //set data
         holder.name.text = name
         holder.price.text= price
         holder.description.text = description
-        holder.author.text = author
-        holder.checkBox.isChecked = checkBox
         Glide.with(context).load(image).into(holder.image)
-       //    holder.buttonRemove.OnCheckedChangeListener(checkBox.setOnCheckedChangeListener())
+      /*  holder.image.setOnClickListener {
 
-
-        /*  holder.checkBox.setOnClickListener {
-
-            val fragment = addToCartFragment()
+            val fragment = artworkDetailsFragment()
             val args = Bundle()
             args.putString("artDescription", description)
             args.putString("artAuthor",author)
@@ -76,12 +71,14 @@ class cartAdapter : RecyclerView.Adapter<cartAdapter.HolderArtwork>{
             args.putString("artName", name)
             fragment.setArguments(args)
 
-            Navigation.findNavController(holder.checkBox).navigate(R.id.action_artworkDetailsFragment_to_addToCartFragment,args)
+            Navigation.findNavController(holder.image).navigate(R.id.action_fragmentArtworkDisplay_to_artworkDetailsFragment,args)
         }*/
+
+
     }
+
     init {
         artworkList = ArrayList()
     }
+    }
 
-
-}
