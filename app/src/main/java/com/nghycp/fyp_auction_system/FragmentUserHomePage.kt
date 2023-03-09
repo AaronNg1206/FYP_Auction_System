@@ -1,10 +1,8 @@
 package com.nghycp.fyp_auction_system
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -50,11 +48,11 @@ class FragmentUserHomePage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         firebaseAuth = FirebaseAuth.getInstance()
         recyclerViewhomePage = view.findViewById(R.id.recyclerViewhomePage)
-        recyclerViewhomePage.layoutManager = LinearLayoutManager(context)
+        recyclerViewhomePage.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
         recyclerViewhomePage.setHasFixedSize(true)
 
-        recyclerViewBidHomePage = view.findViewById(R.id.recyclerviewJobShow)
-        recyclerViewBidHomePage.layoutManager = LinearLayoutManager(context)
+        recyclerViewBidHomePage = view.findViewById(R.id.recyclerViewBidHome)
+        recyclerViewBidHomePage.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
         recyclerViewBidHomePage.setHasFixedSize(true)
 
           artworkList = arrayListOf<ModelArtwork>()
@@ -115,5 +113,11 @@ class FragmentUserHomePage : Fragment() {
             }
         })
     }
+/*    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        // log out action not visible in login fragment
+        //menu.findItem(R.id.action_cart).isVisible
+        //findNavController().navigate(R.id.action_fragmentUserHomePage_to_addToCartFragment2)
+    }*/
 
 }

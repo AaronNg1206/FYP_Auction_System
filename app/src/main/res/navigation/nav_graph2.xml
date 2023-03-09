@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_fragmentUserHomePage_to_fragmentBidProduct"
             app:destination="@id/fragmentBidProduct" />
+        <action
+            android:id="@+id/action_fragmentUserHomePage_to_addToCartFragment2"
+            app:destination="@id/addToCartFragment2" />
     </fragment>
     <fragment
         android:id="@+id/userProfile"

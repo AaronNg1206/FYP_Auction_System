@@ -1,19 +1,24 @@
 package com.nghycp.fyp_auction_system.customer
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.nghycp.fyp_auction_system.databinding.FragmentAddToCartBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentAddToCartLayoutBinding
 
 class cartAdapter : RecyclerView.Adapter<cartAdapter.HolderArtwork>{
     private val context: Context
     var artworkList: ArrayList<ModelArtwork>
     private lateinit var binding: FragmentAddToCartLayoutBinding
+    private lateinit var binding1: FragmentAddToCartBinding
 
     constructor(context: Context, artworkList: ArrayList<ModelArtwork>) {
         this.context = context
@@ -34,6 +39,8 @@ class cartAdapter : RecyclerView.Adapter<cartAdapter.HolderArtwork>{
         var image : ImageView = binding.artImage
         var description : TextView = binding.artDescription
         var author : TextView = binding.artAuthor
+        var checkBox : CheckBox = binding.checkBox
+        var buttonRemove : Button = binding1.buttonRemove
         //var buttonAddToCart : Button = binding.buttonAddToCart
     }
     override fun onBindViewHolder(holder: HolderArtwork, position: Int) {
@@ -44,14 +51,21 @@ class cartAdapter : RecyclerView.Adapter<cartAdapter.HolderArtwork>{
         val name = model.artName
         val image = model.artImage
         val price = model.artPrice
+        val checkBox = model.isChecked
+
+
 
         //set data
         holder.name.text = name
         holder.price.text= price
         holder.description.text = description
         holder.author.text = author
+        holder.checkBox.isChecked = checkBox
         Glide.with(context).load(image).into(holder.image)
-       /* holder.buttonAddToCart.setOnClickListener {
+       //    holder.buttonRemove.OnCheckedChangeListener(checkBox.setOnCheckedChangeListener())
+
+
+        /*  holder.checkBox.setOnClickListener {
 
             val fragment = addToCartFragment()
             val args = Bundle()
@@ -62,7 +76,7 @@ class cartAdapter : RecyclerView.Adapter<cartAdapter.HolderArtwork>{
             args.putString("artName", name)
             fragment.setArguments(args)
 
-            Navigation.findNavController(holder.buttonAddToCart).navigate(R.id.action_artworkDetailsFragment_to_addToCartFragment,args)
+            Navigation.findNavController(holder.checkBox).navigate(R.id.action_artworkDetailsFragment_to_addToCartFragment,args)
         }*/
     }
     init {

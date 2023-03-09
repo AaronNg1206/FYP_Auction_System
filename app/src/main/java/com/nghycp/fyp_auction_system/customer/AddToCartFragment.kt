@@ -63,17 +63,12 @@ class addToCartFragment : Fragment() {
                 for (ds in snapshot.children){
                     val model = ds.getValue(ModelArtwork::class.java)
                     val artPrice = model?.artPrice?.toDoubleOrNull()
-                    //artPrice = ds.getValue(Double::class.java).toString()
-
                     total += artPrice!!
-                    /* val artworkPrice = ds.getValue(Double::class.java)
-                      total += artworkPrice ?: 0.0
-  */
+
                     artworkList.add(model!!)
                 }
 
-                    binding.textViewTotal.text = total.toString()
-
+                binding.textViewTotal.text = total.toString()
                 shippingFee = when (total) {
                     in 2.0..4999.0 -> 20.0
                     in 5000.0..10000.0 -> 50.0
@@ -82,8 +77,8 @@ class addToCartFragment : Fragment() {
                 subTotal = shippingFee + total
                 binding.textViewShipingFee.text = shippingFee.toString()
                 binding.textViewSubtotal.text = subTotal.toString()
-                cartAdapter = cartAdapter(requireContext(),artworkList)
 
+                cartAdapter = cartAdapter(requireContext(),artworkList)
                 recyclerViewAddToCart.adapter = cartAdapter
 
 

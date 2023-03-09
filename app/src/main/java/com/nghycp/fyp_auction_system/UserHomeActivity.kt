@@ -5,9 +5,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -21,6 +26,7 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.header_home_user.view.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.nghycp.fyp_auction_system.customer.addToCartFragment
 import com.nghycp.fyp_auction_system.databinding.ActivityUserHomeBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentLoginBinding
 import kotlinx.android.synthetic.main.header_home_user.*
@@ -49,6 +55,7 @@ class UserHomeActivity : AppCompatActivity() {
         ),drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
 
         updateNavHeader()
 
@@ -94,12 +101,29 @@ class UserHomeActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return when (item.itemId) {
+
+            R.id.action_cart ->{
+                val fragment = addToCartFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.frameLayout9, fragment)
+                    .addToBackStack(null).commit()
+                //NavHostFragment.findNavController(this).navigate(R.id.action_fragmentUserHomePage_to_addToCartFragment2)
+                //Toast.makeText(this,"errorCheck",Toast.LENGTH_SHORT).show()
+                true
+            }
+
+              //findNavController().navigate(R.id.action_fragmentUserHomePage_to_addToCartFragment2)
+                //findNavController().navigate(R.id.action_fragmentUserHomePage_to_addToCartFragment2)
+
+
+
+
             R.id.action_logout -> {
                 val intent = Intent(this, FragmentLoginBinding::class.java)
                 startActivity(intent)

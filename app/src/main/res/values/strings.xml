@@ -44,9 +44,11 @@
     <string name="drawer_home">Home</string>
     <string name="drawer_editprofile">Edit Profile</string>
     <string name="drawer_view_purchase">View Purchase</string>
+    <string name="drawer_cart">Artwork Cart</string>
     <string name="drawer_categories">Categories</string>
     <string name="drawer_auction">Auction Bidding</string>
     <string name="drawer_buy">Buy Product</string>
+
     <string name="drawer_sell">Selling</string>
     <string name="drawer_about">About Us</string>
     <string name="drawer_logout">Log Out</string>
@@ -222,5 +224,10 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="Remove">Remove</string>
+    <string name="Cart">Art Cart</string>
+    <string name="recycleviewsaleshome" />
+    <string name="recycleViewBidHome" />
+    <string name="AddToCartTotal">RM1234</string>
 
 </resources>
