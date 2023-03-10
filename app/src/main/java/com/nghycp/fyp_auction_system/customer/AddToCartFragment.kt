@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -63,27 +65,28 @@ class addToCartFragment : Fragment() {
                 for (ds in snapshot.children){
                     val model = ds.getValue(ModelArtwork::class.java)
                     val artPrice = model?.artPrice?.toDoubleOrNull()
-                    //artPrice = ds.getValue(Double::class.java).toString()
-
                     total += artPrice!!
-                    /* val artworkPrice = ds.getValue(Double::class.java)
-                      total += artworkPrice ?: 0.0
-  */
+
                     artworkList.add(model!!)
                 }
+               /* if (total == null || total <= 0) {
+                    Toast.makeText(requireContext(), "Invalid artwork price", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.addToCartFragment2)
+                } else {
+                    shippingFee = when (total) {
+                        in 1.0..4999.0 -> 20.0
+                        in 5000.0..10000.0 -> 50.0
+                        else -> throw IllegalArgumentException("Invalid artwork price")
+                    }
+                    Toast.makeText(requireContext(), "Artwork added to cart", Toast.LENGTH_SHORT).show()
+                }*/
+                binding.textViewTotal.text = total.toString()
 
-                    binding.textViewTotal.text = total.toString()
-
-                shippingFee = when (total) {
-                    in 2.0..4999.0 -> 20.0
-                    in 5000.0..10000.0 -> 50.0
-                    else -> throw IllegalArgumentException("Invalid artwork price")
-                }
                 subTotal = shippingFee + total
                 binding.textViewShipingFee.text = shippingFee.toString()
                 binding.textViewSubtotal.text = subTotal.toString()
-                cartAdapter = cartAdapter(requireContext(),artworkList)
 
+                cartAdapter = cartAdapter(requireContext(),artworkList)
                 recyclerViewAddToCart.adapter = cartAdapter
 
 
