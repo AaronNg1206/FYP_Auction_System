@@ -88,11 +88,13 @@ class FragmentBidProduct : Fragment() {
             .placeholder(R.drawable.user)
             .into(binding.artImage)
 
-        binding.btnGo.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentBidProduct_to_fragmentBidProcess)
-        }
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
     }
 
 }

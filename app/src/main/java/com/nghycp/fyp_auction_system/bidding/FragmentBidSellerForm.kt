@@ -51,15 +51,6 @@ class FragmentBidSellerForm : Fragment() {
         progressDialog.setTitle("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(false)
 
-        binding.btnAdd.setOnClickListener {
-
-            validateData()
-
-        }
-
-        binding.imageAdd.setOnClickListener {
-            showImageAttchMenu()
-        }
 
         // Inflate the layout for this fragment
         return binding.root
@@ -227,6 +218,21 @@ class FragmentBidSellerForm : Fragment() {
 //        timer.start()
 
         findNavController().navigate(R.id.action_fragmentBidSellerForm_to_fragmentUserHomePage)
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnAdd.setOnClickListener {
+
+            validateData()
+
+        }
+
+        binding.imageAdd.setOnClickListener {
+            showImageAttchMenu()
+        }
 
     }
 

@@ -118,19 +118,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="17dp"
-                    app:layout_constraintBottom_toTopOf="@+id/btn_go"
                     app:layout_constraintStart_toEndOf="@+id/price"
                     app:layout_constraintTop_toBottomOf="@+id/descShow" />
-
-                <Button
-                    android:id="@+id/btn_go"
-                    android:layout_width="240dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="12dp"
-                    android:text="@string/btn_Place"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/priceShow" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
