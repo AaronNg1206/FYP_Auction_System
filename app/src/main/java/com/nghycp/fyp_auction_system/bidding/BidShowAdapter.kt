@@ -54,8 +54,9 @@ class BidShowAdapter : RecyclerView.Adapter<BidShowAdapter.HolderBid> {
         var name : TextView = binding.nameShow
         var price : TextView = binding.showPrice
         var img : ImageView = binding.imgShow
-        var btnApply : Button = binding.btnApply
+        var btnApply : TextView = binding.btnApply
         var expDate : TextView = binding.expDate
+        var btnGo : Button = binding.btnGo
 
     }
 
@@ -82,13 +83,24 @@ class BidShowAdapter : RecyclerView.Adapter<BidShowAdapter.HolderBid> {
             val args = Bundle()
             args.putString("desc", desc)
             args.putString("artist", artist)
-            args.putString("expDate", expDate)
+            args.putLong("expDate", expDate.toLong())
             args.putString("price", price)
             args.putString("img", img)
             args.putString("name", name)
             fragment.setArguments(args)
 
             Navigation.findNavController(holder.btnApply).navigate(R.id.action_auction_to_fragmentBidProduct,args)
+        }
+
+        holder.btnGo.setOnClickListener {
+            val fragment = FragmentBidProcess()
+            val args = Bundle()
+            args.putString("name", name)
+            args.putString("img", img)
+            args.putLong("expDate", expDate.toLong())
+            fragment.setArguments(args)
+
+            Navigation.findNavController(holder.btnGo).navigate(R.id.action_auction_to_fragmentBidProcess,args)
         }
 
     }

@@ -186,7 +186,7 @@ class FragmentBidSellerForm : Fragment() {
         //val initialTime = 300
 
         val hashMap = HashMap<String, Any>()
-        hashMap["expDate"] = "$expirationTime"
+        hashMap["expDate"] = "${expirationTime}"
         hashMap["name"] = name
         hashMap["desc"] = desc
         hashMap["price"] = price
@@ -200,7 +200,8 @@ class FragmentBidSellerForm : Fragment() {
         }
 
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("Product")
+            .getReference("Product").push()
+        val pushkey = ref.key.toString()
         ref.child(name)
             .setValue(hashMap)
             .addOnSuccessListener {

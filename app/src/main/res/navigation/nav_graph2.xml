@@ -31,6 +31,12 @@
         <action
             android:id="@+id/action_fragmentUserHomePage_to_fragmentBidProduct"
             app:destination="@id/fragmentBidProduct" />
+        <action
+            android:id="@+id/action_fragmentUserHomePage_to_textTimer"
+            app:destination="@id/textTimer" />
+        <action
+            android:id="@+id/action_fragmentUserHomePage_to_recentAddFragment2"
+            app:destination="@id/recentAddFragment2" />
     </fragment>
     <fragment
         android:id="@+id/userProfile"
@@ -92,12 +98,15 @@
         <action
             android:id="@+id/action_auction_to_fragmentBidProduct"
             app:destination="@id/fragmentBidProduct" />
+        <action
+            android:id="@+id/action_auction_to_fragmentBidProcess"
+            app:destination="@id/fragmentBidProcess" />
     </fragment>
     <fragment
         android:id="@+id/fragmentBidProduct"
         android:name="com.nghycp.fyp_auction_system.bidding.FragmentBidProduct"
-        android:label="fragment_bid_product"
-        tools:layout="@layout/fragment_bid_product" >
+        android:label="Art Detail"
+        tools:layout="@layout/fragment_bid_product">
         <action
             android:id="@+id/action_fragmentBidProduct_to_fragmentBidProcess"
             app:destination="@id/fragmentBidProcess" />
@@ -123,11 +132,21 @@
     <fragment
         android:id="@+id/fragmentBidProcess"
         android:name="com.nghycp.fyp_auction_system.bidding.FragmentBidProcess"
-        android:label="fragment_bid_process"
+        android:label="Processing"
         tools:layout="@layout/fragment_bid_process" />
     <fragment
         android:id="@+id/addToCartFragment2"
         android:name="com.nghycp.fyp_auction_system.customer.addToCartFragment"
         android:label="fragment_add_to_cart"
         tools:layout="@layout/fragment_add_to_cart" />
+    <fragment
+        android:id="@+id/textTimer"
+        android:name="com.nghycp.fyp_auction_system.TextTimer"
+        android:label="fragment_text_timer"
+        tools:layout="@layout/fragment_text_timer" />
+    <fragment
+        android:id="@+id/recentAddFragment2"
+        android:name="com.nghycp.fyp_auction_system.customer.RecentAddFragment"
+        android:label="fragment_recent_add"
+        tools:layout="@layout/fragment_recent_add" />
 </navigation>

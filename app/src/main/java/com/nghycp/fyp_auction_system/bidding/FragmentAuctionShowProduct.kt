@@ -49,9 +49,12 @@ class FragmentAuctionShowProduct : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 bidArrayList.clear()
                 for (ds in snapshot.children){
-                    val model = ds.getValue(ModelBid::class.java)
+                    for(snap in ds.children){
+
+                    val model = snap.getValue(ModelBid::class.java)
 
                     bidArrayList.add(model!!)
+                    }
                 }
 
                 bidShowAdapter = BidShowAdapter(context!!,bidArrayList)
@@ -63,6 +66,12 @@ class FragmentAuctionShowProduct : Fragment() {
             }
         })
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         // log out action not visible in registration page

@@ -1,6 +1,7 @@
 package com.nghycp.fyp_auction_system.bidding
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentAuctionShowProductBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentBidProductBinding
+import kotlinx.android.synthetic.main.bid_layout.*
 import kotlinx.android.synthetic.main.fragment_bid_process.*
 import kotlin.math.exp
 
@@ -56,9 +58,26 @@ class FragmentBidProduct : Fragment() {
         val nameTextView = binding.nameShow
         nameTextView.text = name.toString()
 
-        val expDate = args?.get("expDate")
-        val dateTextView = binding.expTimer
-        dateTextView.text = expDate.toString()
+        val expTimestamp = arguments?.getLong("expDate")
+        val now = System.currentTimeMillis()
+        val millisLeft = expTimestamp?.minus(now)
+        object : CountDownTimer(millisLeft!!, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                // Update the UI with the remaining time
+                val remainingTime = millisUntilFinished / 1000
+                val remainingDays = remainingTime / (24 * 60 * 60)
+                val remainingHours = (remainingTime % (24 * 60 * 60)) / (60 * 60)
+                val remainingMinutes = (remainingTime % (60 * 60)) / 60
+                val remainingSeconds = remainingTime % 60
+                val remainingTimeString = "$remainingDays:$remainingHours:$remainingMinutes:$remainingSeconds"
+                binding.expTimer.text = remainingTimeString
+            }
+
+            override fun onFinish() {
+                // Update the UI when the countdown finishes
+                binding.expTimer.text = "Expired"
+            }
+        }.start()
 
         val img= args?.get("img")
         //val imgTextView = binding.artImage
@@ -70,23 +89,7 @@ class FragmentBidProduct : Fragment() {
             .into(binding.artImage)
 
         binding.btnGo.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentBidProduct_to_fragmentBidProcess, Bundle().apply {
-                putString("name",name.toString())
-                putString("img",img.toString())
-                putString("expDate",expDate.toString())
-            })
-
-            val img = binding.artImage.toString()
-            val name = binding.nameShow.text.toString()
-            val expDate = binding.expTimer.toString()
-
-            val fragment = FragmentBidProcess()
-            val args = Bundle()
-            args.putString("name", name)
-            args.putString("image", img)
-            args.putString("expDate", expDate)
-            fragment.setArguments(args)
-
+            findNavController().navigate(R.id.action_fragmentBidProduct_to_fragmentBidProcess)
         }
 
         return binding.root
