@@ -67,6 +67,9 @@ class FragmentUserHomePage : Fragment() {
         binding.viewMoreSelling.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentUserHomePage_to_fragmentArtworkDisplay)
         }
+        binding.textViewHomePage.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentUserHomePage_to_textTimer)
+        }
 
     }
     private fun showProduct() {

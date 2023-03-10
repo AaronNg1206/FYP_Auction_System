@@ -19,6 +19,7 @@ import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentAuctionShowProductBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentBidProductBinding
 import kotlinx.android.synthetic.main.fragment_bid_process.*
+import kotlin.math.exp
 
 class FragmentBidProduct : Fragment() {
 
@@ -38,24 +39,6 @@ class FragmentBidProduct : Fragment() {
 
         _binding = FragmentBidProductBinding.inflate(inflater,container,false)
 
-//        val user = firebaseAuth.currentUser
-//        val uid = user!!.uid
-//
-//        val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-//            .getReference("Product").child(uid)
-//
-//        ref.addValueEventListener(object : ValueEventListener{
-//            override fun onDataChange(snapshot: DataSnapshot){
-//                val min = snapshot.child("min").value as String?
-//
-//                binding.minShow.setText(min)
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                TODO("Not yet implemented")
-//            }
-//        })
-
         val args = this.arguments
         val desc= args?.get("desc")
         val descTextView = binding.descShow
@@ -73,6 +56,10 @@ class FragmentBidProduct : Fragment() {
         val nameTextView = binding.nameShow
         nameTextView.text = name.toString()
 
+        val expDate = args?.get("expDate")
+        val dateTextView = binding.expTimer
+        dateTextView.text = expDate.toString()
+
         val img= args?.get("img")
         //val imgTextView = binding.artImage
         //imgTextView. = img.toString()
@@ -86,15 +73,18 @@ class FragmentBidProduct : Fragment() {
             findNavController().navigate(R.id.action_fragmentBidProduct_to_fragmentBidProcess, Bundle().apply {
                 putString("name",name.toString())
                 putString("img",img.toString())
+                putString("expDate",expDate.toString())
             })
 
             val img = binding.artImage.toString()
             val name = binding.nameShow.text.toString()
+            val expDate = binding.expTimer.toString()
 
             val fragment = FragmentBidProcess()
             val args = Bundle()
             args.putString("name", name)
             args.putString("image", img)
+            args.putString("expDate", expDate)
             fragment.setArguments(args)
 
         }

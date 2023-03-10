@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_fragmentUserHomePage_to_fragmentBidProduct"
             app:destination="@id/fragmentBidProduct" />
+        <action
+            android:id="@+id/action_fragmentUserHomePage_to_textTimer"
+            app:destination="@id/textTimer" />
     </fragment>
     <fragment
         android:id="@+id/userProfile"
@@ -130,4 +133,9 @@
         android:name="com.nghycp.fyp_auction_system.customer.addToCartFragment"
         android:label="fragment_add_to_cart"
         tools:layout="@layout/fragment_add_to_cart" />
+    <fragment
+        android:id="@+id/textTimer"
+        android:name="com.nghycp.fyp_auction_system.TextTimer"
+        android:label="fragment_text_timer"
+        tools:layout="@layout/fragment_text_timer" />
 </navigation>

@@ -23,6 +23,7 @@ import com.google.firebase.storage.ktx.storage
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentBidSellerFormBinding
 import java.lang.Exception
+import java.util.concurrent.TimeUnit
 
 class FragmentBidSellerForm : Fragment() {
 
@@ -180,13 +181,12 @@ class FragmentBidSellerForm : Fragment() {
 
         progressDialog.show()
 
-        val timestamp = System.currentTimeMillis()
+        val expirationTime = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7)
 
         //val initialTime = 300
 
-
         val hashMap = HashMap<String, Any>()
-        hashMap["id"] = "$timestamp"
+        hashMap["expDate"] = "$expirationTime"
         hashMap["name"] = name
         hashMap["desc"] = desc
         hashMap["price"] = price

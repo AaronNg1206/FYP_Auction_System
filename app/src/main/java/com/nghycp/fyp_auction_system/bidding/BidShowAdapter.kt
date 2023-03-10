@@ -1,7 +1,10 @@
 package com.nghycp.fyp_auction_system.bidding
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +15,16 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.BidLayoutBinding
 import kotlinx.android.synthetic.main.fragment_view_purchase.view.*
+import java.sql.Date
+import java.util.concurrent.TimeUnit
 
 class BidShowAdapter : RecyclerView.Adapter<BidShowAdapter.HolderBid> {
 
@@ -45,22 +55,25 @@ class BidShowAdapter : RecyclerView.Adapter<BidShowAdapter.HolderBid> {
         var price : TextView = binding.showPrice
         var img : ImageView = binding.imgShow
         var btnApply : Button = binding.btnApply
+        var expDate : TextView = binding.expDate
 
     }
 
     override fun onBindViewHolder(holder: HolderBid, position: Int) {
+
         val model = bidArrayList[position]
         val artist = model.artist
         val desc = model.desc
         val name = model.name
         val price = model.price
         val img = model.profileImage
-        //val min = model.min
+        val expDate = model.expDate
 
         holder.artist.text = artist
         holder.desc.text = desc
         holder.name.text = name
         holder.price.text = price
+        holder.expDate.text = expDate
         //holder.
         Glide.with(context).load(img).into(holder.img)
         holder.btnApply.setOnClickListener {
@@ -69,6 +82,7 @@ class BidShowAdapter : RecyclerView.Adapter<BidShowAdapter.HolderBid> {
             val args = Bundle()
             args.putString("desc", desc)
             args.putString("artist", artist)
+            args.putString("expDate", expDate)
             args.putString("price", price)
             args.putString("img", img)
             args.putString("name", name)

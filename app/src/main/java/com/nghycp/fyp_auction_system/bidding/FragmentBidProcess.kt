@@ -1,6 +1,9 @@
 package com.nghycp.fyp_auction_system.bidding
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +18,8 @@ import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentBidProcessBinding
 import java.lang.Exception
+import java.sql.Date
+import java.util.concurrent.TimeUnit
 
 class FragmentBidProcess : Fragment() {
 
@@ -37,6 +42,9 @@ class FragmentBidProcess : Fragment() {
 
         val name =  requireArguments().getString("name").toString()
         binding.showName.setText(name)
+
+        val expDate =  requireArguments().getString("expDate").toString()
+        binding.timer.setText(expDate)
 
         val img = requireArguments().getString("img").toString()
 
