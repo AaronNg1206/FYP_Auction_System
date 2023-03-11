@@ -229,6 +229,6 @@
     <string name="Cart">Art Cart</string>
     <string name="recycleviewsaleshome" />
     <string name="recycleViewBidHome" />
-    <string name="AddToCartTotal">RM1234</string>
+    <string name="AddToCartTotal">RM0</string>
 
 </resources>

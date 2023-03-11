@@ -50,9 +50,7 @@ class RecentAddFragment : Fragment() {
         artworkList = arrayListOf<ModelArtwork>()
         recentAddList = arrayListOf<ModelArtwork>()
         loadRecentAdd()
-        buttonUpdate.setOnClickListener{
-            artworkList.get(id)
-        }
+
         /*   buttonDelete.setOnClickListener{
                artworkList.get(i).
            }*/

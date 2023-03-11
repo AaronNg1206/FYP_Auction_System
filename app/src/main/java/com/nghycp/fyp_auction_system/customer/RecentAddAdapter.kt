@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.nghycp.fyp_auction_system.R
@@ -46,9 +48,12 @@ class RecentAddAdapter: RecyclerView.Adapter<RecentAddAdapter.HolderArtwork>{
         var buttonRemove : Button = binding.buttonDelete
         var buttonUpdate : Button = binding.buttonUpdate
     }
+
+
     override fun onBindViewHolder(holder: HolderArtwork, position: Int) {
         //get data
         val model = artworkList[position]
+        val id = model.id
         val author = model.artAuthor
         val description = model.artDescription
         val name = model.artName
@@ -59,20 +64,15 @@ class RecentAddAdapter: RecyclerView.Adapter<RecentAddAdapter.HolderArtwork>{
         holder.name.text = name
         holder.price.text= price
         holder.description.text = description
+        holder.author.text = author
         Glide.with(context).load(image).into(holder.image)
-      /*  holder.image.setOnClickListener {
+        holder.buttonUpdate.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("id", model.id)
+            //findNavController(itemView).navigate(R.id.action_recentAddFragment_to_customerUpdateArtwork, bundle)
 
-            val fragment = artworkDetailsFragment()
-            val args = Bundle()
-            args.putString("artDescription", description)
-            args.putString("artAuthor",author)
-            args.putString("artPrice", price)
-            args.putString("artImage", image)
-            args.putString("artName", name)
-            fragment.setArguments(args)
+        }
 
-            Navigation.findNavController(holder.image).navigate(R.id.action_fragmentArtworkDisplay_to_artworkDetailsFragment,args)
-        }*/
 
 
     }

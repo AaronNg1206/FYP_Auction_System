@@ -3,6 +3,7 @@ package com.nghycp.fyp_auction_system.customer
 import android.app.ProgressDialog
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,11 +25,14 @@ class artworkDetailsFragment : Fragment() {
 
     private lateinit var artworkList: ArrayList<ModelArtwork>
     private var _binding : FragmentArtworkDetailsBinding? = null
-    private lateinit var cartAdapter: cartAdapter
+
     private lateinit var recyclerView: RecyclerView
     private val binding get() = _binding!!
     private lateinit var firebaseAuth: FirebaseAuth
-    //private var imageUri: Uri? = null
+    private var imageUri: Uri? = null
+    private var ref =
+        Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference("artCart")
     private lateinit var progressDialog: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +43,8 @@ class artworkDetailsFragment : Fragment() {
 
         binding.buttonAddToCart.setOnClickListener {
             addRecord()
-            findNavController().navigate(R.id.action_artworkDetailsFragment_to_addToCartFragment2)
+            //findNavController().navigate(R.id.action_artworkDetailsFragment_to_addToCartFragment2)
+            //findNavController().navigate(R.id.action_artworkDetailsFragment_to_addToCartFragment2)
         }
     }
     override fun onCreateView(
@@ -57,6 +62,9 @@ class artworkDetailsFragment : Fragment() {
         progressDialog.setCanceledOnTouchOutside(false)
 
         val args = this.arguments
+
+        val id = args?.get("id")
+        Log.d("abcde",id.toString())
 
         val artName= args?.get("artName")
         val nameTextView = binding.showProduct
@@ -92,7 +100,9 @@ class artworkDetailsFragment : Fragment() {
     private var description = ""
     private var price = ""
     private var author = ""
-    private  var image =""
+    private var newId = ""
+    private var image =""
+
     private fun addRecord() {
         artworkName = binding.showAuthor.text.toString().trim()
         description = binding.showDesc.text.toString().trim()
@@ -100,23 +110,26 @@ class artworkDetailsFragment : Fragment() {
         author = binding.showAuthor.text.toString().trim()
         val args = this.arguments
         val image= args?.get("artImage").toString()
+        val id= args?.get("id").toString()
+      /*  Log.d("dcba",args?.get("artImage").toString())
+        Log.d("abcd",id.toString())*/
         Glide.with(this@artworkDetailsFragment).load(image)
         progressDialog.show()
 
-        val timestamp = System.currentTimeMillis()
+
 
         val hashMap = HashMap<String, Any>()
-        hashMap["id"] = "$timestamp"
+        hashMap["id"] = id
+       // Log.d("abc",id)
         hashMap["artName"] = artworkName
         hashMap["artDescription"] = description
         hashMap["artPrice"] = price
         hashMap["artAuthor"] = author
         hashMap["uid"] = "${firebaseAuth.uid}"
         hashMap["artImage"] = image
-        val ref =
-            Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                .getReference("artCart")
-        ref.child(artworkName)
+
+        val newId = ref.push().key!!
+        ref.child(newId)
             .setValue(hashMap)
             .addOnSuccessListener {
                 progressDialog.dismiss()

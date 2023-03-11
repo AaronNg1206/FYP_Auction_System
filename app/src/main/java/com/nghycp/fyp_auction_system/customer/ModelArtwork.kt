@@ -15,7 +15,6 @@ class ModelArtwork {
     constructor()
 
     constructor(
-        id: String,
         artAuthor: String,
         artDescription: String,
         artName: String,
@@ -23,7 +22,8 @@ class ModelArtwork {
         artImage: String,
         uid: String,
         imageURL: String,
-        isChecked :Boolean
+        isChecked :Boolean,
+        id: String = "",
     ){
         this.id = id
         this.artAuthor = artAuthor

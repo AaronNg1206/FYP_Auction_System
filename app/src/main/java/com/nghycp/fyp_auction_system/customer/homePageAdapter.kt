@@ -47,16 +47,14 @@ class homePageAdapter: RecyclerView.Adapter<homePageAdapter.HolderArtwork>{
         val name = model.artName
         val image = model.artImage
         val price = model.artPrice
+        val id = model.id
 
-        //set data
-        //holder.name.text = name
-        //holder.price.text= price
-        //holder.description.text = description
         Glide.with(context).load(image).into(holder.image)
         holder.image.setOnClickListener {
 
             val fragment = artworkDetailsFragment()
             val args = Bundle()
+            args.putString("id", id)
             args.putString("artDescription", description)
             args.putString("artAuthor",author)
             args.putString("artPrice", price)
@@ -64,7 +62,7 @@ class homePageAdapter: RecyclerView.Adapter<homePageAdapter.HolderArtwork>{
             args.putString("artName", name)
             fragment.setArguments(args)
 
-            Navigation.findNavController(holder.image).navigate(R.id.action_fragmentUserHomePage_to_artworkDetailsFragment,args)
+           Navigation.findNavController(holder.image).navigate(R.id.action_fragmentUserHomePage_to_artworkDetailsFragment,args)
 
 
         }
