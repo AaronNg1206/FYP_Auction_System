@@ -51,9 +51,6 @@ class RecentAddFragment : Fragment() {
         recentAddList = arrayListOf<ModelArtwork>()
         loadRecentAdd()
 
-        /*   buttonDelete.setOnClickListener{
-               artworkList.get(i).
-           }*/
     }
 
     private fun loadRecentAdd() {

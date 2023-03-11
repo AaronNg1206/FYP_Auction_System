@@ -2,17 +2,21 @@ package com.nghycp.fyp_auction_system.customer
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentArtworkLayoutBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentRecentAddLayoutBinding
@@ -20,13 +24,11 @@ import com.nghycp.fyp_auction_system.databinding.FragmentRecentAddLayoutBinding
 class RecentAddAdapter: RecyclerView.Adapter<RecentAddAdapter.HolderArtwork>{
     private val context: Context
     var artworkList: ArrayList<ModelArtwork>
-    //lateinit var recentAddList: ArrayList<ModelArtwork>
     private lateinit var binding: FragmentRecentAddLayoutBinding
 
     constructor(context: Context, artworkList: ArrayList<ModelArtwork>) {
         this.context = context
         this.artworkList = artworkList
-       // this.recentAddList = recentAddList
 
     }
 
@@ -65,18 +67,38 @@ class RecentAddAdapter: RecyclerView.Adapter<RecentAddAdapter.HolderArtwork>{
         holder.price.text= price
         holder.description.text = description
         holder.author.text = author
+
         Glide.with(context).load(image).into(holder.image)
         holder.buttonUpdate.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString("id", model.id)
-            //findNavController(itemView).navigate(R.id.action_recentAddFragment_to_customerUpdateArtwork, bundle)
+            val fragment = artworkDetailsFragment()
+            val args = Bundle()
+            args.putString("id", id)
+            args.putString("artDescription", description)
+            args.putString("artAuthor",author)
+            args.putString("artPrice", price)
+            args.putString("artImage", image)
+            args.putString("artName", name)
+            fragment.setArguments(args)
 
+            Navigation.findNavController(holder.image).navigate(R.id.action_recentAddFragment2_to_customerUpdateArtwork,args)
+            //Navigation.findNavController().navigate(R.id.action_recentAddFragment2_to_customerUpdateArtwork, bundle)
+        }
+        holder.buttonRemove.setOnClickListener {
+            val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("artwork")
+            Log.d("cc",id)
+            ref.child(id).removeValue()
+                .addOnSuccessListener {
+                    Toast.makeText(context, "Artwork removed successfully", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(context, "Failed to remove artwork", Toast.LENGTH_SHORT).show()
+                }
         }
 
 
 
     }
-
     init {
         artworkList = ArrayList()
     }

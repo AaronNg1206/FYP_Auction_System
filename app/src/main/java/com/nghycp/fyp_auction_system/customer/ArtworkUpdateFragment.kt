@@ -3,6 +3,7 @@ package com.nghycp.fyp_auction_system.customer
 import android.app.ProgressDialog
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,9 +20,12 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
+import com.nghycp.fyp_auction_system.databinding.FragmentArtworkDetailsBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentArtworkDisplayBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentArtworkUpdateBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentRecentAddBinding
+import kotlinx.android.synthetic.main.fragment_artwork_update.*
+import kotlinx.android.synthetic.main.fragment_artwork_update.view.*
 import java.lang.Exception
 
 
@@ -34,6 +38,10 @@ class CustomerUpdateArtwork : Fragment() {
     //private lateinit var recyclerView: RecyclerView
     private lateinit var progressDialog: ProgressDialog
     private var imageUri: Uri? = null
+    private var ref =
+        Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference("artwork")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +54,37 @@ class CustomerUpdateArtwork : Fragment() {
         progressDialog = ProgressDialog(context)
         progressDialog.setTitle("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(false)
-        showProduct()
+
+        val args = this.arguments
+
+        var id = args?.get("id").toString()
+
+        id = binding.editTextProductName.toString()
+
+        val artName= args?.get("artName")
+       // val nameTextView = binding.editTextProductName
+        //editText_productName.text = artName.text()
+
+        val artPrice= args?.get("artPrice")
+       // val priceTextView = binding.editTextPrice
+       // priceTextView.text = artPrice.toString()
+
+        val artDescription= args?.get("artDescription")
+        //val descTextView = binding.editTextDescription
+       // descTextView.text = artDescription.toString()
+
+        val artAuthor= args?.get("artAuthor")
+        //val artistTextView = binding.editTextAuthor
+      //  artistTextView.text = artAuthor.toString()
+
+        val image= args?.get("artImage")
+        //val imgTextView = binding.imageProduct
+
+        Glide.with(this@CustomerUpdateArtwork)
+            .load(image.toString())
+            .placeholder(R.drawable.artwork_placeholder)
+            .into(binding.imageViewartwork)
+
         binding.buttonUpdate.setOnClickListener{
             validateData()
         }
@@ -57,46 +95,7 @@ class CustomerUpdateArtwork : Fragment() {
         artworkList = arrayListOf<ModelArtwork>()
 
     }
-    private fun showProduct() {
-        artworkList = ArrayList()
 
-        val args = this.arguments
-        val id = args?.getString("id")
-
-        val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("artwork").child(id.toString())
-        ref.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-
-                val author = snapshot.child("artAuthor").value as String?
-                val desc = snapshot.child("artDescription").value as String?
-                val name = snapshot.child("artName").value as String?
-                val price = snapshot.child("artPrice").value as String?
-                val image = "${snapshot.child("artImage").value}"
-
-
-
-                binding.editTextProductName.setText(name)
-                binding.editTextAuthor.setText(author)
-                binding.editTextDescription.setText(desc)
-                binding.editTextPrice.setText(price)
-                try {
-                    Glide.with(this@CustomerUpdateArtwork)
-                        .load(image)
-                        .placeholder(R.drawable.artwork_placeholder)
-                        .into(binding.imageViewartwork)
-                } catch (e: Exception) {
-
-                }
-
-            }
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
-    }
 
     private var name = ""
     private var desc = ""

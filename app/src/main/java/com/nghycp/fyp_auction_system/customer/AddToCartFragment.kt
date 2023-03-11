@@ -71,7 +71,7 @@ class addToCartFragment : Fragment() {
             .getReference("artCart")
         for (itemRemove in checkedItems){
             ref.child(itemRemove.id).removeValue()
-                .addOnCanceledListener{
+                .addOnSuccessListener{
                     Toast.makeText(context,"Remove Successful", Toast.LENGTH_SHORT).show()
                 }
                 .addOnCanceledListener {  ->
