@@ -15,14 +15,14 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.nghycp.fyp_auction_system.databinding.FragmentTextTimerBinding
+import com.nghycp.fyp_auction_system.databinding.FragmentTestTimerBinding
 import java.sql.Date
 import java.sql.Timestamp
 import java.util.concurrent.TimeUnit
 
-class TextTimer : Fragment() {
+class TestTimer : Fragment() {
 
-    private var _binding : FragmentTextTimerBinding? = null
+    private var _binding : FragmentTestTimerBinding? = null
 
     private val binding get() = _binding!!
 
@@ -32,7 +32,7 @@ class TextTimer : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        _binding = FragmentTextTimerBinding.inflate(inflater,container,false)
+        _binding = FragmentTestTimerBinding.inflate(inflater,container,false)
 
         val database = Firebase.database.reference
 
