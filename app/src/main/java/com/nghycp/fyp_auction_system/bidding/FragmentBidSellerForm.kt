@@ -85,6 +85,8 @@ class FragmentBidSellerForm : Fragment() {
             binding.addName.error = "Enter Your Name"
         }else if(desc.isEmpty()){
             binding.addDesc.error = "Enter Description"
+        }else if(desc.length < 10){
+            binding.addDesc.error = "Should briefly describe the product"
         }else if(price.isEmpty()){
             binding.addPrice.error = "Enter Price"
         }else if(artist.isEmpty()){

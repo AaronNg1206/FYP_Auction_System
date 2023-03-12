@@ -79,7 +79,7 @@ class FragmentRegister : Fragment() {
             binding.edittextemail.error = "Enter Your Email"
         }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             binding.edittextemail.error = "Invalid Email"
-    }else if (age.isEmpty()){
+        }else if (age.isEmpty()){
             binding.age.error = "Enter Your Age"
         }else if (country.isEmpty()){
             binding.country.error = "Enter Your Country"
