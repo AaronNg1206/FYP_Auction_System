@@ -128,6 +128,14 @@
     <string name="buy">Buy</string>
     <string name="addToCart">add To Cart</string>
 
+    <string-array name="spinner_bid">
+        <item>Choose a price to Bid</item>
+        <item>1000</item>
+        <item>2000</item>
+        <item>5000</item>
+        <item>10000</item>
+    </string-array>
+
     <!--Nav Logout-->
     <string name="navLogin">navLogin</string>
 
