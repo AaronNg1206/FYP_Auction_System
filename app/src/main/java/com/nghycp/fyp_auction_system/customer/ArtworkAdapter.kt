@@ -2,6 +2,7 @@ package com.nghycp.fyp_auction_system.customer
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +26,6 @@ class ArtworkAdapter: RecyclerView.Adapter<ArtworkAdapter.HolderArtwork>{
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderArtwork {
         binding = FragmentArtworkLayoutBinding.inflate(LayoutInflater.from(context),parent,false)
-
         return HolderArtwork(binding.root)
     }
     override fun getItemCount(): Int {
@@ -46,21 +46,27 @@ class ArtworkAdapter: RecyclerView.Adapter<ArtworkAdapter.HolderArtwork>{
         val name = model.artName
         val image = model.artImage
         val price = model.artPrice
+        val id = model.id
 
         //set data
         holder.name.text = name
         holder.price.text= price
         holder.description.text = description
+
         Glide.with(context).load(image).into(holder.image)
         holder.image.setOnClickListener {
 
             val fragment = artworkDetailsFragment()
             val args = Bundle()
+            args.putString("id", id)
+
             args.putString("artDescription", description)
             args.putString("artAuthor",author)
             args.putString("artPrice", price)
             args.putString("artImage", image)
             args.putString("artName", name)
+           /* Log.d("cccc", model.id)
+            Log.d("cccc", model.artName)*/
             fragment.setArguments(args)
 
             Navigation.findNavController(holder.image).navigate(R.id.action_fragmentArtworkDisplay_to_artworkDetailsFragment,args)

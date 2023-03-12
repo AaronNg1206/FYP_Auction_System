@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:text="RM7500"
+        android:text="RM0"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewShipingFee" />
@@ -102,7 +102,7 @@
         app:layout_constraintGuide_begin="525dp" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/buttonCheckOut"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -119,10 +119,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/Remove"
-        app:layout_constraintBottom_toBottomOf="@+id/button5"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonCheckOut"
+        app:layout_constraintEnd_toStartOf="@+id/buttonCheckOut"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button5" />
+        app:layout_constraintTop_toTopOf="@+id/buttonCheckOut" />
 
     <!--    <CheckBox-->
 <!--        android:id="@+id/checkBox"-->
