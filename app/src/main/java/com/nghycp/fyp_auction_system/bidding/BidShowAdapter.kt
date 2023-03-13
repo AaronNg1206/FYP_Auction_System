@@ -97,6 +97,7 @@ class BidShowAdapter : RecyclerView.Adapter<BidShowAdapter.HolderBid> {
             val args = Bundle()
             args.putString("name", name)
             args.putString("img", img)
+            args.putString("price", price)
             args.putLong("expDate", expDate.toLong())
             fragment.setArguments(args)
 

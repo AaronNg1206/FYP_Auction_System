@@ -21,8 +21,8 @@
 
     <ImageView
         android:id="@+id/img_Show"
-        android:layout_width="278dp"
-        android:layout_height="300dp"
+        android:layout_width="276dp"
+        android:layout_height="279dp"
         android:src="@drawable/user"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_Show"
-        app:layout_constraintVertical_bias="0.009" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/timer"
@@ -61,7 +61,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_Show"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.054" />
 
     <Spinner
         android:id="@+id/bid"
@@ -74,8 +74,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_Place"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycleViewShowUser"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/userName"
@@ -93,26 +95,53 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewShowUser"
-        android:layout_width="410dp"
-        android:layout_height="254dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/bid"
+        android:layout_width="411dp"
+        android:layout_height="211dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textShow"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/textShow2"
         tools:listitem="@layout/process_show" />
 
     <TextView
-        android:id="@+id/textShow"
+        android:id="@+id/textShow2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:text="Top Bidder"
         android:textColor="@color/black"
+        android:textStyle="italic"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timer" />
+
+    <TextView
+        android:id="@+id/currentShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="24dp"
+        android:text="Current Price = "
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timer" />
+
+    <TextView
+        android:id="@+id/currentPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="30000"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/currentShow"
+        app:layout_constraintStart_toEndOf="@+id/currentShow"
+        app:layout_constraintTop_toTopOf="@+id/currentShow"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

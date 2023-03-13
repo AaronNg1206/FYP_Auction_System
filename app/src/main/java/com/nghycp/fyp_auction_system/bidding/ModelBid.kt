@@ -10,7 +10,6 @@ class ModelBid {
     var expDate:String = ""
     var profileImage:String= ""
     //var uid:String = ""
-    var idOnClick:String = ""
 
     constructor()
 
@@ -23,7 +22,6 @@ class ModelBid {
         expDate: String,
         profileImage: String,
         //uid: String,
-        //idOnClick: String
     ){
         this.id = id
         this.artist = artist
@@ -33,6 +31,5 @@ class ModelBid {
         this.expDate = expDate
         this.profileImage = profileImage
         //this.uid = uid
-        //this.idOnClick = idOnClick
     }
 }

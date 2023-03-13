@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,6 +42,9 @@ class FragmentBidProcess : Fragment() {
     private lateinit var bidShowArrayList: ArrayList<ModelBidUser>
 
     private lateinit var progressDialog: ProgressDialog
+
+    val database = Firebase.database
+    val bidsRef = database.getReference("Bid")
 
     private val binding get() = _binding!!
 
@@ -117,6 +121,10 @@ class FragmentBidProcess : Fragment() {
         val name= args?.get("name")
         val nameTextView = binding.showName
         nameTextView.text = name.toString()
+
+        val price= args?.get("price")
+        val priceTextView = binding.currentPrice
+        priceTextView.text = price.toString()
 
         val img= args?.get("img")
         Glide.with(this@FragmentBidProcess)
