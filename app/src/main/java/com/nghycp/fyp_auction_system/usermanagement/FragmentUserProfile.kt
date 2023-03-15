@@ -74,7 +74,7 @@ class FragmentUserProfile : Fragment() {
                 binding.Age.setText(age)
                 binding.Country.setText(country)
                 binding.Phone.setText(phone)
-                binding.Email.setText(email)
+                binding.showEmail.setText(email)
 
                 try {
                     Glide.with(this@FragmentUserProfile)
@@ -170,7 +170,7 @@ class FragmentUserProfile : Fragment() {
     private var age = ""
     private var country = ""
     private var phone = ""
-    private var email = ""
+    //private var email = ""
 
     private fun validateData(){
 
@@ -178,7 +178,7 @@ class FragmentUserProfile : Fragment() {
         age = binding.Age.text.toString().trim()
         country = binding.Country.text.toString().trim()
         phone = binding.Phone.text.toString().trim()
-        email = binding.Email.text.toString().trim()
+        //email = binding.Email.text.toString().trim()
 
         if (name.isEmpty()) {
             Toast.makeText(context, "Enter name", Toast.LENGTH_SHORT).show()
@@ -188,8 +188,6 @@ class FragmentUserProfile : Fragment() {
             Toast.makeText(context, "Please enter Age", Toast.LENGTH_SHORT).show()
         }else if (country.isEmpty()) {
             Toast.makeText(context, "Please enter country", Toast.LENGTH_SHORT).show()
-        }else if (email.isEmpty()) {
-            Toast.makeText(context, "Please enter email", Toast.LENGTH_SHORT).show()
         }else {
             if (imageUri == null) {
                 editUser("")
@@ -245,7 +243,7 @@ class FragmentUserProfile : Fragment() {
         hashMap["age"] = age
         hashMap["country"] = country
         hashMap["phone"] = phone
-        hashMap["email"] = email
+        //hashMap["email"] = email
         if(imageUri != null){
             hashMap["profileImage"] = uploadedImageUrl
         }

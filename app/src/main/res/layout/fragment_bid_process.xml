@@ -8,16 +8,14 @@
     android:background="@drawable/wallpaper"
     tools:context=".bidding.FragmentBidProcess">
 
-    <Button
-        android:id="@+id/btn_Place"
-        android:layout_width="115dp"
-        android:layout_height="54dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/btn_Bid"
-        app:layout_constraintBottom_toBottomOf="@+id/bid"
+
+    <ScrollView
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bid"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/img_Show"
@@ -63,21 +61,6 @@
         app:layout_constraintTop_toBottomOf="@+id/img_Show"
         app:layout_constraintVertical_bias="0.054" />
 
-    <Spinner
-        android:id="@+id/bid"
-        android:layout_width="284dp"
-        android:layout_height="58dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#CF1919"
-        android:backgroundTintMode="add"
-        android:entries="@array/spinner_bid"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_Place"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycleViewShowUser"
-        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/userName"
@@ -88,6 +71,19 @@
         android:textColor="@color/black"
         android:textSize="14dp"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/id_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="712dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.038"
@@ -123,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
         android:layout_marginTop="24dp"
-        android:text="Current Price = "
+        android:text="Normal Price = "
         android:textColor="@color/black"
         android:textSize="18dp"
         android:textStyle="italic"
@@ -135,7 +131,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="30000"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
@@ -143,5 +138,32 @@
         app:layout_constraintStart_toEndOf="@+id/currentShow"
         app:layout_constraintTop_toTopOf="@+id/currentShow"
         app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/box_place"
+        android:layout_width="220dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="40dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Enter a price to place"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_Place"
+        app:layout_constraintEnd_toStartOf="@+id/btn_Place"
+        app:layout_constraintTop_toTopOf="@+id/btn_Place" />
+
+    <Button
+        android:id="@+id/btn_Place"
+        android:layout_width="126dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/btn_Bid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycleViewShowUser"
+        tools:ignore="TouchTargetSizeCheck" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

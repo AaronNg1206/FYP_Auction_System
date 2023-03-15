@@ -2,12 +2,13 @@ package com.nghycp.fyp_auction_system.bidding
 
 class ModelBidUser {
 
+
     var userName:String = ""
     var price:String = ""
-    //var totalPrice:String = ""
     var img:String = ""
     var uid:String = ""
     var name: String = ""
+    //var totalPrice:String = ""
 
     constructor()
 

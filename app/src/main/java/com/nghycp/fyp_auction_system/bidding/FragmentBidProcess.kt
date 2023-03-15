@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -88,23 +89,31 @@ class FragmentBidProcess : Fragment() {
 
     private fun loadUser() {
 
+        val args = this.arguments
+
+        val name = args?.get("name")
+
         bidShowArrayList = ArrayList()
 
-        val showref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("Bid")
-        showref.addValueEventListener(object : ValueEventListener{
+        //Toast.makeText(context,name.toString(),Toast.LENGTH_LONG).show()
+
+        val showRef = FirebaseDatabase.getInstance().getReference("Bid")
+        showRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 bidShowArrayList.clear()
                 for (ds in snapshot.children){
+                    if (name.toString() == ds.child("name").value as String){
 
-                    val model = ds.getValue(ModelBidUser::class.java)
+                        val model = ds.getValue(ModelBidUser::class.java)
 
-                    bidShowArrayList.add(model!!)
+                        bidShowArrayList.add(model!!)
+
+                    }
+                    bidShowBidUserAdpter = ShowBidUserAdpter(context!!,bidShowArrayList!!)
+
+                    recyclerView.adapter = bidShowBidUserAdpter
                 }
 
-                bidShowBidUserAdpter = ShowBidUserAdpter(context!!,bidShowArrayList)
-
-                recyclerView.adapter = bidShowBidUserAdpter
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
@@ -163,11 +172,22 @@ class FragmentBidProcess : Fragment() {
         bidShowArrayList = arrayListOf<ModelBidUser>()
 
         binding.btnPlace.setOnClickListener {
+
+            currentPrice = binding.currentPrice.text.toString()
+
+            if (totalPrice <= currentPrice){
+                binding.boxPlace.error = "Bid amount must be higher than current highest bid"
+            } else {
+                saveBid()
+            }
             saveBid()
+
         }
 
     }
 
+    private var currentPrice = ""
+    private var totalPrice = ""
     private var name = ""
     private var price = ""
     private var nameUser = ""
@@ -177,7 +197,7 @@ class FragmentBidProcess : Fragment() {
 
             nameUser = binding.userName.text.toString().trim()
             name = binding.showName.text.toString().trim()
-            price = binding.bid.selectedItem.toString().trim()
+            price = binding.boxPlace.text.toString().trim()
             val args = this.arguments
             val image = args?.get("img").toString()
             //val id = args?.get("id").toString()
@@ -192,7 +212,6 @@ class FragmentBidProcess : Fragment() {
             hashMap["img"] = image
             hashMap["userName"] = nameUser
 
-
             val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
                     .getReference("Bid")
             val newId = ref.push().key!!
@@ -201,6 +220,7 @@ class FragmentBidProcess : Fragment() {
                 .addOnSuccessListener {
                     progressDialog.dismiss()
                     Toast.makeText(context,"Place Successful", Toast.LENGTH_SHORT).show()
+                    //findNavController().navigate(R.id.action_fragmentBidProcess_to_auction)
                 }
                 .addOnFailureListener {
                     progressDialog.dismiss()

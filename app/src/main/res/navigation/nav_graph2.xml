@@ -134,6 +134,9 @@
         <action
             android:id="@+id/action_fragmentBidProcess_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_fragmentBidProcess_to_auction"
+            app:destination="@id/auction" />
     </fragment>
     <fragment
         android:id="@+id/addToCartFragment2"
