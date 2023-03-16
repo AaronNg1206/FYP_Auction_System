@@ -23,9 +23,6 @@ import com.nghycp.fyp_auction_system.databinding.FragmentAdminHomePageBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentLoginBinding
 import com.nghycp.fyp_auction_system.report.monthlySalesReport
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class FragmentLogin : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
