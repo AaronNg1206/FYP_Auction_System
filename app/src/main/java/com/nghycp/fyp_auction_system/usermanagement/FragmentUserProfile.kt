@@ -168,7 +168,7 @@ class FragmentUserProfile : Fragment() {
 
     private var name = ""
     private var age = ""
-    private var country = ""
+    //private var country = ""
     private var phone = ""
     //private var email = ""
 
@@ -176,7 +176,7 @@ class FragmentUserProfile : Fragment() {
 
         name = binding.Name.text.toString().trim()
         age = binding.Age.text.toString().trim()
-        country = binding.Country.text.toString().trim()
+        //country = binding.Country.text.toString().trim()
         phone = binding.Phone.text.toString().trim()
         //email = binding.Email.text.toString().trim()
 
@@ -186,8 +186,6 @@ class FragmentUserProfile : Fragment() {
             Toast.makeText(context, "Please enter phone Number", Toast.LENGTH_SHORT).show()
         } else if (age.isEmpty()) {
             Toast.makeText(context, "Please enter Age", Toast.LENGTH_SHORT).show()
-        }else if (country.isEmpty()) {
-            Toast.makeText(context, "Please enter country", Toast.LENGTH_SHORT).show()
         }else {
             if (imageUri == null) {
                 editUser("")
@@ -241,7 +239,7 @@ class FragmentUserProfile : Fragment() {
         hashMap["uid"] = "${firebaseAuth.uid}"
         hashMap["name"] = name
         hashMap["age"] = age
-        hashMap["country"] = country
+        //hashMap["country"] = country
         hashMap["phone"] = phone
         //hashMap["email"] = email
         if(imageUri != null){

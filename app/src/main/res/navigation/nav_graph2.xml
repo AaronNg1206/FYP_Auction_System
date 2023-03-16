@@ -14,9 +14,6 @@
             android:id="@+id/action_fragmentUserHomePage_to_fragmentUserProfile"
             app:destination="@id/userProfile" />
         <action
-            android:id="@+id/action_fragmentUserHomePage_to_fragmentViewPurchase"
-            app:destination="@id/viewPurchase" />
-        <action
             android:id="@+id/action_fragmentUserHomePage_to_sellOption"
             app:destination="@id/sellOption" />
         <action
@@ -34,6 +31,9 @@
         <action
             android:id="@+id/action_fragmentUserHomePage_to_recentAddFragment2"
             app:destination="@id/recentAddFragment2" />
+        <action
+            android:id="@+id/action_fragmentUserHomePage_to_viewPurchase"
+            app:destination="@id/viewPurchase" />
     </fragment>
     <fragment
         android:id="@+id/userProfile"
@@ -44,15 +44,6 @@
             android:id="@+id/action_fragmentUserProfile_to_fragmentUserHomePage"
             app:destination="@id/fragmentUserHomePage" />
     </fragment>
-    <fragment
-        android:id="@+id/viewPurchase"
-        android:name="com.nghycp.fyp_auction_system.FragmentViewPurchase"
-        android:label="Purchase History"
-        tools:layout="@layout/fragment_view_purchase">
-        <action
-            android:id="@+id/action_fragmentViewPurchase_to_fragmentUserHomePage"
-            app:destination="@id/fragmentUserHomePage" />
-    </fragment>
     <activity
         android:id="@+id/action_logout"
         android:name="com.nghycp.fyp_auction_system.MainActivity"
@@ -61,8 +52,8 @@
     <fragment
         android:id="@+id/sellOption"
         android:name="com.nghycp.fyp_auction_system.salesSelection"
-        android:label="fragment_sales_selection"
-        tools:layout="@layout/fragment_sales_selection" >
+        android:label="Sales Type"
+        tools:layout="@layout/fragment_sales_selection">
         <action
             android:id="@+id/action_sellOption_to_fragmentBidSellerForm2"
             app:destination="@id/fragmentBidSellerForm" />
@@ -153,4 +144,25 @@
         android:name="com.nghycp.fyp_auction_system.paymentFragment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_payment" />
+    <fragment
+        android:id="@+id/viewPurchase"
+        android:name="com.nghycp.fyp_auction_system.history_return.ViewPurchase"
+        android:label="Purchase History"
+        tools:layout="@layout/fragment_view_purchase" >
+        <action
+            android:id="@+id/action_viewPurchase_to_returnRefund"
+            app:destination="@id/returnRefund" />
+        <action
+            android:id="@+id/action_viewPurchase_to_fragmentUserHomePage"
+            app:destination="@id/fragmentUserHomePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/returnRefund"
+        android:name="com.nghycp.fyp_auction_system.history_return.ReturnRefund"
+        android:label="Return and Refund"
+        tools:layout="@layout/fragment_return_refund" >
+        <action
+            android:id="@+id/action_returnRefund_to_viewPurchase"
+            app:destination="@id/viewPurchase" />
+    </fragment>
 </navigation>
