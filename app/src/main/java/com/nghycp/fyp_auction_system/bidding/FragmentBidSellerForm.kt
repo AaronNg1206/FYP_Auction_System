@@ -174,7 +174,7 @@ class FragmentBidSellerForm : Fragment() {
 
         progressDialog.show()
 
-        val expirationTime = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7)
+        val expirationTime = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(4)
 
         //val initialTime = 300
 

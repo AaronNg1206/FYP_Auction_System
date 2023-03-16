@@ -8,21 +8,19 @@
     android:background="@drawable/wallpaper"
     tools:context=".bidding.FragmentBidProcess">
 
-    <Button
-        android:id="@+id/btn_Place"
-        android:layout_width="115dp"
-        android:layout_height="54dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/btn_Bid"
-        app:layout_constraintBottom_toBottomOf="@+id/bid"
+
+    <ScrollView
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bid"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/img_Show"
-        android:layout_width="278dp"
-        android:layout_height="300dp"
+        android:layout_width="276dp"
+        android:layout_height="279dp"
         android:src="@drawable/user"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +43,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_Show"
-        app:layout_constraintVertical_bias="0.009" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/timer"
@@ -61,18 +59,111 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_Show"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.054" />
 
-    <Spinner
-        android:id="@+id/bid"
-        android:layout_width="284dp"
-        android:layout_height="58dp"
-        android:textAlignment="center"
-        android:entries="@array/spinner_bid"
-        android:layout_marginBottom="48dp"
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="712dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_Place"
-        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/id_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="712dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewShowUser"
+        android:layout_width="411dp"
+        android:layout_height="211dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textShow2"
+        tools:listitem="@layout/process_show" />
+
+    <TextView
+        android:id="@+id/textShow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Top Bidder"
+        android:textColor="@color/black"
+        android:textStyle="italic"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timer" />
+
+    <TextView
+        android:id="@+id/currentShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="24dp"
+        android:text="Current Price = "
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timer" />
+
+    <TextView
+        android:id="@+id/currentPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/currentShow"
+        app:layout_constraintStart_toEndOf="@+id/currentShow"
+        app:layout_constraintTop_toTopOf="@+id/currentShow"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/box_place"
+        android:layout_width="220dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="40dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Enter a price to place"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_Place"
+        app:layout_constraintEnd_toStartOf="@+id/btn_Place"
+        app:layout_constraintTop_toTopOf="@+id/btn_Place" />
+
+    <Button
+        android:id="@+id/btn_Place"
+        android:layout_width="126dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/btn_Bid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycleViewShowUser"
+        tools:ignore="TouchTargetSizeCheck" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

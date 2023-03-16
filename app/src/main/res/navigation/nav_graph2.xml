@@ -36,7 +36,7 @@
             app:destination="@id/textTimer" />
         <action
             android:id="@+id/action_fragmentUserHomePage_to_recentAddFragment2"
-            app:destination="@id/recentAddFragment" />
+            app:destination="@id/recentAddFragment2" />
     </fragment>
     <fragment
         android:id="@+id/userProfile"
@@ -145,17 +145,8 @@
         android:label="fragment_text_timer"
         tools:layout="@layout/fragment_text_timer" />
     <fragment
-        android:id="@+id/recentAddFragment"
+        android:id="@+id/recentAddFragment2"
         android:name="com.nghycp.fyp_auction_system.customer.RecentAddFragment"
         android:label="fragment_recent_add"
-        tools:layout="@layout/fragment_recent_add" >
-        <action
-            android:id="@+id/action_recentAddFragment2_to_customerUpdateArtwork"
-            app:destination="@id/customerUpdateArtwork" />
-    </fragment>
-    <fragment
-        android:id="@+id/customerUpdateArtwork"
-        android:name="com.nghycp.fyp_auction_system.customer.CustomerUpdateArtwork"
-        android:label="fragment_artwork_update"
-        tools:layout="@layout/fragment_artwork_update" />
+        tools:layout="@layout/fragment_recent_add" />
 </navigation>

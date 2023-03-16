@@ -63,19 +63,6 @@ class BidHomePageAdapter : RecyclerView.Adapter<BidHomePageAdapter.HolderBid> {
         holder.price.text = price
         //holder.
         Glide.with(context).load(img).into(holder.img)
-        holder.img.setOnClickListener {
-
-            val fragment = FragmentBidProduct()
-            val args = Bundle()
-            args.putString("desc", desc)
-            args.putString("artist", artist)
-            args.putString("price", price)
-            args.putString("img", img)
-            args.putString("name", name)
-            fragment.setArguments(args)
-
-            Navigation.findNavController(holder.img).navigate(R.id.action_fragmentUserHomePage_to_fragmentBidProduct,args)
-        }
 
     }
 
