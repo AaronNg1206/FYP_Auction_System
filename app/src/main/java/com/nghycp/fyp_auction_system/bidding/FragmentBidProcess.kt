@@ -198,7 +198,7 @@ class FragmentBidProcess : Fragment() {
         totalPrice = binding.boxPlace.text.toString().trim()
 
         if(totalPrice <= currentPrice) {
-            Toast.makeText(context,"Highest Bid",Toast.LENGTH_LONG).show()
+            binding.boxPlace.error = "Your price are not higher than current price ! "
         }else{
             saveBid()
         }

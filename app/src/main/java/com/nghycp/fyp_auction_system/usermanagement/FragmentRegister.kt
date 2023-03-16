@@ -44,6 +44,13 @@ class FragmentRegister : Fragment() {
         progressDialog.setTitle("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(false)
 
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         binding.backToLogin.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentRegister_to_fragmentLogin)
         }
@@ -53,8 +60,6 @@ class FragmentRegister : Fragment() {
             validateData()
 
         }
-
-        return binding.root
 
     }
 

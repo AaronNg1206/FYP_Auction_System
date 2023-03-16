@@ -57,9 +57,14 @@ class FragmentAuctionShowProduct : Fragment() {
                     }
                 }
 
-                bidShowAdapter = BidShowAdapter(context!!,bidArrayList)
+                val context = context
+                if (context != null){
 
-                binding.recyclerviewJobShow.adapter = bidShowAdapter
+                    bidShowAdapter = BidShowAdapter(context!!,bidArrayList)
+
+                    binding.recyclerviewJobShow.adapter = bidShowAdapter
+                }
+
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")

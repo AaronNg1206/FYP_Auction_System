@@ -38,9 +38,6 @@
         </menu>
     </item>
     <item
-        android:id="@+id/about"
-        android:title="@string/drawer_about" />
-    <item
         android:id="@+id/action_logout"
         android:title="@string/drawer_logout" />
 
