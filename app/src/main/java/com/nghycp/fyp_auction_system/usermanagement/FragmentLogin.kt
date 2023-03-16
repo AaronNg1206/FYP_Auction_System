@@ -18,7 +18,8 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.UserHomeActivity
-import com.nghycp.fyp_auction_system.admin.FragmentAdminHomePage
+import com.nghycp.fyp_auction_system.admin.AdminHomeActivity
+import com.nghycp.fyp_auction_system.databinding.FragmentAdminHomePageBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentLoginBinding
 import com.nghycp.fyp_auction_system.report.monthlySalesReport
 
@@ -114,7 +115,7 @@ class FragmentLogin : Fragment() {
                     }else if (userType == "Admin"){
                         val intent = Intent(
                             context,
-                            FragmentAdminHomePage::class.java
+                            AdminHomeActivity::class.java
                         )
                         startActivity(intent)
                         Toast.makeText(context,"Welcome Home Admin",Toast.LENGTH_SHORT).show()

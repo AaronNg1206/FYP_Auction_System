@@ -50,6 +50,7 @@
     <string name="drawer_auction">Auction Bidding</string>
     <string name="drawer_buy">Buy Product</string>
 
+    <string name="drawer_home_admin">Home</string>
     <string name="drawer_sell">Selling</string>
     <string name="drawer_about">About Us</string>
     <string name="drawer_logout">Log Out</string>
@@ -87,6 +88,7 @@
     <string name="btn_reset">Reset Password</string>
     <string name="btn_back"><b>Back to login page</b></string>
     <string name="title_activity_user_home">UserHomeActivity</string>
+    <string name="title_activity_admin_home">AdminHomeActivity</string>
 
     <!--View Purchase-->
     <string name="btn_return">Return &amp; Refund</string>

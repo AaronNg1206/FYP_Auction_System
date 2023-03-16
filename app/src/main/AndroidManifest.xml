@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.nghycp.fyp_auction_system">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -17,6 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FYP_Auction_System"
         tools:targetApi="31">
+
+        <activity
+            android:name=".admin.AdminHomeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_admin_home"
+            android:theme="@style/Theme.FYP_Auction_System.NoActionBar" />
+
         <activity
             android:name=".UserHomeActivity"
             android:exported="false"

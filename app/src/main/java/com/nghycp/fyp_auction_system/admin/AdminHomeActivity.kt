@@ -1,11 +1,11 @@
-package com.nghycp.fyp_auction_system
+package com.nghycp.fyp_auction_system.admin
 
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,35 +18,35 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.header_home_user.view.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.customer.addToCartFragment
+import com.nghycp.fyp_auction_system.databinding.ActivityAdminHomeBinding
 import com.nghycp.fyp_auction_system.databinding.ActivityUserHomeBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentLoginBinding
 import kotlinx.android.synthetic.main.header_home_user.*
+import kotlinx.android.synthetic.main.header_home_user.view.*
 import java.lang.Exception
 
-class UserHomeActivity : AppCompatActivity() {
-
+class AdminHomeActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityUserHomeBinding
+    private lateinit var binding: ActivityAdminHomeBinding
     private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityUserHomeBinding.inflate(layoutInflater)
+        binding = ActivityAdminHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.appBarHome.toolbar)
+        setSupportActionBar(binding.appBarHomeAdmin.toolbar)
 
-        val drawerLayout:DrawerLayout = binding.drawerLayoutUser
-        val navView: NavigationView = binding.navViewUser
-        val navController = findNavController(R.id.nav_host)
+        val drawerLayout: DrawerLayout = binding.drawerLayoutAdmin
+        val navView: NavigationView = binding.navViewAdmin
+        val navController = findNavController(R.id.nav_host_admin)
         appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.fragmentUserHomePage,R.id.userProfile,R.id.viewPurchase,R.id.addToCartFragment2,R.id.recentAddFragment,R.id.category,R.id.sellOption,R.id.fragmentArtworkDisplay,
-            R.id.action_logout
+            R.id.adminHomePage,R.id.monthlysales, R.id.action_logout
         ),drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -57,6 +57,7 @@ class UserHomeActivity : AppCompatActivity() {
     }
 
     private fun updateNavHeader() {
+
         firebaseAuth = FirebaseAuth.getInstance()
 
         val user = firebaseAuth.currentUser
@@ -65,9 +66,9 @@ class UserHomeActivity : AppCompatActivity() {
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("Users").child(uid)
 
-        ref.addValueEventListener(object:ValueEventListener{
+        ref.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val navView: NavigationView = binding.navViewUser
+                val navView: NavigationView = binding.navViewAdmin
                 val view: View = navView.getHeaderView(0)
                 val name = snapshot.child("name").value as String?
                 val email = snapshot.child("email").value as String?
@@ -77,7 +78,7 @@ class UserHomeActivity : AppCompatActivity() {
                 view.textViewEmailUser.setText(email)
 
                 try {
-                    Glide.with(this@UserHomeActivity)
+                    Glide.with(this@AdminHomeActivity)
                         .load(profileImage)
                         .placeholder(R.drawable.user)
                         .into(imageViewHome)
@@ -95,7 +96,7 @@ class UserHomeActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.menu_main_admin, menu)
 
         return true
     }
@@ -103,22 +104,6 @@ class UserHomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return when (item.itemId) {
-
-            R.id.action_cart ->{
-                val fragment = addToCartFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.frameLayout9, fragment)
-                    .addToBackStack(null).commit()
-                //NavHostFragment.findNavController(this).navigate(R.id.action_fragmentUserHomePage_to_addToCartFragment2)
-                //Toast.makeText(this,"errorCheck",Toast.LENGTH_SHORT).show()
-                true
-            }
-
-              //findNavController().navigate(R.id.action_fragmentUserHomePage_to_addToCartFragment2)
-                //findNavController().navigate(R.id.action_fragmentUserHomePage_to_addToCartFragment2)
-
-
-
-
             R.id.action_logout -> {
                 val intent = Intent(this, FragmentLoginBinding::class.java)
                 startActivity(intent)
@@ -129,8 +114,9 @@ class UserHomeActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host)
+        val navController = findNavController(R.id.nav_host_admin)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
 }

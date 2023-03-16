@@ -6,8 +6,8 @@
 
 
     <item
-        android:id="@+id/fragmentUserHomePage"
-        android:title="@string/drawer_home" />
+        android:id="@+id/adminHomePage"
+        android:title="@string/drawer_home_admin" />
     <item
         android:id="@+id/monthlysales"
         android:title="@string/MonthlySales" />
