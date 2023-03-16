@@ -11,16 +11,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.core.view.isInvisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.customer.ModelArtwork
@@ -103,15 +102,23 @@ class FragmentBidProcess : Fragment() {
                 bidShowArrayList.clear()
                 for (ds in snapshot.children){
                     if (name.toString() == ds.child("name").value as String){
+                        val price = ds.child("price").value as String
+
+                        binding.currentPrice.text = price.toString()
 
                         val model = ds.getValue(ModelBidUser::class.java)
 
                         bidShowArrayList.add(model!!)
 
                     }
-                    bidShowBidUserAdpter = ShowBidUserAdpter(context!!,bidShowArrayList!!)
+                    val context = context
+                    if (context != null){
 
-                    recyclerView.adapter = bidShowBidUserAdpter
+                        bidShowBidUserAdpter = ShowBidUserAdpter(context,bidShowArrayList)
+
+                        recyclerView.adapter = bidShowBidUserAdpter
+                    }
+
                 }
 
             }
@@ -160,7 +167,12 @@ class FragmentBidProcess : Fragment() {
             override fun onFinish() {
                 // Update the UI when the countdown finishes
                 binding.timer.text = "Expired"
-                findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment)
+
+                binding.boxPlace.isInvisible = false
+
+                binding.btnPlace.isInvisible = false
+
+                //findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment)
 
             }
         }.start()
@@ -172,22 +184,27 @@ class FragmentBidProcess : Fragment() {
         bidShowArrayList = arrayListOf<ModelBidUser>()
 
         binding.btnPlace.setOnClickListener {
-
-            currentPrice = binding.currentPrice.text.toString()
-
-            if (totalPrice <= currentPrice){
-                binding.boxPlace.error = "Bid amount must be higher than current highest bid"
-            } else {
-                saveBid()
-            }
-            saveBid()
-
+            validateBid()
         }
 
     }
 
     private var currentPrice = ""
     private var totalPrice = ""
+
+    private fun validateBid() {
+
+        currentPrice = binding.currentPrice.text.toString().trim()
+        totalPrice = binding.boxPlace.text.toString().trim()
+
+        if(totalPrice <= currentPrice) {
+            Toast.makeText(context,"Highest Bid",Toast.LENGTH_LONG).show()
+        }else{
+            saveBid()
+        }
+
+    }
+
     private var name = ""
     private var price = ""
     private var nameUser = ""
@@ -211,6 +228,7 @@ class FragmentBidProcess : Fragment() {
             hashMap["price"] = price
             hashMap["img"] = image
             hashMap["userName"] = nameUser
+            hashMap ["type"] = "Bid"
 
             val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
                     .getReference("Bid")
@@ -221,6 +239,7 @@ class FragmentBidProcess : Fragment() {
                     progressDialog.dismiss()
                     Toast.makeText(context,"Place Successful", Toast.LENGTH_SHORT).show()
                     //findNavController().navigate(R.id.action_fragmentBidProcess_to_auction)
+                    binding.currentPrice.text = price
                 }
                 .addOnFailureListener {
                     progressDialog.dismiss()
