@@ -239,5 +239,6 @@
     <string name="recycleviewsaleshome" />
     <string name="recycleViewBidHome" />
     <string name="AddToCartTotal">RM0</string>
-
+    <string name="add_new_card">Credit Card Payment</string>
+    <string name="add_card">Add new card</string>
 </resources>

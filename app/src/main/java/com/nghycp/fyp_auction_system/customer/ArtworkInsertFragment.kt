@@ -214,13 +214,14 @@ class ArtworkInsertFragment : Fragment() {
             .addOnSuccessListener {
                 progressDialog.dismiss()
                 Toast.makeText(context,"Add Successful", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_artworkInsertFragment_to_adminHomePage)
+
 
             }
             .addOnFailureListener { e ->
                 progressDialog.dismiss()
                 Toast.makeText(context,"Failed to add this artwork", Toast.LENGTH_SHORT).show()
             }
+        findNavController().navigate(R.id.action_artworkInsertFragment_to_adminHomePage)
     }
 
 

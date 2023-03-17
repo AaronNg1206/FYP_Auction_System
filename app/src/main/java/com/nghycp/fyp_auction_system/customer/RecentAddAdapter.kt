@@ -80,8 +80,8 @@ class RecentAddAdapter: RecyclerView.Adapter<RecentAddAdapter.HolderArtwork>{
             args.putString("artName", name)
             fragment.setArguments(args)
 
-            Navigation.findNavController(holder.image).navigate(R.id.action_recentAddFragment2_to_customerUpdateArtwork,args)
-            //Navigation.findNavController().navigate(R.id.action_recentAddFragment2_to_customerUpdateArtwork, bundle)
+            Navigation.findNavController(holder.image).navigate(R.id.action_recentAddFragment_to_customerUpdateArtwork,args)
+
         }
         holder.buttonRemove.setOnClickListener {
             val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
