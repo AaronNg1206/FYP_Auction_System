@@ -219,7 +219,7 @@ class FragmentBidSellerForm : Fragment() {
 //
 //        timer.start()
 
-        findNavController().navigate(R.id.action_fragmentBidSellerForm_to_fragmentUserHomePage)
+        findNavController().navigate(R.id.action_fragmentBidSellerForm2_to_adminHomePage)
 
     }
 

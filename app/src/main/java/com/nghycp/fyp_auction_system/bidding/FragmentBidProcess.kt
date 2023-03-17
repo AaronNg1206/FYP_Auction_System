@@ -44,7 +44,6 @@ class FragmentBidProcess : Fragment() {
     private lateinit var progressDialog: ProgressDialog
 
     val database = Firebase.database
-    val bidsRef = database.getReference("Bid")
 
     private val binding get() = _binding!!
 
@@ -246,5 +245,4 @@ class FragmentBidProcess : Fragment() {
                     Toast.makeText(context,"Failed to bid this artwork", Toast.LENGTH_SHORT).show()
                 }
         }
-
 }

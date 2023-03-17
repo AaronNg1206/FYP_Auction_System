@@ -50,22 +50,22 @@ class homePageAdapter: RecyclerView.Adapter<homePageAdapter.HolderArtwork>{
         val id = model.id
 
         Glide.with(context).load(image).into(holder.image)
-        holder.image.setOnClickListener {
-
-            val fragment = artworkDetailsFragment()
-            val args = Bundle()
-            args.putString("id", id)
-            args.putString("artDescription", description)
-            args.putString("artAuthor",author)
-            args.putString("artPrice", price)
-            args.putString("artImage", image)
-            args.putString("artName", name)
-            fragment.setArguments(args)
-
-           Navigation.findNavController(holder.image).navigate(R.id.action_fragmentUserHomePage_to_artworkDetailsFragment,args)
-
-
-        }
+//        holder.image.setOnClickListener {
+//
+//            val fragment = artworkDetailsFragment()
+//            val args = Bundle()
+//            args.putString("id", id)
+//            args.putString("artDescription", description)
+//            args.putString("artAuthor",author)
+//            args.putString("artPrice", price)
+//            args.putString("artImage", image)
+//            args.putString("artName", name)
+//            fragment.setArguments(args)
+//
+//           Navigation.findNavController(holder.image).navigate(R.id.action_fragmentUserHomePage_to_artworkDetailsFragment,args)
+//
+//
+//        }
 
 
     }

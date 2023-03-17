@@ -23,10 +23,10 @@ class salesSelection : Fragment() {
         _binding = FragmentSalesSelectionBinding.inflate(inflater, container, false)
 
         binding.buttonBid.setOnClickListener {
-            findNavController().navigate(R.id.action_sellOption_to_fragmentBidSellerForm2)
+            findNavController().navigate(R.id.action_salesSelection_to_fragmentBidSellerForm2)
         }
         binding.buttonGo.setOnClickListener {
-            findNavController().navigate(R.id.action_sellOption_to_customer_Add_Artwork)
+            findNavController().navigate(R.id.action_sellOption_to_artworkInsertFragment)
         }
         return binding.root
     }
