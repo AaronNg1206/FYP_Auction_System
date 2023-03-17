@@ -15,6 +15,9 @@
     <item android:id="@+id/recentAddFragment"
         android:title="@string/drawer_recent"/>
 
+    <item android:id="@+id/adminShowBid"
+        android:title="Auction Bid Show"/>
+
     <item
         android:id="@+id/sellOption"
         android:title="@string/drawer_sell" />
