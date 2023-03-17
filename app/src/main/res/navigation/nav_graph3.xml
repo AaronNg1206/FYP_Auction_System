@@ -13,5 +13,62 @@
         android:id="@+id/adminHomePage"
         android:name="com.nghycp.fyp_auction_system.admin.AdminHomePage"
         android:label="Admin Home Page"
-        tools:layout="@layout/fragment_admin_home_page" />
+        tools:layout="@layout/fragment_admin_home_page" >
+        <action
+            android:id="@+id/action_adminHomePage_to_salesSelection"
+            app:destination="@id/sellOption" />
+        <action
+            android:id="@+id/action_adminHomePage_to_recentAddFragment2"
+            app:destination="@id/recentAddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sellOption"
+        android:name="com.nghycp.fyp_auction_system.salesSelection"
+        android:label="Sale Type Select"
+        tools:layout="@layout/fragment_sales_selection">
+        <action
+            android:id="@+id/action_salesSelection_to_fragmentBidSellerForm2"
+            app:destination="@id/fragmentBidSellerForm2" />
+        <action
+            android:id="@+id/action_salesSelection_to_adminHomePage"
+            app:destination="@id/adminHomePage" />
+        <action
+            android:id="@+id/action_sellOption_to_artworkInsertFragment"
+            app:destination="@id/artworkInsertFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentBidSellerForm2"
+        android:name="com.nghycp.fyp_auction_system.bidding.FragmentBidSellerForm"
+        android:label="Fill in the Form"
+        tools:layout="@layout/fragment_bid_seller_form">
+        <action
+            android:id="@+id/action_fragmentBidSellerForm2_to_adminHomePage"
+            app:destination="@id/adminHomePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/artworkInsertFragment"
+        android:name="com.nghycp.fyp_auction_system.customer.ArtworkInsertFragment"
+        android:label="Fill in the Form"
+        tools:layout="@layout/fragment_artwork_insert">
+        <action
+            android:id="@+id/action_artworkInsertFragment_to_adminHomePage"
+            app:destination="@id/adminHomePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/recentAddFragment"
+        android:name="com.nghycp.fyp_auction_system.customer.RecentAddFragment"
+        android:label="fragment_recent_add"
+        tools:layout="@layout/fragment_recent_add" >
+        <action
+            android:id="@+id/action_recentAddFragment_to_customerUpdateArtwork"
+            app:destination="@id/customerUpdateArtwork" />
+        <action
+            android:id="@+id/action_recentAddFragment_to_adminHomePage"
+            app:destination="@id/adminHomePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/customerUpdateArtwork"
+        android:name="com.nghycp.fyp_auction_system.customer.CustomerUpdateArtwork"
+        android:label="fragment_artwork_update"
+        tools:layout="@layout/fragment_artwork_update" />
 </navigation>

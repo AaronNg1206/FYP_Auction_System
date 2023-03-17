@@ -11,6 +11,14 @@
     <item
         android:id="@+id/monthlysales"
         android:title="@string/MonthlySales" />
+
+    <item android:id="@+id/recentAddFragment"
+        android:title="@string/drawer_recent"/>
+
+    <item
+        android:id="@+id/sellOption"
+        android:title="@string/drawer_sell" />
+
     <item
         android:id="@+id/action_logout"
         android:title="@string/drawer_logout" />
