@@ -36,7 +36,7 @@ class addToCartFragment : Fragment() {
 
 
         firebaseAuth = FirebaseAuth.getInstance()
-        recyclerViewAddToCart = view.findViewById(R.id.RecyclerViewArtCart)
+        recyclerViewAddToCart = view.findViewById(R.id.RecyclerViewCreditCard)
         recyclerViewAddToCart.layoutManager = LinearLayoutManager(context)
         recyclerViewAddToCart.setHasFixedSize(true)
 

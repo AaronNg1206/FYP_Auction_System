@@ -1,4 +1,4 @@
-package com.nghycp.fyp_auction_system
+package com.nghycp.fyp_auction_system.Payment
 
 class ModelCreditCard {
 
@@ -8,6 +8,7 @@ class ModelCreditCard {
     var expDate:String= ""
     var cvv:String= ""
     var uid:String = ""
+    var isChecked: Boolean = false
 
     constructor()
 
@@ -18,6 +19,7 @@ class ModelCreditCard {
         cvv: String,
         uid: String,
         id: String = "",
+        isChecked :Boolean,
     ){
         this.id = id
         this.cardHolderName = cardHolderName
@@ -25,5 +27,6 @@ class ModelCreditCard {
         this.expDate = expDate
         this.cvv = cvv
         this.uid = uid
+        this.isChecked = isChecked
     }
 }

@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecyclerViewArtCart"
+            android:id="@+id/RecyclerViewCreditCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
