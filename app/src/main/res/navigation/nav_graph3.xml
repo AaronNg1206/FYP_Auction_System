@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_adminHomePage_to_adminShowBid"
             app:destination="@id/adminShowBid" />
+        <action
+            android:id="@+id/action_adminHomePage_to_adminShowNormal"
+            app:destination="@id/normalArt" />
     </fragment>
     <fragment
         android:id="@+id/sellOption"
@@ -60,8 +63,8 @@
     <fragment
         android:id="@+id/recentAddFragment"
         android:name="com.nghycp.fyp_auction_system.customer.RecentAddFragment"
-        android:label="fragment_recent_add"
-        tools:layout="@layout/fragment_recent_add" >
+        android:label="Recent Add"
+        tools:layout="@layout/fragment_recent_add">
         <action
             android:id="@+id/action_recentAddFragment_to_customerUpdateArtwork"
             app:destination="@id/customerUpdateArtwork" />
@@ -88,4 +91,9 @@
         android:name="com.nghycp.fyp_auction_system.admin.AdminViewMore"
         android:label="Art Show"
         tools:layout="@layout/fragment_admin__view__more" />
+    <fragment
+        android:id="@+id/normalArt"
+        android:name="com.nghycp.fyp_auction_system.admin.AdminShowNormal"
+        android:label="One Cost"
+        tools:layout="@layout/fragment_admin_show_normal" />
 </navigation>

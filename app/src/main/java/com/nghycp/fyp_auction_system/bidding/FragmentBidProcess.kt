@@ -171,7 +171,7 @@ class FragmentBidProcess : Fragment() {
 
                 binding.btnPlace.isInvisible = false
 
-                //findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment)
+                findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment)
 
             }
         }.start()
