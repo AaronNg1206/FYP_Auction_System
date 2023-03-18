@@ -75,7 +75,7 @@ class ArtworkDisplayFragment : Fragment() {
                 try{
 
                 }catch(e: Exception) {
-                    Log.d("c",e.toString())
+                    Log.d("ccc",e.toString())
                 }
             }
 

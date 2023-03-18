@@ -16,7 +16,7 @@
         android:id="@+id/viewPurchase"
         android:title="@string/drawer_view_purchase" />
 
-    <item android:id="@+id/addToCartFragment2"
+    <item android:id="@+id/addToCartFragment"
         android:title="@string/drawer_cart"/>
 
     <item

@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_recent_add_layout.*
 class RecentAddFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var binding : FragmentRecentAddBinding
-    private lateinit var artworkList: ArrayList<ModelArtwork>
+    //private lateinit var artworkList: ArrayList<ModelArtwork>
     private lateinit var recentAddList: ArrayList<ModelArtwork>
     private lateinit var RecentAddAdapter: RecentAddAdapter
     private lateinit var database: FirebaseDatabase
@@ -47,38 +47,40 @@ class RecentAddFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
 
-        artworkList = arrayListOf<ModelArtwork>()
         recentAddList = arrayListOf<ModelArtwork>()
         loadRecentAdd()
 
-        /*   buttonDelete.setOnClickListener{
-               artworkList.get(i).
-           }*/
     }
 
     private fun loadRecentAdd() {
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("artwork").
+            .getReference("artwork")
             ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val user = firebaseAuth.currentUser
-                val uid = user!!.uid
-                //clear list before starting adding data into it
-                artworkList.clear()
-                for(ds in snapshot.children){
-                    //get data as model
-                    val model = ds.getValue(ModelArtwork::class.java)
-                    //add to array list
-                    artworkList.add(model!!)
-                }
-                val recentAddList: ArrayList<ModelArtwork> = ArrayList()
-                for ( i in  artworkList.indices){
-                    if (artworkList.get(i).uid  == uid){
-                        recentAddList.add(artworkList.get(i))
+                if(snapshot.exists()){
+                    val user = firebaseAuth.currentUser
+                    val uid = user!!.uid
+                    //clear list before starting adding data into it
+                    recentAddList.clear()
+                    for(ds in snapshot.children){
+                        //get data as model
+                        val model = ds.getValue(ModelArtwork::class.java)
+                        //add to array list
+                        if (model != null) {
+                            recentAddList.add(model!!)
+                        }
                     }
+
+                    /*  for ( i in  recentAddList.indices){
+                          if (recentAddList.get(i).uid  == uid){
+                              recentAddList.add(recentAddList.get(i))
+                          }
+                      }*/
+                    val filteredList = recentAddList.filter { it.uid == uid }
+                    RecentAddAdapter = RecentAddAdapter(context!!, filteredList as ArrayList<ModelArtwork>)
+                    //RecentAddAdapter = RecentAddAdapter(context!!, recentAddList)`
+                    recyclerView.adapter = RecentAddAdapter
                 }
-                         RecentAddAdapter = RecentAddAdapter(context!!, recentAddList)
-                         binding.recycleviewRecentAdded.adapter = RecentAddAdapter
             }
             override fun onCancelled(error: DatabaseError) {}
         })

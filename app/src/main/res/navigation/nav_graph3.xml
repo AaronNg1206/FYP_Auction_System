@@ -18,7 +18,7 @@
             android:id="@+id/action_adminHomePage_to_salesSelection"
             app:destination="@id/sellOption" />
         <action
-            android:id="@+id/action_adminHomePage_to_recentAddFragment2"
+            android:id="@+id/action_adminHomePage_to_recentAddFragment"
             app:destination="@id/recentAddFragment" />
         <action
             android:id="@+id/action_adminHomePage_to_adminShowBid"
