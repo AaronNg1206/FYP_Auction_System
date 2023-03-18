@@ -8,6 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -18,8 +22,13 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.customer.ArtworkAdapter
+import com.nghycp.fyp_auction_system.customer.ModelArtwork
 import com.nghycp.fyp_auction_system.databinding.FragmentCreditCardBinding
 import kotlinx.android.synthetic.main.fragment_add_to_cart_layout.*
+import kotlinx.android.synthetic.main.fragment_credit_card.*
+import kotlinx.android.synthetic.main.fragment_credit_card_layout.*
+import kotlinx.android.synthetic.main.fragment_payment.*
+import kotlinx.android.synthetic.main.fragment_return_refund.*
 
 
 class creditCardFragment : Fragment() {
@@ -66,7 +75,8 @@ class creditCardFragment : Fragment() {
             validateData()
         }
         binding.buttonProceedPayment.setOnClickListener{
-
+            val checkedItems = creditCardAdapter.getCheckedItems()
+            bringBackCardDetail(checkedItems)
         }
         CreditCardList = arrayListOf<ModelCreditCard>()
 
@@ -132,10 +142,9 @@ class creditCardFragment : Fragment() {
     private fun displayCreditCard(){
         CreditCardList = ArrayList()
 
-        val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("creditCard")
 
-        .addValueEventListener(object : ValueEventListener{
+
+        ref.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 CreditCardList.clear()
                 for (ds in snapshot.children){
@@ -159,5 +168,15 @@ class creditCardFragment : Fragment() {
             }
 
         })
+    }
+    private fun bringBackCardDetail(checkedItems :List<ModelCreditCard>) {
+        for (itemCheckOut in checkedItems) {
+            val args = Bundle()
+            args.putString("cardHolderName", itemCheckOut.cardHolderName)
+            args.putString("cardNumber", itemCheckOut.cardNumber)
+
+            val navController = view?.let { Navigation.findNavController(it) }
+            navController?.navigate(R.id.action_creditCardFragment_to_paymentFragment, args)
+        }
     }
 }

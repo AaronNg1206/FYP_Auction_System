@@ -1,3 +1,4 @@
+
 package com.nghycp.fyp_auction_system.Payment
 
 import android.content.Context
@@ -14,16 +15,17 @@ import com.nghycp.fyp_auction_system.customer.ModelArtwork
 import com.nghycp.fyp_auction_system.databinding.FragmentPaymentLayoutBinding
 import kotlinx.android.synthetic.main.fragment_artwork_layout.*
 
-class paymentAdapter : RecyclerView.Adapter<paymentAdapter.HolderArtwork>{
+class paidAdapter {}/*: RecyclerView.Adapter<paidAdapter.HolderArtwork>{
+
     private val context: Context
-    var paymentList: ArrayList<ModelArtwork>
+    var paidList: ArrayList<ModelArtwork>
     private lateinit var binding: FragmentPaymentLayoutBinding
     val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
         .getReference("paid")
     private lateinit var firebaseAuth: FirebaseAuth
     constructor(context: Context, paymentList: ArrayList<ModelArtwork>) {
         this.context = context
-        this.paymentList = paymentList
+        this.paidList = paidList
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderArtwork {
         binding = FragmentPaymentLayoutBinding.inflate(LayoutInflater.from(context),parent,false)
@@ -32,7 +34,7 @@ class paymentAdapter : RecyclerView.Adapter<paymentAdapter.HolderArtwork>{
     }
     override fun getItemCount(): Int {
         //number of items in list
-        return paymentList.size
+        return paidList.size
     }
     inner class HolderArtwork(itemView: View): RecyclerView.ViewHolder(itemView){
         var name : TextView = binding.artName
@@ -41,7 +43,7 @@ class paymentAdapter : RecyclerView.Adapter<paymentAdapter.HolderArtwork>{
     }
     override fun onBindViewHolder(holder: HolderArtwork, position: Int) {
         //get data
-        val model = paymentList[position]
+        val model = paidList[position]
         val name = model.artName
         val image = model.artImage
         val price = model.artPrice
@@ -51,13 +53,30 @@ class paymentAdapter : RecyclerView.Adapter<paymentAdapter.HolderArtwork>{
         holder.price.text= price
         Glide.with(context).load(image).into(holder.image)
 
+        val hashMap = HashMap<String, Any>()
+        val newID = ref.push().key!!
+        hashMap["artName"] = name
+        hashMap["artImage"] = image
+        hashMap["artPrice"] = price
+        hashMap["id"]= newID
+        hashMap["uid"] = "${firebaseAuth.uid}"
+
+        ref.child(newID)
+            .setValue(hashMap)
+            .addOnSuccessListener{
+                Toast.makeText(context," Proceed to checkout", Toast.LENGTH_SHORT).show()
+
+            }
+            .addOnCanceledListener {  ->
+                Toast.makeText(context,"Failed to remove this artwork", Toast.LENGTH_SHORT).show()
+            }
     }
 
 
 
     init {
-        paymentList = ArrayList()
+        paidList = ArrayList()
     }
 
 
-}
+}*/
