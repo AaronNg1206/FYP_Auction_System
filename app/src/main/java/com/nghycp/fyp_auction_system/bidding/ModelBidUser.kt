@@ -8,7 +8,7 @@ class ModelBidUser {
     var img:String = ""
     var uid:String = ""
     var name: String = ""
-    //var totalPrice:String = ""
+    var id:String = ""
 
     constructor()
 
@@ -17,8 +17,8 @@ class ModelBidUser {
         img: String,
         uid: String,
         name: String,
-        price: String
-        //totalPrice: String
+        price: String,
+        id: String
     )
 
     {
@@ -27,7 +27,7 @@ class ModelBidUser {
         this.img = img
         this.uid = uid
         this.name = name
-        //this.totalPrice = totalPrice
+        this.id = id
     }
 
 }

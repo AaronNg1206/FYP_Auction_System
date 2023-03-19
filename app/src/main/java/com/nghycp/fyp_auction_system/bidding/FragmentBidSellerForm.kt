@@ -174,7 +174,7 @@ class FragmentBidSellerForm : Fragment() {
 
         progressDialog.show()
 
-        val expirationTime = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(4)
+        val expirationTime = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(60)
 
         //val initialTime = 300
 
@@ -195,7 +195,8 @@ class FragmentBidSellerForm : Fragment() {
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("Product").push()
         val pushkey = ref.key.toString()
-        ref.child(name)
+        hashMap["PID"] = pushkey
+        ref
             .setValue(hashMap)
             .addOnSuccessListener {
                 progressDialog.dismiss()

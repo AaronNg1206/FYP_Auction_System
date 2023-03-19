@@ -110,7 +110,6 @@
     <string name="desc_return">Dropdown Something Here</string>
     <string name="reason">Reason</string>
     <string-array name="spinner_reason">
-        <item>Choose an Reason</item>
         <item>The Item are fake</item>
         <item>The Item got painchips</item>
         <item>The Item does not same as picture show</item>

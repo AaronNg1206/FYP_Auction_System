@@ -57,7 +57,7 @@ class BidShowAdapter : RecyclerView.Adapter<BidShowAdapter.HolderBid> {
         var btnApply : TextView = binding.btnApply
         var expDate : TextView = binding.expDate
         var btnGo : Button = binding.btnGo
-        var id : TextView = binding.id
+        var PID : TextView = binding.id
 
     }
 
@@ -70,14 +70,14 @@ class BidShowAdapter : RecyclerView.Adapter<BidShowAdapter.HolderBid> {
         val price = model.price
         val img = model.profileImage
         val expDate = model.expDate
-        val id = model.id
+        val PID = model.PID
 
         holder.artist.text = artist
         holder.desc.text = desc
         holder.name.text = name
         holder.price.text = price
         holder.expDate.text = expDate
-        holder.id.text = id
+        holder.PID.text = PID
         //holder.
         Glide.with(context).load(img).into(holder.img)
         holder.btnApply.setOnClickListener {
@@ -99,7 +99,7 @@ class BidShowAdapter : RecyclerView.Adapter<BidShowAdapter.HolderBid> {
             val fragment = FragmentBidProcess()
             val args = Bundle()
             args.putString("name", name)
-            args.putString("id",id)
+            args.putString("PID",PID)
             args.putString("img", img)
             args.putString("price", price)
             args.putLong("expDate", expDate.toLong())

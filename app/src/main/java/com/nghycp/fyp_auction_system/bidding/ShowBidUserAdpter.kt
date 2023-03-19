@@ -11,10 +11,10 @@ import com.nghycp.fyp_auction_system.databinding.ProcessShowBinding
 class ShowBidUserAdpter : RecyclerView.Adapter<ShowBidUserAdpter.HolderBid>{
 
     private val context: Context
-    var bidShowArrayList: ArrayList<ModelBidUser>
+    var bidShowArrayList: MutableList<ModelBidUser>
     private lateinit var binding: ProcessShowBinding
 
-    constructor(context: Context, bidShowArrayList: ArrayList<ModelBidUser>){
+    constructor(context: Context, bidShowArrayList: MutableList<ModelBidUser>){
         this.context = context
         this.bidShowArrayList = bidShowArrayList
     }

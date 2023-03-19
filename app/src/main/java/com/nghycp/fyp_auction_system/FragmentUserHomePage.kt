@@ -102,12 +102,12 @@ class FragmentUserHomePage : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 bidArrayList.clear()
                 for (ds in snapshot.children){
-                    for(snap in ds.children){
+                    //for(snap in ds.children){
 
-                        val model = snap.getValue(ModelBid::class.java)
+                        val model = ds.getValue(ModelBid::class.java)
 
                         bidArrayList.add(model!!)
-                    }
+                    //}
                 }
 
                 bidHomePageAdapter = BidHomePageAdapter(context!!,bidArrayList)

@@ -37,7 +37,7 @@ class FragmentBidProcess : Fragment() {
 
     private lateinit var bidShowBidUserAdpter: ShowBidUserAdpter
 
-    private lateinit var recyclerView : RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
     private lateinit var bidShowArrayList: ArrayList<ModelBidUser>
 
@@ -55,8 +55,9 @@ class FragmentBidProcess : Fragment() {
 
         setHasOptionsMenu(true)
 
-        _binding = FragmentBidProcessBinding.inflate(inflater,container,false)
+        _binding = FragmentBidProcessBinding.inflate(inflater, container, false)
 
+        getHighBid()
         loadUser()
 
         firebaseAuth = FirebaseAuth.getInstance()
@@ -67,9 +68,10 @@ class FragmentBidProcess : Fragment() {
         val user = firebaseAuth.currentUser
         val uid = user!!.uid
 
-        val userRef = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("Users").child(uid)
-        userRef.addListenerForSingleValueEvent(object : ValueEventListener{
+        val userRef =
+            Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Users").child(uid)
+        userRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val userName = snapshot.child("name").value as String?
 
@@ -85,42 +87,81 @@ class FragmentBidProcess : Fragment() {
         return binding.root
     }
 
-    private fun loadUser() {
+    private fun getHighBid() {
 
         val args = this.arguments
 
         val name = args?.get("name")
-
-        bidShowArrayList = ArrayList()
-
-        //Toast.makeText(context,name.toString(),Toast.LENGTH_LONG).show()
+        val PID = args?.get("PID").toString()
 
         val showRef = FirebaseDatabase.getInstance().getReference("Bid")
-        showRef.addValueEventListener(object : ValueEventListener{
+        val ref2 = showRef.child(PID).orderByChild("price").limitToLast(1)
+        //val key = showRef.key.toString()
+        ref2.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 bidShowArrayList.clear()
-                for (ds in snapshot.children){
-                    if (name.toString() == ds.child("name").value as String){
-                        val price = ds.child("price").value as String
+                for (ds in snapshot.children) {
+                    //val key2 = ds.key.toString()
+                    //for (snap in ds.children){
+                    //if(uid == snap.child("uid").value as String) {
 
-                        binding.currentPrice.text = price.toString()
+                    //if (key2 == PID) {
 
-                        val model = ds.getValue(ModelBidUser::class.java)
+                    val price = ds.child("price").value as String
 
-                        bidShowArrayList.add(model!!)
-
-                    }
-                    val context = context
-                    if (context != null){
-
-                        bidShowBidUserAdpter = ShowBidUserAdpter(context,bidShowArrayList)
-
-                        recyclerView.adapter = bidShowBidUserAdpter
-                    }
-
+                    binding.currentPrice.text = price.toString()
                 }
 
             }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
+    }
+
+    private fun loadUser() {
+
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        val args = this.arguments
+
+        val PID = args?.get("PID").toString()
+
+        bidShowArrayList = ArrayList()
+
+        val showRef = FirebaseDatabase.getInstance().getReference("Bid")
+        showRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                bidShowArrayList.clear()
+                for (ds in snapshot.children) {
+                    val key2 = ds.key.toString()
+
+                    for (snap in ds.children) {
+                        if (PID == key2) {
+                            val model = snap.getValue(ModelBidUser::class.java)
+
+                            bidShowArrayList.add(model!!)
+
+                        }
+                    }
+
+                    var sortedList = bidShowArrayList.toMutableList()
+
+                    sortedList.sortByDescending { it.price }
+
+                    val context = context
+                    if (context != null) {
+
+                        bidShowBidUserAdpter = ShowBidUserAdpter(context, sortedList)
+
+                        recyclerView.adapter = bidShowBidUserAdpter
+                    }
+                }
+
+            }
+
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
@@ -133,15 +174,15 @@ class FragmentBidProcess : Fragment() {
 
         val args = this.arguments
 
-        val name= args?.get("name")
+        val name = args?.get("name")
         val nameTextView = binding.showName
         nameTextView.text = name.toString()
 
-        val price= args?.get("price")
+        val price = args?.get("price")
         val priceTextView = binding.currentPrice
         priceTextView.text = price.toString()
 
-        val img= args?.get("img")
+        val img = args?.get("img")
         Glide.with(this@FragmentBidProcess)
             .load(img.toString())
             .placeholder(R.drawable.user)
@@ -167,12 +208,38 @@ class FragmentBidProcess : Fragment() {
                 // Update the UI when the countdown finishes
                 binding.timer.text = "Expired"
 
-                binding.boxPlace.isInvisible = false
+                binding.boxPlace.visibility = View.GONE
 
-                binding.btnPlace.isInvisible = false
+                binding.btnPlace.visibility = View.GONE
 
-                //findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment)
+                firebaseAuth = FirebaseAuth.getInstance()
+                val user = firebaseAuth.currentUser
+                val uid = user!!.uid
 
+                val PID = args?.get("PID").toString()
+
+                val showRef = FirebaseDatabase.getInstance().getReference("Bid")
+                val ref2 = showRef.child(PID).orderByChild(uid).limitToFirst(1)
+                ref2.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (ds in snapshot.children) {
+                            val key2 = ds.key.toString()
+                            for (snap in ds.children) {
+                                if (uid == key2) {
+                                    binding.btnPayment.visibility = View.VISIBLE
+                                }
+                            }
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+                })
+
+                binding.btnPayment.setOnClickListener {
+                    findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment2)
+                }
             }
         }.start()
 
@@ -196,9 +263,9 @@ class FragmentBidProcess : Fragment() {
         currentPrice = binding.currentPrice.text.toString().trim()
         totalPrice = binding.boxPlace.text.toString().trim()
 
-        if(totalPrice <= currentPrice) {
+        if (totalPrice <= currentPrice) {
             binding.boxPlace.error = "Your price are not higher than current price ! "
-        }else{
+        } else {
             saveBid()
         }
 
@@ -209,40 +276,42 @@ class FragmentBidProcess : Fragment() {
     private var nameUser = ""
 
 
-        private fun saveBid() {
+    private fun saveBid() {
 
-            nameUser = binding.userName.text.toString().trim()
-            name = binding.showName.text.toString().trim()
-            price = binding.boxPlace.text.toString().trim()
-            val args = this.arguments
-            val image = args?.get("img").toString()
-            //val id = args?.get("id").toString()
-            Glide.with(this@FragmentBidProcess).load(image)
 
-            val hashMap = HashMap<String, Any>()
+        nameUser = binding.userName.text.toString().trim()
+        name = binding.showName.text.toString().trim()
+        price = binding.boxPlace.text.toString().trim()
+        val args = this.arguments
+        val PID = args?.get("PID").toString()
+        val image = args?.get("img").toString()
+        //val id = args?.get("id").toString()
+        Glide.with(this@FragmentBidProcess).load(image)
 
-            //hashMap["id"] = id
-            hashMap["uid"] = "${firebaseAuth.uid}"
-            hashMap["name"] = name
-            hashMap["price"] = price
-            hashMap["img"] = image
-            hashMap["userName"] = nameUser
-            hashMap ["type"] = "Bid"
+        val hashMap = HashMap<String, Any>()
 
-            val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                    .getReference("Bid")
-            val newId = ref.push().key!!
-                    ref.child(newId)
-                .setValue(hashMap)
-                .addOnSuccessListener {
-                    progressDialog.dismiss()
-                    Toast.makeText(context,"Place Successful", Toast.LENGTH_SHORT).show()
-                    //findNavController().navigate(R.id.action_fragmentBidProcess_to_auction)
-                    binding.currentPrice.text = price
-                }
-                .addOnFailureListener {
-                    progressDialog.dismiss()
-                    Toast.makeText(context,"Failed to bid this artwork", Toast.LENGTH_SHORT).show()
-                }
-        }
+        //hashMap["id"] = id
+        hashMap["uid"] = "${firebaseAuth.uid}"
+        hashMap["name"] = name
+        hashMap["price"] = price
+        hashMap["img"] = image
+        hashMap["userName"] = nameUser
+        hashMap["type"] = "Bid"
+
+        val ref =
+            Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Bid")
+        ref.child(PID).child("${firebaseAuth.uid}")
+            .setValue(hashMap)
+            .addOnSuccessListener {
+                progressDialog.dismiss()
+                Toast.makeText(context, "Place Successful", Toast.LENGTH_SHORT).show()
+                //findNavController().navigate(R.id.action_fragmentBidProcess_to_auction)
+                binding.currentPrice.text = price
+            }
+            .addOnFailureListener {
+                progressDialog.dismiss()
+                Toast.makeText(context, "Failed to bid this artwork", Toast.LENGTH_SHORT).show()
+            }
+    }
 }

@@ -59,12 +59,12 @@ class AdminShowBid : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 bidArrayList.clear()
                 for (ds in snapshot.children){
-                    for(snap in ds.children){
+                   // for(snap in ds.children){
 
-                        val model = snap.getValue(ModedlBidAdmin::class.java)
+                        val model = ds.getValue(ModedlBidAdmin::class.java)
 
                         bidArrayList.add(model!!)
-                    }
+                   // }
                 }
 
                 val context = context
