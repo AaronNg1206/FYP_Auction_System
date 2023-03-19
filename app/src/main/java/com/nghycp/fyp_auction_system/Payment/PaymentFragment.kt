@@ -37,6 +37,7 @@ class paymentFragment : Fragment() {
 
 
     val database = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+    val artCartRef = database.getReference("artCart")
     val checkoutRef = database.getReference("Checkout")
     val paidRef = database.getReference("paid")
 
@@ -149,7 +150,9 @@ class paymentFragment : Fragment() {
                     paidRef.child(newID).setValue(artworkData)
 
                     // Remove the data from the checkout database
+
                     checkoutRef.child(data.key!!).removeValue()
+                    artCartRef.child(data.key!!).removeValue()
 
                     Toast.makeText(context,"Payment Was successful", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.fragmentUserHomePage)

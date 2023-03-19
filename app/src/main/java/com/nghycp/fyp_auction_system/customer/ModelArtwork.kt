@@ -1,5 +1,7 @@
 package com.nghycp.fyp_auction_system.customer
 
+import java.util.*
+
 class ModelArtwork {
 
     var id:String = ""
@@ -10,6 +12,7 @@ class ModelArtwork {
     var artImage:String= ""
     var uid:String = ""
     var imageURL: String = ""
+    var date : String = ""
     var isChecked: Boolean = false
 
     constructor()
@@ -24,6 +27,7 @@ class ModelArtwork {
         imageURL: String,
         isChecked :Boolean,
         id: String = "",
+        date: String,
     ){
         this.id = id
         this.artAuthor = artAuthor
@@ -34,5 +38,6 @@ class ModelArtwork {
         this.uid = uid
         this.imageURL = imageURL
         this.isChecked = isChecked
+        this.date = date
     }
 }

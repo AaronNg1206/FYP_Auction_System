@@ -37,6 +37,7 @@ class ArtworkAdapter: RecyclerView.Adapter<ArtworkAdapter.HolderArtwork>{
         var price : TextView = binding.artPrice
         var image : ImageView = binding.artImage
         var description : TextView = binding.artDescription
+
     }
     override fun onBindViewHolder(holder: HolderArtwork, position: Int) {
         //get data
@@ -47,6 +48,7 @@ class ArtworkAdapter: RecyclerView.Adapter<ArtworkAdapter.HolderArtwork>{
         val image = model.artImage
         val price = model.artPrice
         val id = model.id
+        val date = model.date
 
         //set data
         holder.name.text = name
@@ -59,6 +61,7 @@ class ArtworkAdapter: RecyclerView.Adapter<ArtworkAdapter.HolderArtwork>{
             val fragment = artworkDetailsFragment()
             val args = Bundle()
             args.putString("id", id)
+
 
             args.putString("artDescription", description)
             args.putString("artAuthor",author)
