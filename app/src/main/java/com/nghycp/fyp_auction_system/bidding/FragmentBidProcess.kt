@@ -167,11 +167,13 @@ class FragmentBidProcess : Fragment() {
                 // Update the UI when the countdown finishes
                 binding.timer.text = "Expired"
 
-                binding.boxPlace.isInvisible = false
+                binding.boxPlace.visibility = View.GONE
 
-                binding.btnPlace.isInvisible = false
+                binding.btnPlace.visibility = View.GONE
 
-                findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment)
+                binding.btnPayment.visibility = View.VISIBLE
+
+                findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment2)
 
             }
         }.start()
