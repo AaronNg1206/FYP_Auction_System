@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".creditCardFragment">
+    tools:context=".Payment.creditCardFragment">
 
     <TextView
         android:id="@+id/textView2"
@@ -82,20 +82,32 @@
             android:id="@+id/addCardBtn_cardAddBottomSheet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_bg"
-            android:textColor="@color/white"
-            android:text="@string/add_card"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/btn_bg"
             android:elevation="10dp"
-            android:layout_marginBottom="40dp" />
+            android:text="@string/add_card"
+            android:textColor="@android:color/black" />
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCreditCard"
         android:layout_width="0dp"
-        android:layout_height="138dp"
+        android:layout_height="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/fragment_credit_card_layout" />
+
+    <Button
+        android:id="@+id/buttonProceedPayment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Proceed Payment"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

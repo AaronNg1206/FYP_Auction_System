@@ -64,7 +64,7 @@ class artworkDetailsFragment : Fragment() {
         val args = this.arguments
 
         val id = args?.get("id")
-        Log.d("abcde",id.toString())
+        //Log.d("abcde",id.toString())
 
         val artName= args?.get("artName")
         val nameTextView = binding.showProduct

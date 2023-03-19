@@ -1,5 +1,6 @@
-package com.nghycp.fyp_auction_system
+package com.nghycp.fyp_auction_system.Payment
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,30 +17,43 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.customer.ModelArtwork
-import com.nghycp.fyp_auction_system.databinding.FragmentCreditCardBinding
 
 import com.nghycp.fyp_auction_system.databinding.FragmentPaymentBinding
+import kotlinx.android.synthetic.main.fragment_artwork_layout.*
 
 class paymentFragment : Fragment() {
 
 
     private lateinit var binding: FragmentPaymentBinding
     private lateinit var paymentList: ArrayList<ModelArtwork>
+    private lateinit var paidList: ArrayList<ModelArtwork>
     private lateinit var paymentAdapter: paymentAdapter
+    //private lateinit var paidAdapter: paidAdapter
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var RecyclerViewPayment: RecyclerView
-    val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-        .getReference("Checkout")
-    val ref1 = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-        .getReference("paid")
+    private lateinit var progressDialog: ProgressDialog
+
+
+    val database = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+    val checkoutRef = database.getReference("Checkout")
+    val paidRef = database.getReference("paid")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        shoppingCart()
+
         binding = FragmentPaymentBinding.inflate(inflater, container, false)
+        firebaseAuth = FirebaseAuth.getInstance()
+        progressDialog = ProgressDialog(context)
+        progressDialog.setTitle("Please Wait...")
+        progressDialog.setCanceledOnTouchOutside(false)
+
+        shoppingCart()
+
 
 
         return binding.root
@@ -53,31 +67,40 @@ class paymentFragment : Fragment() {
         RecyclerViewPayment = view.findViewById(R.id.RecyclerViewPayment)
         RecyclerViewPayment.layoutManager = LinearLayoutManager(context)
         RecyclerViewPayment.setHasFixedSize(true)
+
+        val args = this.arguments
+        val CardHolderName= args?.get("cardHolderName")
+        val cardHolder = binding.textViewCardHolderName
+        cardHolder.text = CardHolderName.toString()
+
         binding.buttonCreditCard.setOnClickListener{
             findNavController().navigate(R.id.action_paymentFragment_to_creditCardFragment)
         }
         binding.buttonPay.setOnClickListener{
-            PaiedProcess()
+            if (CardHolderName != null) {
+                PaiedProcess()
+            }else{
+                Toast.makeText(context,"Select your payment method", Toast.LENGTH_SHORT).show()
+            }
+
         }
         paymentList = arrayListOf<ModelArtwork>()
-
+        paidList = arrayListOf<ModelArtwork>()
         binding = FragmentPaymentBinding.bind(requireView())
-
     }
+
     private fun shoppingCart() {
         paymentList = ArrayList()
         var total = 0.0
         var subTotal = 0.0
         var shippingFee = 0.0
-
-        ref.addValueEventListener(object : ValueEventListener {
+        checkoutRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 paymentList.clear()
                 total = 0.0
                 subTotal = 0.0
                 for (ds in snapshot.children){
                     val model = ds.getValue(ModelArtwork::class.java)
-
                         model?.id = ds.key!!
                       val artPrice = model?.artPrice?.toDoubleOrNull()
                        total += artPrice!!
@@ -91,68 +114,52 @@ class paymentFragment : Fragment() {
                        subTotal = shippingFee + total
                        binding.textViewShipingFee.text = shippingFee.toString()
                        binding.textViewSubtotal.text = subTotal.toString()
-
                     paymentList.add(model!!)
                 }
-
                 paymentAdapter = paymentAdapter(context!!,paymentList)
                 RecyclerViewPayment.adapter = paymentAdapter
-
-
             }
             override fun onCancelled(error: DatabaseError) {
                 try {
-
                 }catch (e: Exception){
                     Log.d("c",e.toString())
                 }
-
             }
-
         })
     }
 
     private fun PaiedProcess() {
-        /*     paymentList = ArrayList()
-             ref.addValueEventListener(object : ValueEventListener {
-                 override fun onDataChange(snapshot: DataSnapshot) {
-                     paymentList.clear()
-                     for (ds in snapshot.children){
-                         val model = ds.getValue(ModelArtwork::class.java)
-                         paymentList.add(model!!)
-                     }
-                 }
-                 override fun onCancelled(error: DatabaseError) {
-                     try {
-                     }catch (e: Exception){
-                         Log.d("c",e.toString())
-                     }
-                 }
-             })
+        checkoutRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (data in snapshot.children) {
+                    val name = data.child("artName").getValue(String::class.java)
+                    val image = data.child("artImage").getValue(String::class.java)
+                    val price = data.child("artPrice").getValue(String::class.java)
+                    val uid = data.child("uid").getValue(String::class.java)
 
-             ref.removeValue()
-             val hashMap = HashMap<String, Any>()
+                    // Create a HashMap of the data
+                    val artworkData = HashMap<String, Any>()
+                    artworkData["artName"] = name!!
+                    artworkData["artImage"] = image!!
+                    artworkData["artPrice"] = price!!
+                    artworkData["uid"] = uid!!
 
-             for (itemCheckOut in checkedItems){
-                 hashMap["artName"] = itemCheckOut.artName
-                 hashMap["artImage"] = itemCheckOut.artImage
-                 hashMap["artPrice"] = itemCheckOut.artPrice
-                 hashMap["id"]= itemCheckOut.id
-                 hashMap["uid"] = "${firebaseAuth.uid}"
+                    // Add the data to the paid database
+                    val newID = paidRef.push().key!!
+                    paidRef.child(newID).setValue(artworkData)
 
-                 ref.child(itemCheckOut.id)
-                     .setValue(hashMap)
-                     .addOnSuccessListener{
-                         Toast.makeText(context," Proceed to checkout", Toast.LENGTH_SHORT).show()
+                    // Remove the data from the checkout database
+                    checkoutRef.child(data.key!!).removeValue()
 
-                     }
-                     .addOnCanceledListener {  ->
-                         Toast.makeText(context,"Failed to remove this artwork", Toast.LENGTH_SHORT).show()
-                     }
+                    Toast.makeText(context,"Payment Was successful", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.fragmentUserHomePage)
+                }
+            }
 
-             }
-             findNavController().navigate(R.id.action_addToCartFragment_to_paymentFragment)*/
+            override fun onCancelled(error: DatabaseError) {
+                // Handle any errors
+            }
+        })
+
     }
-
-
-}
+    }
