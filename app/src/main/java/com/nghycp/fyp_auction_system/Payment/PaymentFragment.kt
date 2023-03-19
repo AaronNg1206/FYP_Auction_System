@@ -143,6 +143,7 @@ class paymentFragment : Fragment() {
                     artworkData["artImage"] = image!!
                     artworkData["artPrice"] = price!!
                     artworkData["uid"] = uid!!
+                    artworkData["status"] = "Completed"
 
                     // Add the data to the paid database
                     val newID = paidRef.push().key!!

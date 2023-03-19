@@ -44,8 +44,8 @@
         android:label="Purchase History"
         tools:layout="@layout/fragment_view_purchase">
         <action
-            android:id="@+id/action_fragmentViewPurchase_to_fragmentUserHomePage"
-            app:destination="@id/fragmentUserHomePage" />
+            android:id="@+id/action_viewPurchase_to_returnRefund"
+            app:destination="@id/returnRefund" />
     </fragment>
     <activity
         android:id="@+id/action_logout"
@@ -129,5 +129,14 @@
         <action
             android:id="@+id/action_creditCardFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/returnRefund"
+        android:name="com.nghycp.fyp_auction_system.history_return.ReturnRefund"
+        android:label="Return and Refund"
+        tools:layout="@layout/fragment_return_refund" >
+        <action
+            android:id="@+id/action_returnRefund_to_viewPurchase"
+            app:destination="@id/viewPurchase" />
     </fragment>
 </navigation>

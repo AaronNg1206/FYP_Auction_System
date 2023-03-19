@@ -21,6 +21,9 @@
     <item android:id="@+id/normalArt"
         android:title="One cost Artwork Show"/>
 
+    <item android:id="@+id/adminRefund"
+        android:title="Return and Refund"/>
+
     <item
         android:id="@+id/sellOption"
         android:title="@string/drawer_sell" />

@@ -1,4 +1,4 @@
-package com.nghycp.fyp_auction_system.history_return
+package com.nghycp.fyp_auction_system.admin
 
 import android.os.Bundle
 import android.util.Log
@@ -15,21 +15,23 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
-import com.nghycp.fyp_auction_system.customer.ArtworkAdapter
-import com.nghycp.fyp_auction_system.customer.ModelArtwork
-import com.nghycp.fyp_auction_system.customer.RecentAddAdapter
+import com.nghycp.fyp_auction_system.bidding.BidShowAdapter
+import com.nghycp.fyp_auction_system.bidding.ModelBid
+import com.nghycp.fyp_auction_system.databinding.FragmentAdminRefundBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentViewPurchaseBinding
+import com.nghycp.fyp_auction_system.history_return.AdapterHistory
+import com.nghycp.fyp_auction_system.history_return.ModelShow
 
 
-class ViewPurchase : Fragment() {
+class AdminRefund : Fragment() {
 
-    private lateinit var binding : FragmentViewPurchaseBinding
+    private lateinit var binding : FragmentAdminRefundBinding
 
     private lateinit var firebaseAuth: FirebaseAuth
 
-    private lateinit var showArrayList: ArrayList<ModelShow>
+    private lateinit var showReturnList: ArrayList<ModelReturn>
 
-    private lateinit var adapterHistory: AdapterHistory
+    private lateinit var returnAdapter: ReturnAdapter
 
     private lateinit var recyclerView: RecyclerView
 
@@ -39,12 +41,10 @@ class ViewPurchase : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
         setHasOptionsMenu(true)
-        binding = FragmentViewPurchaseBinding.inflate(inflater,container,false)
+        binding = FragmentAdminRefundBinding.inflate(inflater, container, false)
 
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,11 +52,11 @@ class ViewPurchase : Fragment() {
 
 
         firebaseAuth = FirebaseAuth.getInstance()
-        recyclerView = view.findViewById(R.id.RecyclerViewPurchase)
+        recyclerView = view.findViewById(R.id.RecyclerViewReturn)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
 
-        showArrayList = arrayListOf<ModelShow>()
+        showReturnList = arrayListOf<ModelReturn>()
 
 
         loadShow()
@@ -64,26 +64,28 @@ class ViewPurchase : Fragment() {
     }
 
     private fun loadShow() {
-        showArrayList = ArrayList()
+        showReturnList = ArrayList()
 
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("paid")
-        ref.addValueEventListener(object : ValueEventListener{
+            .getReference("Return")
+        ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()) {
-                    val user = firebaseAuth.currentUser
-                    val uid = user!!.uid
-                    showArrayList.clear()
-                    for (ds in snapshot.children) {
+                showReturnList.clear()
+                for (ds in snapshot.children){
+                    //for(snap in ds.children){
 
-                        val model = ds.getValue(ModelShow::class.java)
-                        if (model != null){
-                            showArrayList.add(model!!)
-                        }
-                    }
-                    val filteredList = showArrayList.filter { it.uid == uid }
-                    adapterHistory = AdapterHistory(context!!, filteredList as ArrayList<ModelShow>)
-                    recyclerView.adapter = adapterHistory
+                    val model = ds.getValue(ModelReturn::class.java)
+
+                    showReturnList.add(model!!)
+                    //}
+                }
+
+                val context = context
+                if (context != null){
+
+                    returnAdapter = ReturnAdapter(context!!,showReturnList)
+
+                    recyclerView.adapter = returnAdapter
                 }
             }
 

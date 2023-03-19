@@ -46,7 +46,7 @@ class AdminHomeActivity : AppCompatActivity() {
         val navView: NavigationView = binding.navViewAdmin
         val navController = findNavController(R.id.nav_host_admin)
         appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.adminHomePage,R.id.monthlysales,R.id.sellOption, R.id.action_logout,R.id.recentAddFragment,R.id.adminShowBid, R.id.normalArt
+            R.id.adminHomePage,R.id.monthlysales,R.id.sellOption, R.id.action_logout,R.id.recentAddFragment,R.id.adminShowBid, R.id.normalArt,R.id.adminRefund
         ),drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
