@@ -16,13 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FYP_Auction_System"
         tools:targetApi="31">
-
+        <activity
+            android:name=".report.ReportActivity"
+            android:exported="false"
+            android:label="@string/SalesReport"
+            android:theme="@style/Theme.FYP_Auction_System.NoActionBar"/>
         <activity
             android:name=".admin.AdminHomeActivity"
             android:exported="false"
             android:label="@string/title_activity_admin_home"
             android:theme="@style/Theme.FYP_Auction_System.NoActionBar" />
-
         <activity
             android:name=".UserHomeActivity"
             android:exported="false"

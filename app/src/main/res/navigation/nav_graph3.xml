@@ -104,4 +104,9 @@
         android:name="com.nghycp.fyp_auction_system.admin.AdminRefund"
         android:label="View Return and refund"
         tools:layout="@layout/fragment_admin_refund" />
+    <activity
+        android:id="@+id/ReportActivity"
+        android:name="com.nghycp.fyp_auction_system.report.ReportActivity"
+        android:label="activity_report"
+        tools:layout="@layout/activity_report" />
 </navigation>

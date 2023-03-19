@@ -9,8 +9,8 @@
         android:id="@+id/adminHomePage"
         android:title="@string/drawer_home_admin" />
     <item
-        android:id="@+id/monthlysales"
-        android:title="@string/MonthlySales" />
+        android:id="@+id/ReportActivity"
+        android:title="@string/SalesReport" />
 
     <item android:id="@+id/recentAddFragment"
         android:title="@string/drawer_recent"/>

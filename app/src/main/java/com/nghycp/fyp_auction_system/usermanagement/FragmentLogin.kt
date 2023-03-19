@@ -21,7 +21,7 @@ import com.nghycp.fyp_auction_system.UserHomeActivity
 import com.nghycp.fyp_auction_system.admin.AdminHomeActivity
 import com.nghycp.fyp_auction_system.databinding.FragmentAdminHomePageBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentLoginBinding
-import com.nghycp.fyp_auction_system.report.monthlySalesReport
+
 
 class FragmentLogin : Fragment() {
 

@@ -124,7 +124,7 @@
     <!--Bid Process-->
     <string name="btn_Bid">Place Bid</string>
     <string name="editPriceBid">Enter a Bid</string>
-    <string name="MonthlySales">Monthly Sales</string>
+    <string name="SalesReport">Sales Report</string>
     <string name="show_admin" />
     <string name="buy">Buy</string>
     <string name="addToCart">add To Cart</string>
@@ -240,4 +240,6 @@
     <string name="AddToCartTotal">RM0</string>
     <string name="add_new_card">Credit Card Payment</string>
     <string name="add_card">Add new card</string>
+    <string name="tabs">tabs</string>
+    <string name="viewpager">viewpager</string>
 </resources>

@@ -61,9 +61,9 @@ class AdminShowBid : Fragment() {
                 for (ds in snapshot.children){
                    // for(snap in ds.children){
 
-                        val model = ds.getValue(ModedlBidAdmin::class.java)
+                    /*    val model = ds.getValue(ModedlBidAdmin::class.java)
 
-                        bidArrayList.add(model!!)
+                        bidArrayList.add(model!!)*/
                    // }
                 }
 
