@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_fragmentUserHomePage_to_fragmentBidProduct"
             app:destination="@id/fragmentBidProduct" />
+        <action
+            android:id="@+id/action_fragmentUserHomePage_to_viewReturn"
+            app:destination="@id/viewReturn" />
     </fragment>
     <fragment
         android:id="@+id/userProfile"
@@ -139,4 +142,9 @@
             android:id="@+id/action_returnRefund_to_viewPurchase"
             app:destination="@id/viewPurchase" />
     </fragment>
+    <fragment
+        android:id="@+id/viewReturn"
+        android:name="com.nghycp.fyp_auction_system.history_return.ViewReturn"
+        android:label="Status"
+        tools:layout="@layout/fragment_view_return" />
 </navigation>

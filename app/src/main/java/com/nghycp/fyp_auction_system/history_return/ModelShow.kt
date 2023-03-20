@@ -8,6 +8,7 @@ class ModelShow {
     var artPrice:String = ""
     var status:String = ""
     var uid:String = ""
+    var PID:String = ""
 
 
     constructor()
@@ -17,7 +18,8 @@ class ModelShow {
         artName:String,
         artPrice:String,
         uid:String,
-        status:String
+        status:String,
+        PID:String
     )
     {
         this.id = id
@@ -26,6 +28,7 @@ class ModelShow {
         this.artName = artName
         this.artPrice = artPrice
         this.uid = uid
+        this.PID = PID
     }
 
 }

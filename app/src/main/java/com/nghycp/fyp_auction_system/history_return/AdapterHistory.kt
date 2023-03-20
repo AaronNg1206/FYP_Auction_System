@@ -41,6 +41,7 @@ class AdapterHistory : RecyclerView.Adapter<AdapterHistory.HolderBid>{
         var artPrice : TextView = binding.priceShow
         var btnGo : Button = binding.btnReturn
         var status : TextView = binding.status
+        var PID : TextView = binding.PID
     }
 
     override fun onBindViewHolder(holder: HolderBid, position: Int) {
@@ -49,7 +50,9 @@ class AdapterHistory : RecyclerView.Adapter<AdapterHistory.HolderBid>{
         val artPrice = model.artPrice
         val artImage = model.artImage
         val status = model.status
+        val PID = model.PID
 
+        holder.PID.text = PID
         holder.artName.text = artName
         holder.status.text = status
         holder.artPrice.text = artPrice
@@ -58,6 +61,7 @@ class AdapterHistory : RecyclerView.Adapter<AdapterHistory.HolderBid>{
         holder.btnGo.setOnClickListener {
             val fragment = ReturnRefund()
             val args = Bundle()
+            args.putString("PID", PID)
             args.putString("status", status)
             args.putString("artImage",artImage)
             args.putString("artName",artName)

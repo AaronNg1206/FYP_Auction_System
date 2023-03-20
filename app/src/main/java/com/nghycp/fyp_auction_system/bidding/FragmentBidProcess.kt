@@ -219,13 +219,13 @@ class FragmentBidProcess : Fragment() {
                 val PID = args?.get("PID").toString()
 
                 val showRef = FirebaseDatabase.getInstance().getReference("Bid")
-                val ref2 = showRef.child(PID).orderByChild(uid).limitToFirst(1)
+                val ref2 = showRef.child(PID).orderByChild(uid).limitToLast(1)
                 ref2.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for (ds in snapshot.children) {
-                            val key2 = ds.key.toString()
+                            //val key2 = ds.key.toString()
                             for (snap in ds.children) {
-                                if (uid == key2) {
+                                if (PID == uid) {
                                     binding.btnPayment.visibility = View.VISIBLE
                                 }
                             }
