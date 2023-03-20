@@ -148,6 +148,7 @@ class paymentFragment : Fragment() {
 
                     // Add the data to the paid database
                     val newID = paidRef.push().key!!
+                    artworkData["PID"] = newID
                     paidRef.child(newID).setValue(artworkData)
 
                     // Remove the data from the checkout database

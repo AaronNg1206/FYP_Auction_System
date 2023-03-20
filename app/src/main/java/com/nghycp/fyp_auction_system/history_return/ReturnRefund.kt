@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
@@ -66,6 +68,8 @@ class ReturnRefund : Fragment() {
         progressDialog = ProgressDialog(context)
         progressDialog.setTitle("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(false)
+
+        binding.button.visibility = View.VISIBLE
 
         binding.button.setOnClickListener {
             validateData()
@@ -124,13 +128,26 @@ class ReturnRefund : Fragment() {
             .addOnSuccessListener {
                 progressDialog.dismiss()
                 Toast.makeText(context,"Submitted", Toast.LENGTH_SHORT).show()
-                binding.button.visibility = View.INVISIBLE
+                deleteData()
             }
             .addOnFailureListener {
                 progressDialog.dismiss()
                 Toast.makeText(context,"Failed to return this artwork", Toast.LENGTH_SHORT).show()
             }
         findNavController().navigate(R.id.action_returnRefund_to_viewPurchase)
+    }
+
+    private fun deleteData() {
+
+        val args = this.arguments
+
+        val ref2 = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference("paid")
+
+        val PID = args?.get("PID")
+
+        ref2.child(PID as String).removeValue()
+
     }
 
 

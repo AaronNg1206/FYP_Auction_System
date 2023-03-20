@@ -46,7 +46,7 @@ class UserHomeActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host)
         appBarConfiguration = AppBarConfiguration(setOf(
             R.id.fragmentUserHomePage,R.id.userProfile,R.id.viewPurchase,R.id.addToCartFragment,R.id.category,R.id.sellOption,R.id.fragmentArtworkDisplay,
-            R.id.action_logout
+            R.id.action_logout,R.id.viewReturn
         ),drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
