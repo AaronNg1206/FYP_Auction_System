@@ -6,19 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wallpaper"
-    tools:context=".monthlySalesReport">
+    tools:context="report.monthlySalesReport">
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="388dp"
         android:layout_height="285dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <TextView-->
+    <!--    <TextView-->
 <!--        android:id="@+id/textView29"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->

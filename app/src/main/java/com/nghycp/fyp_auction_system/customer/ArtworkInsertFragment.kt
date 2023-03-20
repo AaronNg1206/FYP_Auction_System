@@ -4,17 +4,21 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -26,6 +30,11 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentArtworkInsertBinding
+import kotlinx.android.synthetic.main.fragment_artwork_insert.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class ArtworkInsertFragment : Fragment() {
@@ -33,71 +42,86 @@ class ArtworkInsertFragment : Fragment() {
     private var _binding: FragmentArtworkInsertBinding? = null
     private lateinit var artworkList: ArrayList<ModelArtwork>
     private lateinit var firebaseAuth: FirebaseAuth
-
     private lateinit var progressDialog: ProgressDialog
-
     private val binding get() = _binding!!
-
     private var imageUri: Uri? = null
     private val ref =
         Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("artwork")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        setHasOptionsMenu(true)
-
         _binding = FragmentArtworkInsertBinding.inflate(inflater, container, false)
-
+        setHasOptionsMenu(true)
         firebaseAuth = FirebaseAuth.getInstance()
         progressDialog = ProgressDialog(context)
         progressDialog.setTitle("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(false)
+   /*     date_picker.setOnDateChangedListener { view, year, monthOfYear, dayOfMonth ->
+            // Do something with the selected date
+            Log.d("DatePicker", "Selected date: $year/${monthOfYear+1}/$dayOfMonth")
+        }*/
+       // date_picker.init(2023, 2, 18, null)
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        val dateString: String = sdf.format(getDateFromDatePicker(binding.datePicker))
 
-        binding.imageAdd.setOnClickListener {
-            showImageAttchMenu()
+
+            binding.imageAdd.setOnClickListener {
+                showImageAttchMenu()
+            }
+            binding.buttonAddSelling.setOnClickListener {
+                validateData(dateString)
+            }
+        val view = binding.root
+            return view
         }
 
-        binding.buttonAddSelling.setOnClickListener {
-            validateData()
-        }
-
-        return binding.root
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
+
 
     private var artworkName = ""
     private var description = ""
     private var price = ""
     private var author = ""
+    //private var date = ""
 
+    fun getDateFromDatePicker(datePicker: DatePicker): Date {
+        val day = datePicker.dayOfMonth
+        val month = datePicker.month
+        val year = datePicker.year
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.set(year, month, day)
+        return calendar.getTime()
+    }
 
-    private fun validateData() {
+    private fun validateData(date: String) {
         artworkList = ArrayList()
         artworkName = binding.editTextProductName.text.toString().trim()
         description = binding.editTextDescription1.text.toString().trim()
         price = binding.editTextPrice.text.toString().trim()
         author = binding.editTextAuthor.text.toString().trim()
-        //var used : Boolean
+        //date = binding.datePicker.toString().trim()
+
+
+
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 artworkList.clear()
                 for (ds in snapshot.children) {
                     val model = ds.getValue(ModelArtwork::class.java)
-
                     artworkList.add(model!!)
                 }
-
-
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
-      /*  for(ds in artworkList){
+     /*   for(ds in artworkList){
             if(artworkName.equals(ds.artName))
 
         }*/
@@ -112,23 +136,22 @@ class ArtworkInsertFragment : Fragment() {
             binding.editTextAuthor.error = "Enter Author Name"
         }else {
             if (imageUri == null) {
-                addRecord("")
+                addRecord("",date)
             }
             else {
                 uploadImage()
             }
         }
     }
+
     private fun showImageAttchMenu() {
         val popupMenu = PopupMenu(context, binding.imageAdd)
         popupMenu.menu.add(Menu.NONE, 0, 0, "Gallery")
         popupMenu.show()
-
         popupMenu.setOnMenuItemClickListener { item ->
             val id = item.itemId
             if (id == 0) {
                 selectImages()
-
             }
             true
         }
@@ -140,6 +163,7 @@ class ArtworkInsertFragment : Fragment() {
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         galleryActivityResultLauncher.launch(intent)
     }
+
     private val galleryActivityResultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult(),
         ActivityResultCallback<ActivityResult> { result ->
@@ -170,32 +194,26 @@ class ArtworkInsertFragment : Fragment() {
     private fun uploadImage() {
         val user = firebaseAuth.currentUser
         val uid = user!!.uid
+        val currentDate = Date().toString()
         progressDialog.setMessage("Uploading Profile image")
         progressDialog.show()
 
         val filePathAndName = "ProfileImages/"+ firebaseAuth.uid
-
         val reference = Firebase.storage("gs://artwork-e6a68.appspot.com").getReference(filePathAndName)
         reference.putFile(imageUri!!)
             .addOnSuccessListener { takeSnapshot->
                 val uriTask: Task<Uri> = takeSnapshot.storage.downloadUrl
                 while (!uriTask.isSuccessful);
                 val uploadedImageUrl = "${uriTask.result}"
-
-                addRecord(uploadedImageUrl)
-
+                addRecord(uploadedImageUrl,currentDate)
             }
             .addOnFailureListener { e->
-
                 progressDialog.dismiss()
                 Toast.makeText(context,"Failed to upload image due to ${e.message}", Toast.LENGTH_SHORT).show()
-
             }
-
     }
-    private fun addRecord(uploadedImageUrl: String) {
+    private fun addRecord(uploadedImageUrl: String,date : String) {
         progressDialog.show()
-
 
         val hashMap = HashMap<String, Any>()
         val newID = ref.push().key!!
@@ -204,23 +222,22 @@ class ArtworkInsertFragment : Fragment() {
         hashMap["artPrice"] = price
         hashMap["artAuthor"] = author
         hashMap["id"]= newID
+        hashMap["date"]= date
         hashMap["uid"] = "${firebaseAuth.uid}"
         if(imageUri != null){
             hashMap["artImage"] = uploadedImageUrl
         }
-
         ref.child(newID)
             .setValue(hashMap)
             .addOnSuccessListener {
                 progressDialog.dismiss()
                 Toast.makeText(context,"Add Successful", Toast.LENGTH_SHORT).show()
-
-
             }
             .addOnFailureListener { e ->
                 progressDialog.dismiss()
                 Toast.makeText(context,"Failed to add this artwork", Toast.LENGTH_SHORT).show()
             }
+
         findNavController().navigate(R.id.action_artworkInsertFragment_to_adminHomePage)
     }
 

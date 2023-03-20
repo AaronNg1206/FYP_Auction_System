@@ -1,24 +1,34 @@
 package com.nghycp.fyp_auction_system.customer
 
+import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentArtworkDetailsBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentArtworkDisplayBinding
@@ -27,6 +37,9 @@ import com.nghycp.fyp_auction_system.databinding.FragmentRecentAddBinding
 import kotlinx.android.synthetic.main.fragment_artwork_update.*
 import kotlinx.android.synthetic.main.fragment_artwork_update.view.*
 import java.lang.Exception
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class CustomerUpdateArtwork : Fragment() {
@@ -57,25 +70,23 @@ class CustomerUpdateArtwork : Fragment() {
 
         val args = this.arguments
 
-        var id = args?.get("id").toString()
 
-        id = binding.editTextProductName.toString()
 
         val artName= args?.get("artName")
-       // val nameTextView = binding.editTextProductName
-        //editText_productName.text = artName.text()
+        val nameTextView = binding.textViewName
+        nameTextView.text = artName.toString()
 
         val artPrice= args?.get("artPrice")
-       // val priceTextView = binding.editTextPrice
-       // priceTextView.text = artPrice.toString()
+        val priceTextView = binding.textViewPrice
+        priceTextView.text = artPrice.toString()
 
         val artDescription= args?.get("artDescription")
-        //val descTextView = binding.editTextDescription
-       // descTextView.text = artDescription.toString()
+        val descTextView = binding.textViewDesc
+        descTextView.text = artDescription.toString()
 
         val artAuthor= args?.get("artAuthor")
-        //val artistTextView = binding.editTextAuthor
-      //  artistTextView.text = artAuthor.toString()
+        val artistTextView = binding.textViewAuthor
+        artistTextView.text = artAuthor.toString()
 
         val image= args?.get("artImage")
         //val imgTextView = binding.imageProduct
@@ -86,7 +97,11 @@ class CustomerUpdateArtwork : Fragment() {
             .into(binding.imageViewartwork)
 
         binding.buttonUpdate.setOnClickListener{
-            validateData()
+
+            UpdateProduct("")
+        }
+        binding.buttonOpenGallery.setOnClickListener {
+            showImageAttchMenu()
         }
         return binding.root
     }
@@ -102,32 +117,74 @@ class CustomerUpdateArtwork : Fragment() {
     private var author = ""
     private var price = ""
 
+    private fun showImageAttchMenu() {
+        val popupMenu = PopupMenu(context, binding.buttonOpenGallery)
+        popupMenu.menu.add(Menu.NONE, 0, 0, "Gallery")
+        popupMenu.show()
+        popupMenu.setOnMenuItemClickListener { item ->
+            val id = item.itemId
+            if (id == 0) {
+                selectImages()
+            }
+            true
+        }
+    }
 
-    private fun validateData(){
+    private fun selectImages() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+        galleryActivityResultLauncher.launch(intent)
+    }
 
-        name = binding.editTextProductName.text.toString().trim()
-        desc = binding.editTextDescription.text.toString().trim()
-        author = binding.editTextAuthor.text.toString().trim()
-        price = binding.editTextPrice.text.toString().trim()
+    private val galleryActivityResultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(),
+        ActivityResultCallback<ActivityResult> { result ->
 
-        if (name.isEmpty()) {
-            Toast.makeText(context, "Enter artwork name", Toast.LENGTH_SHORT).show()
-        } else if (desc.isEmpty()) {
-            Toast.makeText(context, "Please enter description", Toast.LENGTH_SHORT).show()
-        } else if (author.isEmpty()) {
-            Toast.makeText(context, "Please enter author Name", Toast.LENGTH_SHORT).show()
-        }else if (price.isEmpty()) {
-            Toast.makeText(context, "Please enter artwork Price", Toast.LENGTH_SHORT).show()
-        }else {
-            if (imageUri == null) {
-                UpdateProduct("")
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data = result.data
+                if (data?.clipData != null) {
+                    // Multiple images selected
+                    for (i in 0 until data.clipData!!.itemCount) {
+                        imageUri = data.clipData!!.getItemAt(i).uri
+                        // Do something with each selected image URI
+                        //binding.imageAdd.setImageURI(imageUri)
+                    }
+                }
+                /*  else {
+                      // Single image selected
+                      imageUri = data?.data
+                      // Do something with selected image URI
+                      binding.imageAdd.setImageURI(imageUri)
+                  }*/
+
+                binding.imageViewartwork.setImageURI(imageUri)
+                uploadImage()
             } else {
-                //uploadImage()
+                Toast.makeText(context, "Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
+    )
 
-
+    private fun uploadImage() {
+        progressDialog.setMessage("Uploading Profile image")
+        progressDialog.show()
+        val filePathAndName = "ProfileImages/"+ firebaseAuth.uid
+        val reference = Firebase.storage("gs://artwork-e6a68.appspot.com").getReference(filePathAndName)
+        reference.putFile(imageUri!!)
+            .addOnSuccessListener { takeSnapshot->
+                val uriTask: Task<Uri> = takeSnapshot.storage.downloadUrl
+                while (!uriTask.isSuccessful);
+                val uploadedImageUrl = "${uriTask.result}"
+                UpdateProduct(uploadedImageUrl)
+            }
+            .addOnFailureListener { e->
+                progressDialog.dismiss()
+                Toast.makeText(context,"Failed to upload image due to ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
+
+
 
     private fun UpdateProduct(uploadedImageUrl: String) {
         progressDialog.dismiss()
@@ -135,24 +192,57 @@ class CustomerUpdateArtwork : Fragment() {
         progressDialog.setMessage("Updating profile...")
         progressDialog.show()
 
+        name = binding.editTextProductName.text.toString()
+        desc = binding.editTextDescription.text.toString().trim()
+        author = binding.editTextAuthor.text.toString().trim()
+        price = binding.editTextPrice.text.toString().trim()
+
+        val args = this.arguments
+
+        if (name.isEmpty()) {
+            val getName= args?.get("artName")
+            name = getName.toString()
+        }
+        if (desc.isEmpty()) {
+            val getDesc = args?.get("artDescription")
+            desc = getDesc.toString()
+        }
+        if (author.isEmpty()) {
+                var getAuthor = args?.get("artAuthor")
+                author = getAuthor.toString()
+            }
+        if (price.isEmpty()) {
+            var getPrice = args?.get("artPrice")
+            price = getPrice.toString()
+        }
+
         val hashMap = HashMap<String, Any>()
+
         hashMap["uid"] = "${firebaseAuth.uid}"
         hashMap["artName"] = name
         hashMap["artDescription"] = desc
         hashMap["artAuthor"] = author
         hashMap["artPrice"] = price
-        if(imageUri != null){
+
+        if (uploadedImageUrl == ""){
+            val image= args?.get("artImage")
+            Log.d("updateOriImage", image.toString())
+            hashMap["artImage"] = image.toString()
+        }else{
             hashMap["artImage"] = uploadedImageUrl
         }
 
+        var id = args?.get("id").toString()
+
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("artwork")
-        ref.child(id.toString())
+        ref.child(id)
             .updateChildren(hashMap)
 
             .addOnSuccessListener {
                 progressDialog.dismiss()
                 Toast.makeText(context,"Artwork updated", Toast.LENGTH_SHORT).show()
+
             }
             .addOnFailureListener {
                 progressDialog.dismiss()
