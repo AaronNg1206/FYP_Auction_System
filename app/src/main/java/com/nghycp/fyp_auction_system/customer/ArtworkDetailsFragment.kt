@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
+import com.nghycp.fyp_auction_system.databinding.FragmentAddToCartBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentArtworkDetailsBinding
 import kotlinx.android.synthetic.main.fragment_artwork_details.*
 import kotlinx.android.synthetic.main.fragment_artwork_layout.*
@@ -23,28 +24,26 @@ import kotlinx.android.synthetic.main.fragment_artwork_layout.*
 
 class artworkDetailsFragment : Fragment() {
 
-    private lateinit var artworkList: ArrayList<ModelArtwork>
+
     private var _binding : FragmentArtworkDetailsBinding? = null
 
-    private lateinit var recyclerView: RecyclerView
+
     private val binding get() = _binding!!
     private lateinit var firebaseAuth: FirebaseAuth
-    private var imageUri: Uri? = null
+
     private var ref =
         Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("artCart")
     private lateinit var progressDialog: ProgressDialog
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonAddToCart.setOnClickListener {
+
+
             addRecord()
-            //findNavController().navigate(R.id.action_artworkDetailsFragment_to_addToCartFragment2)
-            //findNavController().navigate(R.id.action_artworkDetailsFragment_to_addToCartFragment2)
         }
     }
     override fun onCreateView(
@@ -111,12 +110,9 @@ class artworkDetailsFragment : Fragment() {
         val args = this.arguments
         val image= args?.get("artImage").toString()
         val id= args?.get("id").toString()
-      /*  Log.d("dcba",args?.get("artImage").toString())
-        Log.d("abcd",id.toString())*/
+
         Glide.with(this@artworkDetailsFragment).load(image)
         progressDialog.show()
-
-
 
         val hashMap = HashMap<String, Any>()
         hashMap["id"] = id
@@ -128,11 +124,13 @@ class artworkDetailsFragment : Fragment() {
         hashMap["uid"] = "${firebaseAuth.uid}"
         hashMap["artImage"] = image
 
+
         val newId = ref.push().key!!
         ref.child(newId)
             .setValue(hashMap)
             .addOnSuccessListener {
                 progressDialog.dismiss()
+
                 Toast.makeText(context,"Add Successful", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { e ->

@@ -4,21 +4,17 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -30,9 +26,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentArtworkInsertBinding
-import kotlinx.android.synthetic.main.fragment_artwork_insert.*
-import java.text.SimpleDateFormat
-import java.util.*
+
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
@@ -59,20 +53,13 @@ class ArtworkInsertFragment : Fragment() {
         progressDialog = ProgressDialog(context)
         progressDialog.setTitle("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(false)
-   /*     date_picker.setOnDateChangedListener { view, year, monthOfYear, dayOfMonth ->
-            // Do something with the selected date
-            Log.d("DatePicker", "Selected date: $year/${monthOfYear+1}/$dayOfMonth")
-        }*/
-       // date_picker.init(2023, 2, 18, null)
-        val sdf = SimpleDateFormat("yyyy-MM-dd")
-        val dateString: String = sdf.format(getDateFromDatePicker(binding.datePicker))
 
 
             binding.imageAdd.setOnClickListener {
                 showImageAttchMenu()
             }
             binding.buttonAddSelling.setOnClickListener {
-                validateData(dateString)
+                validateData()
             }
         val view = binding.root
             return view
@@ -88,24 +75,16 @@ class ArtworkInsertFragment : Fragment() {
     private var description = ""
     private var price = ""
     private var author = ""
-    //private var date = ""
 
-    fun getDateFromDatePicker(datePicker: DatePicker): Date {
-        val day = datePicker.dayOfMonth
-        val month = datePicker.month
-        val year = datePicker.year
-        val calendar: Calendar = Calendar.getInstance()
-        calendar.set(year, month, day)
-        return calendar.getTime()
-    }
 
-    private fun validateData(date: String) {
+
+    private fun validateData() {
         artworkList = ArrayList()
         artworkName = binding.editTextProductName.text.toString().trim()
         description = binding.editTextDescription1.text.toString().trim()
         price = binding.editTextPrice.text.toString().trim()
         author = binding.editTextAuthor.text.toString().trim()
-        //date = binding.datePicker.toString().trim()
+
 
 
 
@@ -121,10 +100,6 @@ class ArtworkInsertFragment : Fragment() {
                 TODO("Not yet implemented")
             }
         })
-     /*   for(ds in artworkList){
-            if(artworkName.equals(ds.artName))
-
-        }*/
         if(artworkName.isEmpty()){
             binding.editTextProductName.error = "Enter Your Artwork Product Name"
         }
@@ -136,7 +111,7 @@ class ArtworkInsertFragment : Fragment() {
             binding.editTextAuthor.error = "Enter Author Name"
         }else {
             if (imageUri == null) {
-                addRecord("",date)
+                addRecord("")
             }
             else {
                 uploadImage()
@@ -192,9 +167,8 @@ class ArtworkInsertFragment : Fragment() {
         }
     )
     private fun uploadImage() {
-        val user = firebaseAuth.currentUser
-        val uid = user!!.uid
-        val currentDate = Date().toString()
+
+
         progressDialog.setMessage("Uploading Profile image")
         progressDialog.show()
 
@@ -205,14 +179,14 @@ class ArtworkInsertFragment : Fragment() {
                 val uriTask: Task<Uri> = takeSnapshot.storage.downloadUrl
                 while (!uriTask.isSuccessful);
                 val uploadedImageUrl = "${uriTask.result}"
-                addRecord(uploadedImageUrl,currentDate)
+                addRecord(uploadedImageUrl)
             }
             .addOnFailureListener { e->
                 progressDialog.dismiss()
                 Toast.makeText(context,"Failed to upload image due to ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
-    private fun addRecord(uploadedImageUrl: String,date : String) {
+    private fun addRecord(uploadedImageUrl: String) {
         progressDialog.show()
 
         val hashMap = HashMap<String, Any>()
@@ -222,7 +196,6 @@ class ArtworkInsertFragment : Fragment() {
         hashMap["artPrice"] = price
         hashMap["artAuthor"] = author
         hashMap["id"]= newID
-        hashMap["date"]= date
         hashMap["uid"] = "${firebaseAuth.uid}"
         if(imageUri != null){
             hashMap["artImage"] = uploadedImageUrl

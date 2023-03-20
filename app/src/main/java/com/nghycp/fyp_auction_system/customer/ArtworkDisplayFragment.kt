@@ -64,11 +64,12 @@ class ArtworkDisplayFragment : Fragment() {
 
                     artworkList.add(model!!)
                 }
+                val context = context
+                if (context != null) {
+                    artworkAdapter = ArtworkAdapter(context!!, artworkList)
 
-                artworkAdapter = ArtworkAdapter(context!!,artworkList)
-
-                recyclerView.adapter = artworkAdapter
-
+                    recyclerView.adapter = artworkAdapter
+                }
 
             }
             override fun onCancelled(error: DatabaseError) {

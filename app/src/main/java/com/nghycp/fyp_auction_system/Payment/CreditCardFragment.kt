@@ -152,11 +152,12 @@ class creditCardFragment : Fragment() {
 
                     CreditCardList.add(model!!)
                 }
+                val context = context
+                if (context != null) {
+                    creditCardAdapter = CreditCardAdapter(context!!, CreditCardList)
 
-                creditCardAdapter = CreditCardAdapter(context!!,CreditCardList)
-
-                recyclerViewCreditCard.adapter = creditCardAdapter
-
+                    recyclerViewCreditCard.adapter = creditCardAdapter
+                }
 
             }
             override fun onCancelled(error: DatabaseError) {

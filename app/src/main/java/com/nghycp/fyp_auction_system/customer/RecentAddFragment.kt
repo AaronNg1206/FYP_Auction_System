@@ -23,7 +23,6 @@ import kotlinx.android.synthetic.main.fragment_recent_add_layout.*
 class RecentAddFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var binding : FragmentRecentAddBinding
-    //private lateinit var artworkList: ArrayList<ModelArtwork>
     private lateinit var recentAddList: ArrayList<ModelArtwork>
     private lateinit var RecentAddAdapter: RecentAddAdapter
     private lateinit var database: FirebaseDatabase
@@ -76,10 +75,14 @@ class RecentAddFragment : Fragment() {
                               recentAddList.add(recentAddList.get(i))
                           }
                       }*/
-                    val filteredList = recentAddList.filter { it.uid == uid }
-                    RecentAddAdapter = RecentAddAdapter(context!!, filteredList as ArrayList<ModelArtwork>)
-                    //RecentAddAdapter = RecentAddAdapter(context!!, recentAddList)`
-                    recyclerView.adapter = RecentAddAdapter
+                    val context = context
+                    if (context != null) {
+                        val filteredList = recentAddList.filter { it.uid == uid }
+                        RecentAddAdapter =
+                            RecentAddAdapter(context!!, filteredList as ArrayList<ModelArtwork>)
+                        //RecentAddAdapter = RecentAddAdapter(context!!, recentAddList)`
+                        recyclerView.adapter = RecentAddAdapter
+                    }
                 }
             }
             override fun onCancelled(error: DatabaseError) {}

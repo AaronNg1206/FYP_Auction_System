@@ -103,7 +103,7 @@
             android:id="@+id/action_fragmentBidProcess_to_auction"
             app:destination="@id/auction" />
         <action
-            android:id="@+id/action_fragmentBidProcess_to_paymentFragment2"
+            android:id="@+id/action_fragmentBidProcess_to_paymentFragment"
             app:destination="@id/paymentFragment" />
     </fragment>
     <fragment

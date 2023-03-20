@@ -1,17 +1,13 @@
 package com.nghycp.fyp_auction_system.bidding
 
 import android.app.ProgressDialog
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.Toast
-import androidx.core.view.isInvisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,15 +15,10 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
-import com.nghycp.fyp_auction_system.customer.ModelArtwork
 import com.nghycp.fyp_auction_system.databinding.FragmentBidProcessBinding
 import kotlinx.android.synthetic.main.fragment_bid_process.*
-import java.lang.Exception
-import java.sql.Date
-import java.util.concurrent.TimeUnit
 
 class FragmentBidProcess : Fragment() {
 
@@ -238,7 +229,7 @@ class FragmentBidProcess : Fragment() {
                 })
 
                 binding.btnPayment.setOnClickListener {
-                    findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment2)
+                    paymentProcess()
                 }
             }
         }.start()
@@ -254,6 +245,8 @@ class FragmentBidProcess : Fragment() {
         }
 
     }
+
+
 
     private var currentPrice = ""
     private var totalPrice = ""
@@ -314,4 +307,28 @@ class FragmentBidProcess : Fragment() {
                 Toast.makeText(context, "Failed to bid this artwork", Toast.LENGTH_SHORT).show()
             }
     }
+    private fun paymentProcess() {
+        val args = this.arguments
+        val PID = args?.get("PID").toString()
+        val image = args?.get("img").toString()
+        val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference("Checkout")
+        ref.removeValue()
+        val hashMap = HashMap<String, Any>()
+        hashMap["artName"] = name
+        hashMap["artImage"] = image
+        hashMap["artPrice"] = price
+        hashMap["uid"] = "${firebaseAuth.uid}"
+        ref.child(PID)
+            .setValue(hashMap)
+            .addOnSuccessListener{
+                Toast.makeText(context," Proceed to checkout", Toast.LENGTH_SHORT).show()
+            }
+            .addOnCanceledListener {  ->
+                Toast.makeText(context,"Failed to remove this artwork", Toast.LENGTH_SHORT).show()
+            }
+        findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment)
+    }
+
+
 }

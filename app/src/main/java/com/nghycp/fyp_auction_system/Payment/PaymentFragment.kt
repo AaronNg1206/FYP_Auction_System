@@ -117,8 +117,11 @@ class paymentFragment : Fragment() {
                        binding.textViewSubtotal.text = subTotal.toString()
                     paymentList.add(model!!)
                 }
-                paymentAdapter = paymentAdapter(context!!,paymentList)
-                RecyclerViewPayment.adapter = paymentAdapter
+                val context = context
+                if (context != null) {
+                    paymentAdapter = paymentAdapter(context!!, paymentList)
+                    RecyclerViewPayment.adapter = paymentAdapter
+                }
             }
             override fun onCancelled(error: DatabaseError) {
                 try {
@@ -130,6 +133,7 @@ class paymentFragment : Fragment() {
     }
 
     private fun PaiedProcess() {
+        val currentTime = System.currentTimeMillis()
         checkoutRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (data in snapshot.children) {
@@ -138,12 +142,16 @@ class paymentFragment : Fragment() {
                     val price = data.child("artPrice").getValue(String::class.java)
                     val uid = data.child("uid").getValue(String::class.java)
 
+                    //auto date generate
+
+
                     // Create a HashMap of the data
                     val artworkData = HashMap<String, Any>()
                     artworkData["artName"] = name!!
                     artworkData["artImage"] = image!!
                     artworkData["artPrice"] = price!!
                     artworkData["uid"] = uid!!
+                    artworkData["currentTime"] = "${currentTime}"
                     artworkData["status"] = "Completed"
 
                     // Add the data to the paid database

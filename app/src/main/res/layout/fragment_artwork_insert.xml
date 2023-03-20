@@ -89,8 +89,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/product_image"
         android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="@+id/textViewSelectedDate"
-        app:layout_constraintTop_toBottomOf="@+id/date_picker" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAuthor" />
 
     <TextView
         android:id="@+id/textView_description"
@@ -155,7 +155,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_productImage" />
 
 
-    <DatePicker
+<!--    <DatePicker
         android:id="@+id/date_picker"
         android:layout_width="221dp"
         android:layout_height="70dp"
@@ -182,7 +182,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />-->
 
 
 

@@ -173,7 +173,6 @@ class FragmentBidSellerForm : Fragment() {
     private fun createProduct(uploadedImageUrl: String) {
 
         progressDialog.show()
-
         val expirationTime = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(60)
 
         //val initialTime = 300
@@ -228,9 +227,7 @@ class FragmentBidSellerForm : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnAdd.setOnClickListener {
-
             validateData()
-
         }
 
         binding.imageAdd.setOnClickListener {
