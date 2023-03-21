@@ -82,8 +82,12 @@ class ViewReturn : Fragment() {
                 val context = context
                 if (context != null) {
 
-                    adapterReturn = AdapterReturn(context!!, showReturnList)
+                    val user = firebaseAuth.currentUser
+                    val uid = user!!.uid
 
+                    val filteredList = showReturnList.filter { it.uid == uid }
+
+                    adapterReturn = AdapterReturn(context!!, filteredList as ArrayList<ModelReturnNN>)
                     recyclerView.adapter = adapterReturn
                 }
             }

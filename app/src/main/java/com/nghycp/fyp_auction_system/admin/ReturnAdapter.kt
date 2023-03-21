@@ -85,6 +85,10 @@ class ReturnAdapter : RecyclerView.Adapter<ReturnAdapter.HolderBid> {
 
                 .addOnSuccessListener {
                     Toast.makeText(context,"Updated", Toast.LENGTH_SHORT).show()
+
+                    binding.btnAcpt.isVisible = false
+                    binding.btnDenied.isVisible = false
+
                 }
                 .addOnFailureListener {
                     Toast.makeText(context,"", Toast.LENGTH_SHORT).show()
