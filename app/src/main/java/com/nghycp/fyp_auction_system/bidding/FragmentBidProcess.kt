@@ -3,6 +3,7 @@ package com.nghycp.fyp_auction_system.bidding
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -210,16 +211,23 @@ class FragmentBidProcess : Fragment() {
                 val PID = args?.get("PID").toString()
 
                 val showRef = FirebaseDatabase.getInstance().getReference("Bid")
-                val ref2 = showRef.child(PID).orderByChild(uid).limitToLast(1)
+                val ref2 = showRef.child(PID)
+
+                var highest = 0
+                var highestBidUser : String = ""
                 ref2.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for (ds in snapshot.children) {
                             //val key2 = ds.key.toString()
-                            for (snap in ds.children) {
-                                if (PID == uid) {
-                                    binding.btnPayment.visibility = View.VISIBLE
-                                }
+                            var value = ds.getValue() as Map <String, Object>
+                            var currBid = (value["price"] as String).toInt()
+                            if(currBid >= highest){
+                                highest = currBid
+                                highestBidUser = value["uid"] as String
                             }
+                        }
+                        if (highestBidUser == uid) {
+                            binding.btnPayment.visibility = View.VISIBLE
                         }
                     }
 

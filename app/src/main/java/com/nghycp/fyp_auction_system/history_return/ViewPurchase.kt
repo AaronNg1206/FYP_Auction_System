@@ -85,6 +85,7 @@ class ViewPurchase : Fragment() {
                     val filteredList = showArrayList.filter { it.uid == uid }
                     adapterHistory = AdapterHistory(context!!, filteredList as ArrayList<ModelShow>)
                     recyclerView.adapter = adapterHistory
+
                 }
             }
 
