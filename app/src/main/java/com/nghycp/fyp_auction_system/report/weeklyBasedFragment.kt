@@ -1,60 +1,86 @@
 package com.nghycp.fyp_auction_system.report
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.nghycp.fyp_auction_system.R
+import com.nghycp.fyp_auction_system.databinding.FragmentWeeklyBasedBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [weeklyBasedFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class weeklyBasedFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentWeeklyBasedBinding? = null
+    private lateinit var WeeklyReportList: ArrayList<ModelReport>
+    private val binding get() = _binding!!
+    private val weeklyViewModel: WeeklyViewModel by activityViewModels()
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var recyclerView: RecyclerView
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_weekly_based, container, false)
+
+        val weeklyViewModel =
+            ViewModelProvider(this).get(WeeklyViewModel::class.java)
+
+        _binding = FragmentWeeklyBasedBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        return root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        recyclerView = view.findViewById(R.id.RecyclerViewMonthlyReport)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.setHasFixedSize(true)
+
+        WeeklyReportList = arrayListOf<ModelReport>()
+    }
+    override fun onStart() {
+        super.onStart()
+
+        binding.button.setOnClickListener() {
+
+            val sdf = SimpleDateFormat("yyyy-MM-dd")
+            val selectedDate: String = sdf.format(getDateFromDatePicker(binding.datePicker1))
+
+            val linearLayoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
+            val context: Context = this.requireContext()
+            weeklyViewModel.loadWeeklyList(selectedDate, object: ReportCallback {
+                override fun onCallBack(value: List<ModelReport>) {
+
+                    binding.RecyclerViewMonthlyReport.adapter = ReportAdapter(value, context)
+                }
+            })
+        }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment weeklyBasedFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            weeklyBasedFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    fun getDateFromDatePicker(datePicker: DatePicker): Date? {
+        val day = datePicker.dayOfMonth
+        val month = datePicker.month
+        val year = datePicker.year
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.set(year, month, day)
+        return calendar.getTime()
     }
 }

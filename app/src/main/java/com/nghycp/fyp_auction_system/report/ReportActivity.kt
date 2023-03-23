@@ -31,7 +31,7 @@ class ReportActivity : AppCompatActivity() {
         // add fragment to the list
         adapter.addFragment(monthlyBasedFragment(), "Monthly Based")
         adapter.addFragment(weeklyBasedFragment(), "Weekly Based")
-        adapter.addFragment(pieChartFragment(), "Pie Chart")
+        //adapter.addFragment(pieChartFragment(), "Pie Chart")
 
         // Adding the Adapter to the ViewPager
         pager.adapter = adapter

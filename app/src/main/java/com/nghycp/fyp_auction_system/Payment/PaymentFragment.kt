@@ -151,7 +151,7 @@ class paymentFragment : Fragment() {
                     artworkData["artImage"] = image!!
                     artworkData["artPrice"] = price!!
                     artworkData["uid"] = uid!!
-                    artworkData["currentTime"] = "${currentTime}"
+                    artworkData["timestamp"] = "${currentTime}"
                     artworkData["status"] = "Completed"
 
                     // Add the data to the paid database

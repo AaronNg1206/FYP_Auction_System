@@ -42,7 +42,6 @@ class artworkDetailsFragment : Fragment() {
 
         binding.buttonAddToCart.setOnClickListener {
 
-
             addRecord()
         }
     }
@@ -124,7 +123,7 @@ class artworkDetailsFragment : Fragment() {
         hashMap["uid"] = "${firebaseAuth.uid}"
         hashMap["artImage"] = image
 
-
+        //if()
         val newId = ref.push().key!!
         ref.child(newId)
             .setValue(hashMap)

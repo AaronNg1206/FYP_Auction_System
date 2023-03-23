@@ -12,8 +12,7 @@ class ModelReport {
     var artImage:String= ""
     var uid:String = ""
     var imageURL: String = ""
-    var date : String = ""
-    var isChecked: Boolean = false
+    var timestamp : String = ""
 
     constructor()
 
@@ -27,7 +26,7 @@ class ModelReport {
         imageURL: String,
         isChecked :Boolean,
         id: String = "",
-        date: String,
+        timestamp: String,
     ){
         this.id = id
         this.artAuthor = artAuthor
@@ -37,7 +36,6 @@ class ModelReport {
         this.artImage = artImage
         this.uid = uid
         this.imageURL = imageURL
-        this.isChecked = isChecked
-        this.date = date
+        this.timestamp = timestamp
     }
 }
