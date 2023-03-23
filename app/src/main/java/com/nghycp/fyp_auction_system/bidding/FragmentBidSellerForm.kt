@@ -173,7 +173,7 @@ class FragmentBidSellerForm : Fragment() {
     private fun createProduct(uploadedImageUrl: String) {
 
         progressDialog.show()
-        val expirationTime = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(60)
+        val expirationTime = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(3)
 
         //val initialTime = 300
 

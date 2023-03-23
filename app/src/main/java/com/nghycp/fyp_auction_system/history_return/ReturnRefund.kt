@@ -17,7 +17,6 @@ import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentReturnRefundBinding
 import com.nghycp.fyp_auction_system.databinding.FragmentViewPurchaseBinding
-import kotlinx.android.synthetic.main.adminviewreturn.*
 import kotlinx.android.synthetic.main.fragment_return_refund.*
 
 
@@ -118,6 +117,7 @@ class ReturnRefund : Fragment() {
         hashMap["priceArt"] = price
         hashMap["imageArt"] = img
         hashMap["status"] = "Pending"
+        hashMap["refundStatus"]
 
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("Return").push()

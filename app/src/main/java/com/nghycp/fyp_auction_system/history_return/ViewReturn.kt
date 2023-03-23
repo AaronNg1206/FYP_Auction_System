@@ -56,7 +56,6 @@ class ViewReturn : Fragment() {
 
         showReturnList = arrayListOf<ModelReturnNN>()
 
-
         loadShow()
 
     }
