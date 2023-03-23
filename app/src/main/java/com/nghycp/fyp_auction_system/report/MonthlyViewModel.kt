@@ -20,17 +20,19 @@ class MonthlyViewModel(application: Application) :
         val cal = Calendar.getInstance()
         cal.setTime(fdate)
         cal.add(Calendar.DATE, -30)
+        //cal.add(Calendar.MONTH, "")
+        cal.add(Calendar.YEAR, 0)
         val dateBefore30Days = cal.time.time
 
 
-   /*     val cal2 = Calendar.getInstance()
+       val cal2 = Calendar.getInstance()
         cal2.setTime(fdate)
         cal2.add(Calendar.DATE, 1)
-        val dateTmr = cal.time.time*/
+        val dateTmr = cal.time.time
 
         val databaseReference =  database.getReference("paid")
             .orderByChild("timestamp").startAt(dateBefore30Days.toString())
-            .endAt(fdate.toString())
+            .endAt(dateTmr.toString())
 
         databaseReference.get().addOnCompleteListener {
             if (it.isSuccessful) {

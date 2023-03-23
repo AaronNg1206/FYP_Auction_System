@@ -2,6 +2,7 @@ package com.nghycp.fyp_auction_system.report
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentWeeklyBasedBinding
 import java.text.SimpleDateFormat
@@ -68,6 +74,7 @@ class weeklyBasedFragment : Fragment() {
                     binding.RecyclerViewMonthlyReport.adapter = ReportAdapter(value, context)
                 }
             })
+            totalCal()
         }
     }
     override fun onDestroyView() {
@@ -82,5 +89,32 @@ class weeklyBasedFragment : Fragment() {
         val calendar: Calendar = Calendar.getInstance()
         calendar.set(year, month, day)
         return calendar.getTime()
+    }
+
+    private fun totalCal() {
+        var total = 0.0
+        val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference("paid")
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                total = 0.0
+                for (ds in snapshot.children){
+                    val model = ds.getValue(ModelReport::class.java)
+
+                    val artPrice = model?.artPrice?.toDoubleOrNull()
+                    total += artPrice!!
+                    binding.TextViewTotalSales.text = total.toString()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                try {
+
+                }catch (e: Exception){
+                    Log.d("c",e.toString())
+                }
+
+            }
+
+        })
     }
 }

@@ -20,6 +20,7 @@ class WeeklyViewModel(application: Application) :
         val cal = Calendar.getInstance()
         cal.setTime(fdate)
         cal.add(Calendar.DATE, -7)
+
         val dateBefore7Days = cal.time.time
 
 
