@@ -42,6 +42,9 @@ class CreditCardAdapter : RecyclerView.Adapter<CreditCardAdapter.HolderCard> {
         //get data
         val model = creditCardList[position]
         val cardHolderName = model.cardHolderName
+        for (index in 2 until model.cardNumber.length - 2){
+            model.cardNumber = model.cardNumber.replaceRange(index, index + 1, "*")
+        }
         val cardNumber = model.cardNumber
         val expDate = model.expDate
         val cvv = model.cvv

@@ -68,11 +68,12 @@ class AdminShowNormal : Fragment() {
 
                     artworkList.add(model!!)
                 }
+                val context = context
+                if (context != null) {
+                    ShowNormalAdapter = ShowNormalAdapter(context!!, artworkList)
 
-                ShowNormalAdapter = ShowNormalAdapter(context!!,artworkList)
-
-                recyclerView.adapter = ShowNormalAdapter
-
+                    recyclerView.adapter = ShowNormalAdapter
+                }
 
             }
             override fun onCancelled(error: DatabaseError) {

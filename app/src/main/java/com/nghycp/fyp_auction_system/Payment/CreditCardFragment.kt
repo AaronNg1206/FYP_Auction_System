@@ -106,7 +106,7 @@ class creditCardFragment : Fragment() {
             }
         })
         if(cardHolderName.isEmpty()){
-            binding.nameEtCardAddBottomSheet.error = "Enter Your Artwork Product Name"
+            binding.nameEtCardAddBottomSheet.error = "Provide Card Holder Name"
         }
         else if (cardNumber.isEmpty()){
             binding.cardNumberCardAddBottomSheet.error = "Enter Your Description"

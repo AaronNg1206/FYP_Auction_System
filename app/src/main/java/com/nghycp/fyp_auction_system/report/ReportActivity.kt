@@ -29,9 +29,9 @@ class ReportActivity : AppCompatActivity() {
         val adapter = ViewPagerAdapter(supportFragmentManager)
 
         // add fragment to the list
-        adapter.addFragment(monthlyBasedFragment(), "Monthly Based")
-        adapter.addFragment(weeklyBasedFragment(), "Weekly Based")
-        //adapter.addFragment(pieChartFragment(), "Pie Chart")
+        adapter.addFragment(MonthlyBasedFragment(), "Monthly Based")
+        adapter.addFragment(WeeklyBasedFragment(), "Weekly Based")
+        adapter.addFragment(BarChartFragment(), "Bar Chart")
 
         // Adding the Adapter to the ViewPager
         pager.adapter = adapter

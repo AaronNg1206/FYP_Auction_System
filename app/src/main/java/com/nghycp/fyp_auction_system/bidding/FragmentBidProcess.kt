@@ -325,6 +325,7 @@ class FragmentBidProcess : Fragment() {
         val hashMap = HashMap<String, Any>()
         hashMap["artName"] = name
         hashMap["artImage"] = image
+        Log.d("ABC",currentPrice)
         hashMap["artPrice"] = price
         hashMap["uid"] = "${firebaseAuth.uid}"
         ref.child(PID)

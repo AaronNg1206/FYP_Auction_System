@@ -172,7 +172,7 @@ class ArtworkInsertFragment : Fragment() {
         progressDialog.setMessage("Uploading Profile image")
         progressDialog.show()
 
-        val filePathAndName = "ProfileImages/"+ firebaseAuth.uid
+        val filePathAndName = "ArtworkImages/"+ firebaseAuth.uid
         val reference = Firebase.storage("gs://artwork-e6a68.appspot.com").getReference(filePathAndName)
         reference.putFile(imageUri!!)
             .addOnSuccessListener { takeSnapshot->

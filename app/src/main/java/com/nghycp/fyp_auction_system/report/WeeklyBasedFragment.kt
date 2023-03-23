@@ -19,33 +19,31 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.nghycp.fyp_auction_system.R
-import com.nghycp.fyp_auction_system.customer.ModelArtwork
-import com.nghycp.fyp_auction_system.customer.cartAdapter
-import com.nghycp.fyp_auction_system.databinding.FragmentMonthlyBasedBinding
-
+import com.nghycp.fyp_auction_system.databinding.FragmentWeeklyBasedBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class monthlyBasedFragment : Fragment() {
 
-    private var _binding: FragmentMonthlyBasedBinding? = null
-    private lateinit var MonthlyReportList: ArrayList<ModelReport>
+class WeeklyBasedFragment : Fragment() {
+
+    private var _binding: FragmentWeeklyBasedBinding? = null
+    private lateinit var WeeklyReportList: ArrayList<ModelReport>
     private val binding get() = _binding!!
-    private val monthlyViewModel: MonthlyViewModel by activityViewModels()
-    private lateinit var reportAdapter: ReportAdapter
+    private val weeklyViewModel: WeeklyViewModel by activityViewModels()
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var recyclerView: RecyclerView
 
+
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
 
-        val monthlyViewModel =
-            ViewModelProvider(this).get(MonthlyViewModel::class.java)
+        val weeklyViewModel =
+            ViewModelProvider(this).get(WeeklyViewModel::class.java)
 
-        _binding = FragmentMonthlyBasedBinding.inflate(inflater, container, false)
+        _binding = FragmentWeeklyBasedBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
@@ -58,9 +56,7 @@ class monthlyBasedFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
 
-        MonthlyReportList = arrayListOf<ModelReport>()
-
-
+        WeeklyReportList = arrayListOf<ModelReport>()
     }
     override fun onStart() {
         super.onStart()
@@ -72,7 +68,7 @@ class monthlyBasedFragment : Fragment() {
 
             val linearLayoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
             val context: Context = this.requireContext()
-            monthlyViewModel.loadRecordList(selectedDate, object: ReportCallback {
+            weeklyViewModel.loadWeeklyList(selectedDate, object: ReportCallback {
                 override fun onCallBack(value: List<ModelReport>) {
 
                     binding.RecyclerViewMonthlyReport.adapter = ReportAdapter(value, context)
@@ -81,7 +77,6 @@ class monthlyBasedFragment : Fragment() {
             totalCal()
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -95,6 +90,7 @@ class monthlyBasedFragment : Fragment() {
         calendar.set(year, month, day)
         return calendar.getTime()
     }
+
     private fun totalCal() {
         var total = 0.0
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
@@ -121,6 +117,4 @@ class monthlyBasedFragment : Fragment() {
 
         })
     }
-
-
 }

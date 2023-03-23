@@ -79,8 +79,8 @@
     <fragment
         android:id="@+id/fragmentArtworkDisplay"
         android:name="com.nghycp.fyp_auction_system.ArtworkDisplayFragment"
-        android:label="fragment_artwork_display"
-        tools:layout="@layout/fragment_artwork_display" >
+        android:label="Browse"
+        tools:layout="@layout/fragment_artwork_display">
         <action
             android:id="@+id/action_fragmentArtworkDisplay_to_artworkDetailsFragment"
             app:destination="@id/artworkDetailsFragment" />
@@ -88,8 +88,8 @@
     <fragment
         android:id="@+id/artworkDetailsFragment"
         android:name="com.nghycp.fyp_auction_system.customer.artworkDetailsFragment"
-        android:label="fragment_artwork_details"
-        tools:layout="@layout/fragment_artwork_details" >
+        android:label="Detail Artwork"
+        tools:layout="@layout/fragment_artwork_details">
         <action
             android:id="@+id/action_artworkDetailsFragment_to_addToCartFragment"
             app:destination="@id/addToCartFragment" />
@@ -109,8 +109,8 @@
     <fragment
         android:id="@+id/addToCartFragment"
         android:name="com.nghycp.fyp_auction_system.customer.addToCartFragment"
-        android:label="fragment_add_to_cart"
-        tools:layout="@layout/fragment_add_to_cart" >
+        android:label="Artwork Cart"
+        tools:layout="@layout/fragment_add_to_cart">
         <action
             android:id="@+id/action_addToCartFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
@@ -118,8 +118,8 @@
     <fragment
         android:id="@+id/paymentFragment"
         android:name="com.nghycp.fyp_auction_system.Payment.paymentFragment"
-        android:label="fragment_payment"
-        tools:layout="@layout/fragment_payment" >
+        android:label="Payment"
+        tools:layout="@layout/fragment_payment">
         <action
             android:id="@+id/action_paymentFragment_to_creditCardFragment"
             app:destination="@id/creditCardFragment" />
@@ -127,8 +127,8 @@
     <fragment
         android:id="@+id/creditCardFragment"
         android:name="com.nghycp.fyp_auction_system.Payment.creditCardFragment"
-        android:label="fragment_credit_card"
-        tools:layout="@layout/fragment_credit_card" >
+        android:label="Credit Card "
+        tools:layout="@layout/fragment_credit_card">
         <action
             android:id="@+id/action_creditCardFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
