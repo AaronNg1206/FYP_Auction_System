@@ -128,7 +128,7 @@ class creditCardFragment : Fragment() {
         hashMap["cvv"] = cvv
         hashMap["id"]= newID
         hashMap["uid"] = "${firebaseAuth.uid}"
-        ref.child("${firebaseAuth.uid}")
+        ref.child(newID)
             .setValue(hashMap)
             .addOnSuccessListener {
                 progressDialog.dismiss()

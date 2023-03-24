@@ -41,17 +41,14 @@ class MonthlyBasedFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         val monthlyViewModel =
             ViewModelProvider(this).get(MonthlyViewModel::class.java)
-
         _binding = FragmentMonthlyBasedBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         firebaseAuth = FirebaseAuth.getInstance()
         recyclerView = view.findViewById(R.id.RecyclerViewMonthlyReport)
@@ -60,30 +57,25 @@ class MonthlyBasedFragment : Fragment() {
 
         MonthlyReportList = arrayListOf<ModelReport>()
 
-
     }
     override fun onStart() {
         super.onStart()
-
         binding.button.setOnClickListener() {
-
             val sdf = SimpleDateFormat("yyyy-MM-dd")
             val selectedDate: String = sdf.format(getDateFromDatePicker(binding.datePicker1))
 
-            //val linearLayoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
+            val linearLayoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
             val context: Context = this.requireContext()
             monthlyViewModel.loadRecordList(selectedDate, object: ReportCallback {
                 override fun onCallBack(value: List<ModelReport>) {
                     binding.RecyclerViewMonthlyReport.adapter = ReportAdapter(value, context)
-
-
+                    val total = value.sumBy { it.artPrice.toInt() }
+                    binding.TextViewTotalSales.text = "RM$total"
                 }
             })
 
-            totalCal()
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -97,32 +89,9 @@ class MonthlyBasedFragment : Fragment() {
         calendar.set(year, month, day)
         return calendar.getTime()
     }
-    private fun totalCal() {
-        var total = 0.0
-        val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("paid")
-        ref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                total = 0.0
-                for (ds in snapshot.children){
-                    val model = ds.getValue(ModelReport::class.java)
 
-                    val artPrice = model?.artPrice?.toDoubleOrNull()
-                    total += artPrice!!
-                    binding.TextViewTotalSales.text = total.toString()
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-                try {
 
-                }catch (e: Exception){
-                    Log.d("c",e.toString())
-                }
 
-            }
-
-        })
-    }
 
 
 }

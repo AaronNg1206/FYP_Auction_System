@@ -40,7 +40,7 @@ class paymentFragment : Fragment() {
     val artCartRef = database.getReference("artCart")
     val checkoutRef = database.getReference("Checkout")
     val paidRef = database.getReference("paid")
-
+    val artworkRef = database.getReference("artwork")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -141,10 +141,6 @@ class paymentFragment : Fragment() {
                     val image = data.child("artImage").getValue(String::class.java)
                     val price = data.child("artPrice").getValue(String::class.java)
                     val uid = data.child("uid").getValue(String::class.java)
-
-                    //auto date generate
-
-
                     // Create a HashMap of the data
                     val artworkData = HashMap<String, Any>()
                     artworkData["artName"] = name!!
@@ -163,6 +159,7 @@ class paymentFragment : Fragment() {
 
                     checkoutRef.child(data.key!!).removeValue()
                     artCartRef.child(data.key!!).removeValue()
+                    artworkRef.child(data.key!!).removeValue()
 
                     Toast.makeText(context,"Payment Was successful", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.fragmentUserHomePage)

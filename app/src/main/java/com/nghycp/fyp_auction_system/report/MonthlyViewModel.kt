@@ -8,7 +8,6 @@ import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 class MonthlyViewModel(application: Application) :
     AndroidViewModel(application) {
 
@@ -18,23 +17,18 @@ class MonthlyViewModel(application: Application) :
         val fdate = formatter.parse(date)
 
         val cal = Calendar.getInstance()
-        cal.setTime(fdate)
+        cal.time = fdate
         cal.add(Calendar.DATE, -30)
-        //cal.add(Calendar.MONTH, "")
-        cal.add(Calendar.YEAR, 0)
         val dateBefore30Days = cal.time.time
 
-
        val cal2 = Calendar.getInstance()
-        cal2.setTime(fdate)
+        cal2.time = fdate
         cal2.add(Calendar.DATE, 1)
-        val dateTmr = cal.time.time
+        val dateTmr = cal2.time.time
 
         val databaseReference =  database.getReference("paid")
             .orderByChild("timestamp").startAt(dateBefore30Days.toString())
             .endAt(dateTmr.toString())
-        Log.d("ABC",dateTmr.toString())
-        Log.d("ABC",dateBefore30Days.toString())
         databaseReference.get().addOnCompleteListener {
             if (it.isSuccessful) {
                 val report = it.result.children.mapNotNull { doc ->
@@ -47,4 +41,5 @@ class MonthlyViewModel(application: Application) :
             }
         }
     }
+
 }
