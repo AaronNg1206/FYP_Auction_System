@@ -147,15 +147,12 @@ class CustomerUpdateArtwork : Fragment() {
                     // Multiple images selected
                     for (i in 0 until data.clipData!!.itemCount) {
                         imageUri = data.clipData!!.getItemAt(i).uri
-                        // Do something with each selected image URI
-                        //binding.imageAdd.setImageURI(imageUri)
+
                     }
                 }
                 /*  else {
                       // Single image selected
-                      imageUri = data?.data
-                      // Do something with selected image URI
-                      binding.imageAdd.setImageURI(imageUri)
+
                   }*/
 
                 binding.imageViewartwork.setImageURI(imageUri)
@@ -167,7 +164,7 @@ class CustomerUpdateArtwork : Fragment() {
     )
 
     private fun uploadImage() {
-        progressDialog.setMessage("Uploading Profile image")
+        progressDialog.setMessage("Uploading Artwork image")
         progressDialog.show()
         val filePathAndName = "ArtworkImages/"+ firebaseAuth.uid
         val reference = Firebase.storage("gs://artwork-e6a68.appspot.com").getReference(filePathAndName)
@@ -229,6 +226,7 @@ class CustomerUpdateArtwork : Fragment() {
             Log.d("updateOriImage", image.toString())
             hashMap["artImage"] = image.toString()
         }else{
+            Log.d("updateOriImage", uploadedImageUrl)
             hashMap["artImage"] = uploadedImageUrl
         }
 

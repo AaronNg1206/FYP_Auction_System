@@ -70,14 +70,16 @@ class MonthlyBasedFragment : Fragment() {
             val sdf = SimpleDateFormat("yyyy-MM-dd")
             val selectedDate: String = sdf.format(getDateFromDatePicker(binding.datePicker1))
 
-            val linearLayoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
+            //val linearLayoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
             val context: Context = this.requireContext()
             monthlyViewModel.loadRecordList(selectedDate, object: ReportCallback {
                 override fun onCallBack(value: List<ModelReport>) {
-
                     binding.RecyclerViewMonthlyReport.adapter = ReportAdapter(value, context)
+
+
                 }
             })
+
             totalCal()
         }
     }

@@ -33,7 +33,8 @@ class MonthlyViewModel(application: Application) :
         val databaseReference =  database.getReference("paid")
             .orderByChild("timestamp").startAt(dateBefore30Days.toString())
             .endAt(dateTmr.toString())
-
+        Log.d("ABC",dateTmr.toString())
+        Log.d("ABC",dateBefore30Days.toString())
         databaseReference.get().addOnCompleteListener {
             if (it.isSuccessful) {
                 val report = it.result.children.mapNotNull { doc ->

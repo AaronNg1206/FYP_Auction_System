@@ -13,6 +13,8 @@ class ModelReport {
     var uid:String = ""
     var imageURL: String = ""
     var timestamp : String = ""
+    var status : String = ""
+    var PID : String = ""
 
     constructor()
 
@@ -24,9 +26,10 @@ class ModelReport {
         artImage: String,
         uid: String,
         imageURL: String,
-        isChecked :Boolean,
         id: String = "",
         timestamp: String,
+        status : String,
+        PID : String
     ){
         this.id = id
         this.artAuthor = artAuthor
@@ -37,5 +40,7 @@ class ModelReport {
         this.uid = uid
         this.imageURL = imageURL
         this.timestamp = timestamp
+        this.status = status
+        this.PID = PID
     }
 }
