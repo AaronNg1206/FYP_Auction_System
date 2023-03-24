@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewTreeLifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -311,7 +312,6 @@ class FragmentBidProcess : Fragment() {
                 Toast.makeText(context, "Place Successful", Toast.LENGTH_SHORT).show()
                 //findNavController().navigate(R.id.action_fragmentBidProcess_to_auction)
                 binding.currentPrice.text = price
-
             }
             .addOnFailureListener {
                 progressDialog.dismiss()
@@ -340,8 +340,6 @@ class FragmentBidProcess : Fragment() {
                 Toast.makeText(context,"Failed to remove this artwork", Toast.LENGTH_SHORT).show()
             }
         findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment)
-        binding.btnPayment.visibility = View.GONE
+        binding.btnPayment.isVisible = false
     }
-
-
 }
