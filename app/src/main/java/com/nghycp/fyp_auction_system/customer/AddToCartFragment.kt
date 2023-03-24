@@ -45,7 +45,7 @@ class addToCartFragment : Fragment() {
         shoppingCart()
         binding.buttonCheckOut.setOnClickListener{
             val checkedItems = cartAdapter.getCheckedItems()
-            CheckoutCart(checkedItems)
+            checkout(checkedItems)
         }
 
         binding.buttonRemove.setOnClickListener {
@@ -84,7 +84,7 @@ class addToCartFragment : Fragment() {
 
 
 
-    private fun CheckoutCart(checkedItems :List<ModelArtwork>) {
+    private fun checkout(checkedItems :List<ModelArtwork>) {
 
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("checkout")

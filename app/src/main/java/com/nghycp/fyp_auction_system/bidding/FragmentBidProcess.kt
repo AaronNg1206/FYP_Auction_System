@@ -233,7 +233,7 @@ class FragmentBidProcess : Fragment() {
                         }
                         binding.btnPayment.setOnClickListener {
 
-                            paymentProcess()
+                           /* paymentProcess()*/
                         }
                     }
 
@@ -319,7 +319,7 @@ class FragmentBidProcess : Fragment() {
                 Toast.makeText(context, "Failed to bid this artwork", Toast.LENGTH_SHORT).show()
             }
     }
-    private fun paymentProcess() {
+    /*private fun paymentProcess() {
         val args = this.arguments
         val name = args?.get("name").toString()
         val PID = args?.get("PID").toString()
@@ -342,5 +342,5 @@ class FragmentBidProcess : Fragment() {
             }
         findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment)
         binding.btnPayment.isVisible = false
-    }
+    }*/
 }

@@ -101,6 +101,7 @@ class paymentFragment : Fragment() {
                     val model = ds.getValue(ModelArtwork::class.java)
                         model?.id = ds.key!!
                       val artPrice = model?.artPrice?.toDoubleOrNull()
+
                        total += artPrice!!
                        binding.textViewTotalPrice.text = total.toString()
                        shippingFee = when (total) {
@@ -138,6 +139,8 @@ class paymentFragment : Fragment() {
                     val image = data.child("artImage").getValue(String::class.java)
                     val price = data.child("artPrice").getValue(String::class.java)
                     val uid = data.child("uid").getValue(String::class.java)
+
+
                     // Create a HashMap of the data
                     val artworkData = HashMap<String, Any>()
                     artworkData["artName"] = name!!
@@ -150,6 +153,7 @@ class paymentFragment : Fragment() {
                     // Add the data to the paid database
                     val newID = paidRef.push().key!!
                     artworkData["PID"] = newID
+
                     paidRef.child(newID).setValue(artworkData)
 
                     // Remove the data from the checkout database
