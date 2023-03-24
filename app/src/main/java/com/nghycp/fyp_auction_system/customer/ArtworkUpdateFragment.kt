@@ -97,8 +97,8 @@ class CustomerUpdateArtwork : Fragment() {
             .into(binding.imageViewartwork)
 
         binding.buttonUpdate.setOnClickListener{
+            uploadImage()
 
-            UpdateProduct("")
         }
         binding.buttonOpenGallery.setOnClickListener {
             showImageAttchMenu()
@@ -151,13 +151,9 @@ class CustomerUpdateArtwork : Fragment() {
 
                     }
                 }
-                /*  else {
-                      // Single image selected
-
-                  }*/
-
                 binding.imageViewartwork.setImageURI(imageUri)
-                uploadImage()
+
+
             } else {
                 Toast.makeText(context, "Cancelled", Toast.LENGTH_SHORT).show()
             }
@@ -224,7 +220,9 @@ class CustomerUpdateArtwork : Fragment() {
         hashMap["artDescription"] = desc
         hashMap["artAuthor"] = author
         hashMap["artPrice"] = price
-        Log.d("uploadedImageUrl",uploadedImageUrl)
+
+
+
         if(imageUri != null){
             hashMap["artImage"] = uploadedImageUrl
         }else{
