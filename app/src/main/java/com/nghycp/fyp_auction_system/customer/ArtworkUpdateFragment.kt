@@ -105,6 +105,7 @@ class CustomerUpdateArtwork : Fragment() {
         }
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         artworkList = arrayListOf<ModelArtwork>()
@@ -164,6 +165,8 @@ class CustomerUpdateArtwork : Fragment() {
     )
 
     private fun uploadImage() {
+        val user = firebaseAuth.currentUser
+        val uid = user!!.uid
         progressDialog.setMessage("Uploading Artwork image")
         progressDialog.show()
         val filePathAndName = "ArtworkImages/"+ firebaseAuth.uid
@@ -173,6 +176,7 @@ class CustomerUpdateArtwork : Fragment() {
                 val uriTask: Task<Uri> = takeSnapshot.storage.downloadUrl
                 while (!uriTask.isSuccessful);
                 val uploadedImageUrl = "${uriTask.result}"
+
                 UpdateProduct(uploadedImageUrl)
             }
             .addOnFailureListener { e->
@@ -220,14 +224,12 @@ class CustomerUpdateArtwork : Fragment() {
         hashMap["artDescription"] = desc
         hashMap["artAuthor"] = author
         hashMap["artPrice"] = price
-
-        if (uploadedImageUrl == ""){
-            val image= args?.get("artImage")
-            Log.d("updateOriImage", image.toString())
-            hashMap["artImage"] = image.toString()
-        }else{
-            Log.d("updateOriImage", uploadedImageUrl)
+        Log.d("uploadedImageUrl",uploadedImageUrl)
+        if(imageUri != null){
             hashMap["artImage"] = uploadedImageUrl
+        }else{
+            val image= args?.get("artImage")
+            hashMap["artImage"] = image.toString()
         }
 
         var id = args?.get("id").toString()
