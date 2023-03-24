@@ -104,20 +104,6 @@ class UserHomeActivity : AppCompatActivity() {
 
         return when (item.itemId) {
 
-            R.id.action_cart ->{
-                val fragment = addToCartFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.frameLayout9, fragment)
-                    .addToBackStack(null).commit()
-                //NavHostFragment.findNavController(this).navigate(R.id.action_fragmentUserHomePage_to_addToCartFragment2)
-                //Toast.makeText(this,"errorCheck",Toast.LENGTH_SHORT).show()
-                true
-            }
-
-              //findNavController().navigate(R.id.action_fragmentUserHomePage_to_addToCartFragment2)
-                //findNavController().navigate(R.id.action_fragmentUserHomePage_to_addToCartFragment2)
-
-
-
 
             R.id.action_logout -> {
                 val intent = Intent(this, FragmentLoginBinding::class.java)

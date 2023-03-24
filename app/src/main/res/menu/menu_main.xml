@@ -4,13 +4,6 @@
     tools:context="com.nghycp.fyp_auction_system.MainActivity">
 
     <item
-        android:id="@+id/action_cart"
-        android:actionLayout="@layout/fragment_add_to_cart"
-        android:enabled="true"
-        android:orderInCategory="100"
-        android:title="@string/Cart" />
-
-    <item
         android:id="@+id/action_logout"
         android:orderInCategory="101"
         android:title="@string/log_out"
