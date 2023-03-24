@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toStartOf="@+id/TextViewTotalSales"
         app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/TextViewTotalSales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -18,16 +18,14 @@ class WeeklyViewModel(application: Application) :
         val fdate = formatter.parse(date)
 
         val cal = Calendar.getInstance()
-        cal.setTime(fdate)
+        cal.time = fdate
         cal.add(Calendar.DATE, -7)
-
         val dateBefore7Days = cal.time.time
 
-
         val cal2 = Calendar.getInstance()
-        cal2.setTime(fdate)
+        cal2.time = fdate
         cal2.add(Calendar.DATE, 1)
-        val dateTmr = cal.time.time
+        val dateTmr = cal2.time.time
 
         val databaseReference =  database.getReference("paid")
             .orderByChild("timestamp").startAt(dateBefore7Days.toString())
@@ -44,5 +42,7 @@ class WeeklyViewModel(application: Application) :
                 Toast.makeText(getApplication(), it.exception?.message.toString(), Toast.LENGTH_LONG).show()
             }
         }
+
+
     }
 }

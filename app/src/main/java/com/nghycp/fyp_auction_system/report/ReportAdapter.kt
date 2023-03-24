@@ -21,8 +21,6 @@ class ReportAdapter(monthlyReportList: List<ModelReport>, context: Context)
     var monthlyReportList: List<ModelReport>
     private lateinit var binding: FragmentMonthlyReportLayoutBinding
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderArtwork {
         binding = FragmentMonthlyReportLayoutBinding.inflate(LayoutInflater.from(context),parent,false)
         return HolderArtwork(binding.root)
@@ -47,7 +45,6 @@ class ReportAdapter(monthlyReportList: List<ModelReport>, context: Context)
         holder.name.text = name
         holder.price.text= price
         Glide.with(context).load(image).into(holder.image)
-
     }
     init {
         this.monthlyReportList = monthlyReportList
