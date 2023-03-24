@@ -155,9 +155,6 @@ class ArtworkInsertFragment : Fragment() {
                 }
                 /*  else {
                       // Single image selected
-                      imageUri = data?.data
-                      // Do something with selected image URI
-                      binding.imageAdd.setImageURI(imageUri)
                   }*/
 
                 binding.imageAdd.setImageURI(imageUri)
@@ -167,11 +164,8 @@ class ArtworkInsertFragment : Fragment() {
         }
     )
     private fun uploadImage() {
-
-
-        progressDialog.setMessage("Uploading Profile image")
+        progressDialog.setMessage("Uploading Artwork image")
         progressDialog.show()
-
         val filePathAndName = "ArtworkImages/"+ firebaseAuth.uid
         val reference = Firebase.storage("gs://artwork-e6a68.appspot.com").getReference(filePathAndName)
         reference.putFile(imageUri!!)

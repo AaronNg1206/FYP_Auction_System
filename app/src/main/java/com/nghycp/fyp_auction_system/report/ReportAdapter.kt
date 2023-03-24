@@ -35,31 +35,17 @@ class ReportAdapter(monthlyReportList: List<ModelReport>, context: Context)
         var name : TextView = binding.artName
         var price : TextView = binding.artPrice
         var image : ImageView = binding.artImage
-        //var currentTime : Time = binding.currenTime
     }
-    private fun getDateTime(s: String): Date {
-        try {
-            val sdf = SimpleDateFormat("yyyy-MM-dd")
-            val netDate = Date(s.toLong())
-            return sdf.parse(sdf.format(netDate))
-        } catch (e: Exception) {
-            return Date()
-        }
-    }
+
     override fun onBindViewHolder(holder: HolderArtwork, position: Int) {
         //get data
         val model = monthlyReportList[position]
-        val author = model.artAuthor
-        val description = model.artDescription
         val name = model.artName
         val image = model.artImage
         val price = model.artPrice
-        val id = model.id
-        val timestamp = model.timestamp
 
         holder.name.text = name
         holder.price.text= price
-
         Glide.with(context).load(image).into(holder.image)
 
     }

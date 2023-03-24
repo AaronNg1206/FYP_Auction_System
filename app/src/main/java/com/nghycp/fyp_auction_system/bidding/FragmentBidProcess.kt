@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewTreeLifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -236,9 +237,7 @@ class FragmentBidProcess : Fragment() {
                     }
                 })
 
-                binding.btnPayment.setOnClickListener {
-                    paymentProcess()
-                }
+
             }
         }.start()
 
@@ -251,7 +250,10 @@ class FragmentBidProcess : Fragment() {
         binding.btnPlace.setOnClickListener {
             validateBid()
         }
+        binding.btnPayment.setOnClickListener {
 
+            paymentProcess(price as String)
+        }
     }
 
 
@@ -309,14 +311,16 @@ class FragmentBidProcess : Fragment() {
                 Toast.makeText(context, "Place Successful", Toast.LENGTH_SHORT).show()
                 //findNavController().navigate(R.id.action_fragmentBidProcess_to_auction)
                 binding.currentPrice.text = price
+
             }
             .addOnFailureListener {
                 progressDialog.dismiss()
                 Toast.makeText(context, "Failed to bid this artwork", Toast.LENGTH_SHORT).show()
             }
     }
-    private fun paymentProcess() {
+    private fun paymentProcess(price :String) {
         val args = this.arguments
+        val name = args?.get("name").toString()
         val PID = args?.get("PID").toString()
         val image = args?.get("img").toString()
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
@@ -325,7 +329,6 @@ class FragmentBidProcess : Fragment() {
         val hashMap = HashMap<String, Any>()
         hashMap["artName"] = name
         hashMap["artImage"] = image
-        Log.d("ABC",currentPrice)
         hashMap["artPrice"] = price
         hashMap["uid"] = "${firebaseAuth.uid}"
         ref.child(PID)
@@ -337,6 +340,7 @@ class FragmentBidProcess : Fragment() {
                 Toast.makeText(context,"Failed to remove this artwork", Toast.LENGTH_SHORT).show()
             }
         findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment)
+        binding.btnPayment.visibility = View.GONE
     }
 
 
