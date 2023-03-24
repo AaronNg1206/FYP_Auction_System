@@ -38,9 +38,8 @@ class paymentFragment : Fragment() {
 
     val database = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
     val artCartRef = database.getReference("artCart")
-    val checkoutRef = database.getReference("Checkout")
+    val checkoutRef = database.getReference("checkout")
     val paidRef = database.getReference("paid")
-    val artworkRef = database.getReference("artwork")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,8 +53,6 @@ class paymentFragment : Fragment() {
         progressDialog.setCanceledOnTouchOutside(false)
 
         shoppingCart()
-
-
 
         return binding.root
 
@@ -157,9 +154,9 @@ class paymentFragment : Fragment() {
 
                     // Remove the data from the checkout database
 
-                    checkoutRef.child(data.key!!).removeValue()
+                   checkoutRef.child(data.key!!).removeValue()
                     artCartRef.child(data.key!!).removeValue()
-                    artworkRef.child(data.key!!).removeValue()
+
 
                     Toast.makeText(context,"Payment Was successful", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.fragmentUserHomePage)

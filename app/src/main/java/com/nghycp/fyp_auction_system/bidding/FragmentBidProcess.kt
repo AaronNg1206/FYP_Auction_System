@@ -231,6 +231,10 @@ class FragmentBidProcess : Fragment() {
                         if (highestBidUser == uid) {
                             binding.btnPayment.visibility = View.VISIBLE
                         }
+                        binding.btnPayment.setOnClickListener {
+
+                            paymentProcess()
+                        }
                     }
 
                     override fun onCancelled(error: DatabaseError) {
@@ -251,10 +255,7 @@ class FragmentBidProcess : Fragment() {
         binding.btnPlace.setOnClickListener {
             validateBid()
         }
-        binding.btnPayment.setOnClickListener {
 
-            paymentProcess(price as String)
-        }
     }
 
 
@@ -318,18 +319,18 @@ class FragmentBidProcess : Fragment() {
                 Toast.makeText(context, "Failed to bid this artwork", Toast.LENGTH_SHORT).show()
             }
     }
-    private fun paymentProcess(price :String) {
+    private fun paymentProcess() {
         val args = this.arguments
         val name = args?.get("name").toString()
         val PID = args?.get("PID").toString()
         val image = args?.get("img").toString()
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("Checkout")
-        ref.removeValue()
+            .getReference("checkout")
+
         val hashMap = HashMap<String, Any>()
         hashMap["artName"] = name
         hashMap["artImage"] = image
-        hashMap["artPrice"] = price
+        hashMap["artPrice"] = binding.currentPrice.text.toString()
         hashMap["uid"] = "${firebaseAuth.uid}"
         ref.child(PID)
             .setValue(hashMap)

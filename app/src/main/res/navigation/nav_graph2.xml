@@ -84,6 +84,9 @@
         <action
             android:id="@+id/action_fragmentArtworkDisplay_to_artworkDetailsFragment"
             app:destination="@id/artworkDetailsFragment" />
+        <action
+            android:id="@+id/action_fragmentArtworkDisplay_to_fragmentUserHomePage"
+            app:destination="@id/fragmentUserHomePage" />
     </fragment>
     <fragment
         android:id="@+id/artworkDetailsFragment"

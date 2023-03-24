@@ -98,7 +98,6 @@ class CustomerUpdateArtwork : Fragment() {
 
         binding.buttonUpdate.setOnClickListener{
             uploadImage()
-
         }
         binding.buttonOpenGallery.setOnClickListener {
             showImageAttchMenu()

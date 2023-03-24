@@ -87,25 +87,23 @@ class addToCartFragment : Fragment() {
     private fun CheckoutCart(checkedItems :List<ModelArtwork>) {
 
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("Checkout")
-        ref.removeValue()
+            .getReference("checkout")
+
+        //ref.removeValue()
 
         val hashMap = HashMap<String, Any>()
         val args = this.arguments
-        val id = args?.get("id")
+        //val id = args?.get("id")
         for (itemCheckOut in checkedItems){
             hashMap["artName"] = itemCheckOut.artName
             hashMap["artImage"] = itemCheckOut.artImage
             hashMap["artPrice"] = itemCheckOut.artPrice
-            //hashMap["id"]= id
             hashMap["uid"] = "${firebaseAuth.uid}"
 
             ref.child(itemCheckOut.id)
                 .setValue(hashMap)
                 .addOnSuccessListener{
-
                     Toast.makeText(context," Proceed to checkout", Toast.LENGTH_SHORT).show()
-
                 }
                 .addOnCanceledListener {  ->
                     Toast.makeText(context,"Failed to remove this artwork", Toast.LENGTH_SHORT).show()
