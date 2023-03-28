@@ -3,6 +3,7 @@ package com.nghycp.fyp_auction_system.customer
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.Display
 import android.view.LayoutInflater
 import android.view.View
@@ -60,7 +61,6 @@ class cartAdapter : RecyclerView.Adapter<cartAdapter.HolderArtwork>{
         val price = model.artPrice
         val checkBox = model.isChecked
 
-
         //set data
         holder.name.text = name
         holder.price.text= price
@@ -73,11 +73,13 @@ class cartAdapter : RecyclerView.Adapter<cartAdapter.HolderArtwork>{
         holder.checkBox.setOnCheckedChangeListener { _, isChecked ->
             model.isChecked = isChecked
             if (isChecked) {
+
                 checkedCheckBox.add(model)
             } else {
                 checkedCheckBox.remove(model)
             }
         }
+
 
     }
 

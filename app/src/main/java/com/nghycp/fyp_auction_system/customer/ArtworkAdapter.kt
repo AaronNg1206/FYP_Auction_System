@@ -57,7 +57,7 @@ class ArtworkAdapter: RecyclerView.Adapter<ArtworkAdapter.HolderArtwork>{
 
         Glide.with(context).load(image).into(holder.image)
         holder.image.setOnClickListener {
-            val fragment1 = addToCartFragment()
+
             val fragment = artworkDetailsFragment()
             val args = Bundle()
             args.putString("id", id)
@@ -67,10 +67,8 @@ class ArtworkAdapter: RecyclerView.Adapter<ArtworkAdapter.HolderArtwork>{
             args.putString("artPrice", price)
             args.putString("artImage", image)
             args.putString("artName", name)
-           /* Log.d("cccc", model.id)
-            Log.d("cccc", model.artName)*/
-            fragment.setArguments(args)
-            fragment1.arguments = args
+            fragment.arguments = args
+
             Navigation.findNavController(holder.image).navigate(R.id.action_fragmentArtworkDisplay_to_artworkDetailsFragment,args)
         }
 

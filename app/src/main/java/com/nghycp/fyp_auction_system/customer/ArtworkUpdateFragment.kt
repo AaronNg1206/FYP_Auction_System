@@ -97,10 +97,11 @@ class CustomerUpdateArtwork : Fragment() {
             .into(binding.imageViewartwork)
 
         binding.buttonUpdate.setOnClickListener{
-            uploadImage()
+            UpdateProduct("")
         }
         binding.buttonOpenGallery.setOnClickListener {
             showImageAttchMenu()
+
         }
         return binding.root
     }
@@ -153,10 +154,13 @@ class CustomerUpdateArtwork : Fragment() {
                 binding.imageViewartwork.setImageURI(imageUri)
 
 
+
             } else {
                 Toast.makeText(context, "Cancelled", Toast.LENGTH_SHORT).show()
             }
+            uploadImage()
         }
+
     )
 
     private fun uploadImage() {

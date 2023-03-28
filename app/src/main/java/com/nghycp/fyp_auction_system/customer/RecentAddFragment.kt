@@ -85,7 +85,14 @@ class RecentAddFragment : Fragment() {
                     }
                 }
             }
-            override fun onCancelled(error: DatabaseError) {}
+            override fun onCancelled(error: DatabaseError) {
+
+                try {
+
+                } catch (e : Exception){
+                    Log.d("Debug","")
+                }
+            }
         })
     }
 }

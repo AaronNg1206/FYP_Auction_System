@@ -30,16 +30,20 @@ class paymentFragment : Fragment() {
     private lateinit var paymentList: ArrayList<ModelArtwork>
     private lateinit var paidList: ArrayList<ModelArtwork>
     private lateinit var paymentAdapter: paymentAdapter
+    private var CartID: String? = ""
     //private lateinit var paidAdapter: paidAdapter
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var RecyclerViewPayment: RecyclerView
     private lateinit var progressDialog: ProgressDialog
 
 
-    val database = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
+    val database =
+        Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
     val artCartRef = database.getReference("artCart")
     val checkoutRef = database.getReference("checkout")
     val paidRef = database.getReference("paid")
+    val artRef = database.getReference("artwork")
+    val bidRef = database.getReference("Product")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,18 +71,18 @@ class paymentFragment : Fragment() {
         RecyclerViewPayment.setHasFixedSize(true)
 
         val args = this.arguments
-        val CardHolderName= args?.get("cardHolderName")
+        val CardHolderName = args?.get("cardHolderName")
         val cardHolder = binding.textViewCardHolderName
         cardHolder.text = CardHolderName.toString()
 
-        binding.buttonCreditCard.setOnClickListener{
+        binding.buttonCreditCard.setOnClickListener {
             findNavController().navigate(R.id.action_paymentFragment_to_creditCardFragment)
         }
-        binding.buttonPay.setOnClickListener{
+        binding.buttonPay.setOnClickListener {
             if (CardHolderName != null) {
                 PaiedProcess()
-            }else{
-                Toast.makeText(context,"Select your payment method", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Select your payment method", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -97,22 +101,22 @@ class paymentFragment : Fragment() {
                 paymentList.clear()
                 total = 0.0
                 subTotal = 0.0
-                for (ds in snapshot.children){
+                for (ds in snapshot.children) {
                     val model = ds.getValue(ModelArtwork::class.java)
-                        model?.id = ds.key!!
-                      val artPrice = model?.artPrice?.toDoubleOrNull()
+                    model?.id = ds.key!!
+                    val artPrice = model?.artPrice?.toDoubleOrNull()
 
-                       total += artPrice!!
-                       binding.textViewTotalPrice.text = total.toString()
-                       shippingFee = when (total) {
-                           in 1.0..4999.0 -> 20.0
-                           in 5000.0..10000.0 -> 50.0
-                           in 10000.1..90000.0 -> 100.0
-                           else -> throw IllegalArgumentException("Invalid artwork price")
-                       }
-                       subTotal = shippingFee + total
-                       binding.textViewShipingFee.text = shippingFee.toString()
-                       binding.textViewSubtotal.text = subTotal.toString()
+                    total += artPrice!!
+                    binding.textViewTotalPrice.text = total.toString()
+                    shippingFee = when (total) {
+                        in 1.0..4999.0 -> 20.0
+                        in 5000.0..10000.0 -> 50.0
+                        in 10000.1..90000.0 -> 100.0
+                        else -> throw IllegalArgumentException("Invalid artwork price")
+                    }
+                    subTotal = shippingFee + total
+                    binding.textViewShipingFee.text = shippingFee.toString()
+                    binding.textViewSubtotal.text = subTotal.toString()
                     paymentList.add(model!!)
                 }
                 val context = context
@@ -121,10 +125,11 @@ class paymentFragment : Fragment() {
                     RecyclerViewPayment.adapter = paymentAdapter
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {
                 try {
-                }catch (e: Exception){
-                    Log.d("c",e.toString())
+                } catch (e: Exception) {
+                    Log.d("c", e.toString())
                 }
             }
         })
@@ -132,6 +137,7 @@ class paymentFragment : Fragment() {
 
     private fun PaiedProcess() {
         val currentTime = System.currentTimeMillis()
+        var paymentSuccessMassage = false
         checkoutRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (data in snapshot.children) {
@@ -155,22 +161,32 @@ class paymentFragment : Fragment() {
                     artworkData["PID"] = newID
 
                     paidRef.child(newID).setValue(artworkData)
-
+                    paymentSuccessMassage =true
                     // Remove the data from the checkout database
 
-                   checkoutRef.child(data.key!!).removeValue()
-                    artCartRef.child(data.key!!).removeValue()
+                   // artRef.child(data.key!!).removeValue()
 
+                }
+           /*     val args = this@paymentFragment.arguments
+                CartID = args?.get("ShopCartId") as String?
+                artCartRef.child(CartID.toString()).removeValue()
 
-                    Toast.makeText(context,"Payment Was successful", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.fragmentUserHomePage)
+                var PID = args?.get("PID")
+                bidRef.child(PID.toString()).removeValue()*/
+            }
+            override fun onCancelled(error: DatabaseError) {
+                try {
+
+                } catch (e : Exception){
+                    Log.d("Debug","")
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                // Handle any errors
-            }
+
         })
+        findNavController().navigate(R.id.fragmentUserHomePage)
 
     }
-    }
+
+
+}

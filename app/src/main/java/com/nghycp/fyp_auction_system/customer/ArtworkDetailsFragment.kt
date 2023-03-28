@@ -113,6 +113,7 @@ class artworkDetailsFragment : Fragment() {
         Glide.with(this@artworkDetailsFragment).load(image)
         progressDialog.show()
 
+        val newId = ref.push().key!!
         val hashMap = HashMap<String, Any>()
         hashMap["id"] = id
        // Log.d("abc",id)
@@ -122,9 +123,8 @@ class artworkDetailsFragment : Fragment() {
         hashMap["artAuthor"] = author
         hashMap["uid"] = "${firebaseAuth.uid}"
         hashMap["artImage"] = image
+        hashMap["cartId"]= newId
 
-        //if()
-        val newId = ref.push().key!!
         ref.child(newId)
             .setValue(hashMap)
             .addOnSuccessListener {

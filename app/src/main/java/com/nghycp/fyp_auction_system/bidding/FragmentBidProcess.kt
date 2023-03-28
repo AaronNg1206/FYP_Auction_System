@@ -232,9 +232,10 @@ class FragmentBidProcess : Fragment() {
                             binding.btnPayment.visibility = View.VISIBLE
                         }
                         binding.btnPayment.setOnClickListener {
-
-                           /* paymentProcess()*/
+                            paymentProcess()
+                            findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment)
                         }
+
                     }
 
                     override fun onCancelled(error: DatabaseError) {
@@ -319,14 +320,14 @@ class FragmentBidProcess : Fragment() {
                 Toast.makeText(context, "Failed to bid this artwork", Toast.LENGTH_SHORT).show()
             }
     }
-    /*private fun paymentProcess() {
+    private fun paymentProcess() {
         val args = this.arguments
         val name = args?.get("name").toString()
         val PID = args?.get("PID").toString()
         val image = args?.get("img").toString()
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("checkout")
-
+        ref.removeValue()
         val hashMap = HashMap<String, Any>()
         hashMap["artName"] = name
         hashMap["artImage"] = image
@@ -336,11 +337,13 @@ class FragmentBidProcess : Fragment() {
             .setValue(hashMap)
             .addOnSuccessListener{
                 Toast.makeText(context," Proceed to checkout", Toast.LENGTH_SHORT).show()
+
+
+                binding.btnPayment.isVisible = false
             }
             .addOnCanceledListener {  ->
                 Toast.makeText(context,"Failed to remove this artwork", Toast.LENGTH_SHORT).show()
             }
-        findNavController().navigate(R.id.action_fragmentBidProcess_to_paymentFragment)
-        binding.btnPayment.isVisible = false
-    }*/
+
+    }
 }

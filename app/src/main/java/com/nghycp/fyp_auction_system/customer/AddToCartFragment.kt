@@ -1,5 +1,6 @@
 package com.nghycp.fyp_auction_system.customer
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.nghycp.fyp_auction_system.Payment.paymentFragment
 import com.nghycp.fyp_auction_system.R
 import com.nghycp.fyp_auction_system.databinding.FragmentAddToCartBinding
 import kotlin.collections.ArrayList
@@ -68,7 +70,7 @@ class addToCartFragment : Fragment() {
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("artCart")
         for (itemRemove in checkedItems){
-            ref.child(itemRemove.id).removeValue()
+            ref.child(itemRemove.cartId).removeValue()
                 .addOnSuccessListener{
                     Toast.makeText(context,"Remove Successful", Toast.LENGTH_SHORT).show()
                 }
@@ -88,28 +90,41 @@ class addToCartFragment : Fragment() {
 
         val ref = Firebase.database("https://artwork-e6a68-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("checkout")
-
-        //ref.removeValue()
-
+        ref.removeValue()
+        var sucessMassage = true
         val hashMap = HashMap<String, Any>()
-        val args = this.arguments
-        //val id = args?.get("id")
         for (itemCheckOut in checkedItems){
+            val newID = ref.push().key!!
             hashMap["artName"] = itemCheckOut.artName
             hashMap["artImage"] = itemCheckOut.artImage
             hashMap["artPrice"] = itemCheckOut.artPrice
             hashMap["uid"] = "${firebaseAuth.uid}"
+            hashMap["id"] = itemCheckOut.id
+            hashMap["cartId"] = itemCheckOut.cartId
+            hashMap["PID"] = newID
 
-            ref.child(itemCheckOut.id)
+
+/*            Log.d("Testing",itemCheckOut.cartId)
+            val fragment = addToCartFragment()
+            val bundle = Bundle()
+            bundle.putString("ShopCartId",itemCheckOut.cartId)
+            fragment.arguments = bundle*/
+
+
+
+            ref.child(newID)
                 .setValue(hashMap)
-                .addOnSuccessListener{
-                    Toast.makeText(context," Proceed to checkout", Toast.LENGTH_SHORT).show()
-                }
-                .addOnCanceledListener {  ->
-                    Toast.makeText(context,"Failed to remove this artwork", Toast.LENGTH_SHORT).show()
-                }
 
+                .addOnCanceledListener {  ->
+                    sucessMassage = false
+                }
         }
+        if(sucessMassage){
+            Toast.makeText(context,"Proceed payment", Toast.LENGTH_SHORT).show()
+        }else if (!sucessMassage){
+            Toast.makeText(context,"Failed to remove this artwork", Toast.LENGTH_SHORT).show()
+        }
+
         findNavController().navigate(R.id.action_addToCartFragment_to_paymentFragment)
         //Toast.makeText(context,"Successful Remove ",Toast.LENGTH_SHORT).show()
 
@@ -128,7 +143,7 @@ class addToCartFragment : Fragment() {
                 for (ds in snapshot.children){
                     val model = ds.getValue(ModelArtwork::class.java)
 
-                    model?.id = ds.key!!
+
                     val artPrice = model?.artPrice?.toDoubleOrNull()
                     total += artPrice!!
                     binding.textViewTotal.text = total.toString()

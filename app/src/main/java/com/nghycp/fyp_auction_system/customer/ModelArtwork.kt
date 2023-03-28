@@ -13,6 +13,7 @@ class ModelArtwork {
     var uid:String = ""
     var imageURL: String = ""
     var date : String = ""
+    var cartId :String =""
     var isChecked: Boolean = false
 
     constructor()
@@ -28,6 +29,7 @@ class ModelArtwork {
         isChecked :Boolean,
         id: String = "",
         date: String,
+        cartId:String,
     ){
         this.id = id
         this.artAuthor = artAuthor
@@ -39,5 +41,6 @@ class ModelArtwork {
         this.imageURL = imageURL
         this.isChecked = isChecked
         this.date = date
+        this.cartId = cartId
     }
 }
